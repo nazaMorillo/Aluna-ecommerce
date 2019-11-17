@@ -1,14 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-	<title>Aluna</title>
-	<style type="text/css">
-		body {
-			background-color: green;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Porfolio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href=" css/style.css">
 </head>
+
 <body>
-	<h1>Esto es nuestro proyecto de Ecommerce</h1>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-azul">
+            <a class="navbar-brand" href="#">TITULO</a>
+            <button class="navbar-toggler p-2" type="button" data-toggle="collapse" data-target="#menu"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="pr-1">MENU</span> <span class="fa fa-bars"></span>
+            </button>
+
+            <div class="collapse navbar-collapse mr-5" id="menu">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">INDEX</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">CONTACT</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <header class="bg-verde text-center">
+            <img class="my-4 img-fluid" src="images/profile.png" alt="Profile">
+            <h1>TITULO DE SECCIÓN</h1>
+            <div class="star-white">
+                <i class="fa fa-star"></i>
+            </div>
+            <p class="mb-5">Acá va el texto que quieras</p>
+        </header>
+        <section class="text-center">
+            <h1 id="seccion1">sección</h1>
+            <div class="star-navy">
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/cabin.png" alt=""></div>
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/cake.png" alt=""></div>
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/circus.png" alt=""></div>
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/game.png" alt=""></div>
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/safe.png" alt=""></div>
+                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/submarine.png" alt=""></div>
+            </div>
+        </section>
+        
+        <section class="text-center">
+            <h1 id="contact">CONTACT ME</h1>
+            <div class="star-navy">
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <form class="text-left">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email Address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Phone Number</label>
+                            <input type="telephone" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-azul text-center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>LOCATION</h4>
+                    <address>
+                        Maipu 2273
+                        <br>
+                        Rosario, Argentina
+                    </address>
+                </div>
+                <div class="col-sm-4">
+                    <h4>AROUND THE WEB</h4>
+                    <div class="brands d-flex justify-content-between">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter "></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h4>ABOUT FREELANCER</h4>
+                    <p>Esse ad cillum commodo occaecat mollit incididunt exercitation reprehenderit aliqua. Enim id qui
+                        pariatur eiusmod incididunt culpa. Laborum ex ut sint ipsum laboris eiusmod. Pariatur eiusmod
+                        minim amet exercitation <span>est est nisi sint irure</span>.</p>
+                </div>
+            </div>
+            <div class="bg-azul-oscuro copy">
+                Copyright &copy; 2019 - Estudiorompecabezas
+            </div>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
 </body>
+
 </html>
