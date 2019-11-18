@@ -1,16 +1,21 @@
 body {
     font-family: 'Lato', sans-serif;   
     color: #1A252F;
+    padding-top: 55px;
 }
 .bg-dark {
     /* background-color: #8bc34a!important; */
     background-color: #343a40!important;
     
 }
-
-.carousel-item img{
-    height: 32rem;
-    margin-bottom: 30px;
+.carousel-item {
+    background-color: #1a1a1a;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+.carousel-item img {        
+    /* min-height: 32rem; */
+    
     /* -webkit-filter: grayscale(100%);
     filter: grayscale(100%); */
 
@@ -34,16 +39,46 @@ body {
     filter: saturate(250%); */
 }
 
-.bd-placeholder-img {
-    background-image: url("images/shoping.jpg");
-}
 .nav {
     position: relative;
     z-index: 999;
   }
 
-.form-control input {
-    width: 45vw!important;
+  .star-white {
+    border-bottom: 3px solid #FAFAFA;
+    margin: 35px auto;
+    height: 0;
+    width: 200px;
+}
+.star-white i {
+    position: relative;
+    bottom: 18px;
+    padding: 10px;
+    color: #FAFAFA;
+    background-color: #18BC9C;
+}
+
+.star-navy {
+    border-bottom: 3px solid #1A252F;
+    margin: 35px auto;
+    height: 0;
+    width: 200px;
+}
+.star-navy i {
+    position: relative;
+    bottom: 18px;
+    padding: 10px;
+    color: #1A252F;
+    background-color: #FFF;
+}
+.navbar-brand {
+    margin-right: 2px;
+    font-size: 1rem;
+}
+
+.form-control {
+    width: 35vw!important;
+    float: right;
 }
 
 h1, h2, h3, h4 {
@@ -74,8 +109,34 @@ footer .row {
     padding: 5%;
 }
 
-  @media (min-width: 768px) {    
+@media (min-width: 890px) {
+    .bd-placeholder-img-lg {
+        font-size: 2.5rem;
+      }
+  }
+  @media (max-width: 550px) {
+    .carousel-item img {
+        max-height: 32rem;
+    } 
+    .carousel-caption h2{
+        font-size: 1.2rem;
+    }
+    .carousel-caption .btn{
+        padding:2px 40px;
+        font-size: 1rem;
+    }
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
     }
+    .nav .navbar-brand {
+        font-size: 1.2rem;
+    }
+  }
+  @media (min-width: 920px) {
+    .carousel-item {
+        padding: 0 20%;
+    }
+    .carousel-item img {
+        height: 32rem;
+    } 
   }
