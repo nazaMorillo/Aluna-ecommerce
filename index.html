@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Porfolio</title>
+    <title>All Market</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -25,15 +25,17 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href=" css/style.css">
 </head>
 
 <body>
-    <div class="container">
+
+    <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Carousel</a>
+            <a class="navbar-brand" href="#">All Market</a>
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -55,102 +57,190 @@
                         <a class="nav-link" href="#">Login </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <header class="bg-verde text-center">
-            <img class="my-4 img-fluid" src="images/profile.png" alt="Profile">
-            <h1>TITULO DE SECCIÓN</h1>
-            <div class="star-white">
-                <i class="fa fa-star"></i>
-            </div>
-            <p class="mb-5">Acá va el texto que quieras</p>
-        </header>
-        <section class="text-center">
-            <h1 id="seccion1">sección</h1>
-            <div class="star-navy">
-                <i class="fa fa-star"></i>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/cabin.png" alt=""></div>
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/cake.png" alt=""></div>
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/circus.png" alt=""></div>
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/game.png" alt=""></div>
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/safe.png" alt=""></div>
-                <div class="col-sm-6 col-md-4 mb-4"><img class="img-fluid" src="images/submarine.png" alt=""></div>
-            </div>
-        </section>
+    </header>
+    <main role="main">
 
-        <section class="text-center">
-            <h1 id="contact">CONTACT ME</h1>
-            <div class="star-navy">
-                <i class="fa fa-star"></i>
-            </div>
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <form class="text-left">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="bd-placeholder-img" width="100%" src="images/shoping.jpg"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img" alt="shoping">
+                    <div class="container">
+                        <div class="carousel-caption text-left">
+                            <h2>All Market</h2>
+                            <p>Es el comercio electronico en donde todos quieren comprar.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email Address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Phone Number</label>
-                            <input type="telephone" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Message</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <footer class="bg-azul text-center">
-            <div class="row">
-                <div class="col-sm-4">
-                    <h4>LOCATION</h4>
-                    <address>
-                        Maipu 2273
-                        <br>
-                        Rosario, Argentina
-                    </address>
-                </div>
-                <div class="col-sm-4">
-                    <h4>AROUND THE WEB</h4>
-                    <div class="brands d-flex justify-content-between">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter "></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <h4>ABOUT FREELANCER</h4>
-                    <p>Esse ad cillum commodo occaecat mollit incididunt exercitation reprehenderit aliqua. Enim id qui
-                        pariatur eiusmod incididunt culpa. Laborum ex ut sint ipsum laboris eiusmod. Pariatur eiusmod
-                        minim amet exercitation <span>est est nisi sint irure</span>.</p>
+                <div class="carousel-item">
+                    <img class="bd-placeholder-img" width="100%" src="images/perchero.jpg"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img" alt="shoping">
+                    <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+                        <rect width="100%" height="100%" fill="#777" /></svg> -->
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h2>Todos tus productos ordendados por categorías</h2>
+                            <p>All Market tiene una forma simple de ordenar tus productos por categorías.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="bd-placeholder-img" width="100%" src="images/phone.jpg"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" role="img" alt="shoping">
+                    <div class="container">
+                        <div class="carousel-caption text-right">
+                            <h2>Fácil de registrarse y fácil de usar</h2>
+                            <p>No querrás otro comercio electronico luego de porbar el nuestro.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Registrarme ahora</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <!-- Marketing messaging and featurettes
+            ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <h3>Sobre nosotros</h3>
+                    <p>Nuestra plataforma nació de la necesidad de proporcionar una sistema de comercio electronico
+                        personalizado y de fácil acceso para cada persona que quiere emprender.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">Contactanos &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+
+            </div><!-- /.row -->
+
+
+            <!-- START THE FEATURETTES -->
+
+            <hr class="featurette-divider">
+            <div class="row lista">
+                <div class="card producto col-md-4">
+                    <img src="images/product-1.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card producto col-md-4">
+                    <img src="images/product-2.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card producto col-md-4">
+                    <img src="images/product-3.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card producto col-md-4">
+                    <img src="images/product-1.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card producto col-md-4">
+                    <img src="images/product-2.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+                <div class="card producto col-md-4">
+                    <img src="images/product-3.jpg" class="card-img-top" alt="Producto1">
+                    <div class="card-body">
+                        <h3>$ 500</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width: 100%;">
+                    <div class="card-header bg-azul-oscuro copy">
+                        Categorías
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <a href="#">
+                            <li class="list-group-item">Electrónica</li>
+                        </a>
+                        <a href="#">
+                            <li class="list-group-item">Muebles</li>
+                        </a>
+                        <a href="#">
+                            <li class="list-group-item">Electrodomesticos</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- /END THE FEATURETTES -->
+        </div><!-- /.container -->
+
+        <!-- FOOTER -->
+        <footer class="bg-azul text-center">
+            <div class="col-sm-12">
+                <div class="brands d-flex justify-content-center">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter "></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="bg-azul-oscuro copy">
-                Copyright &copy; 2019 - Estudiorompecabezas
+                Copyright &copy; 2019 - All Markert
             </div>
         </footer>
-    </div>
+    </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous">
+        </script>
 
 </body>
 
