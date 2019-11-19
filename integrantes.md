@@ -1,3 +1,3 @@
-Alexis Cattaneo
-Lucio Martinez
-Nazareno Morillo
+*Alexis Cattaneo
+*Lucio Martinez
+*Nazareno Morillo
