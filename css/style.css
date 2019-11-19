@@ -44,6 +44,10 @@ body {
     z-index: 999;
   }
 
+h2.card-title {
+    font-size: 1em;
+}
+
   .star-white {
     border-bottom: 3px solid #FAFAFA;
     margin: 35px auto;
@@ -131,6 +135,7 @@ footer .row {
     .nav .navbar-brand {
         font-size: 1.2rem;
     }
+    
   }
   @media (min-width: 920px) {
     .carousel-item {
