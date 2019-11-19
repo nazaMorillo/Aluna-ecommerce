@@ -31,12 +31,10 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="index.html">All Market</a>
+            <a class="navbar-brand" href="#">All Market</a>
             <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    style="border:none; border-radius: 100px;"><img width="45px" src="images/carrito.png" alt="search"
-                        title="Carrito"></button>
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +52,7 @@
                         <a class="nav-link" href="registro.html">Registro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="inicio.html">Login </a>
+                        <a class="nav-link" href="#">Login </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
@@ -63,46 +61,39 @@
             </div>
         </nav>
     </header>
-    <main role="main" style="margin-top: 40px;">
-        <section class="text-center container">
-            <h1 id="contact">CONTACTANOS</h1>
+    <main role="main">
+        <section class="text-center container mt-3">
+                <h1 id="contact">INICIO SECCIÓN</h1>
             <div class="star-navy">
                 <i class="fa fa-star"></i>
             </div>
             <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <form class="text-left mb-3">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre:</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                <div class="col-md-12 mx-auto">
+                    <form class="text-center mb-3">
+                        <div class="form-group column d-flex flex-column">
+                            <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
+                            <span class="row"><input type="email" class="form-control col-12" id="exampleInputEmail1"
+                                aria-describedby="emailHelp"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Telefono:</label>
-                            <input type="telephone" class="form-control" id="exampleInputPassword1">
+                        <div class="form-group column">
+                            <label for="exampleInputPassword1 col-sm-12 col-md-6">Contraseña</label>
+                            <span class="row"><input type="password" class="form-control col-12" id="exampleInputPassword1"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Dirección:</label>
-                            <input type="telephone" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Correo electronico:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Consulta:</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                style="resize: none;"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary col-md-6">Enviar</button>
                     </form>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107134.56934196998!2d-60.76667965536046!3d-32.95218976027299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b6539335d7d75b%3A0xec4086e90258a557!2sRosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1574038843464!5m2!1ses-419!2sar"
-                        width="100%" height="300px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
             </div>
-        </section>
+            <h2 class="text-center">ó</h2>
+            <div class="btn text-center container row bg-dark text-white mb-2">
+                    <i class="fab fa-facebook float-left"></i><a href="#"class="nav-link text-white" >INGRESA CON FACEBOOK</a>
+            </div>
+            <div class="btn text-center container row bg-dark btn-outline-dark text-white mb-2">
+                    <i class="fab fa-twitter float-left"></i><a href="#" class="nav-link text-white">INGRESA CON TWITTER</a>
+            </div>
+            <div class="btn text-center text-white container row bg-dark mb-2">
+                    <i class="fab fa-google float-left"></i><a href="#" class="nav-link text-white">INGRESA CON GOOGLE</a>
+            </div>
+        </section>        
         <footer class="bg-azul text-center">
             <!-- <div class="row">
                 <div class="col-sm-12">
