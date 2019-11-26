@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function validarLogin(){	
+function validarLogin(){
 	if ($_POST) {
 
             $_SESSION['messagerror'] = "";
@@ -13,9 +13,9 @@ function validarLogin(){
             };
 
             if(strlen($_POST['password']) == 0) {
-                $_SESSION['messagerror'] .= "La contraseña no puede estar vacía<br>";
+                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede estar vacía<br>";
             } elseif(strlen($_POST['password']) < 5) {
-                $_SESSION['messagerror'] .= "La contraseña no puede ser menor a 5<br>";
+                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede ser menor a 5<br>";
             };
 
             if($_SESSION['messagerror'] == ""){
@@ -69,7 +69,7 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
             return true;
         } elseif($flagemail){
         $_SESSION['messagerror'] = "<br><br>Contraseña incorrecta";
-        header('Location: login.php');        	
+        header('Location: login.php');
 	    } else{
 	    	$_SESSION['messagerror'] = "<br><br>El usuario no existe";
 	        header('Location: login.php');
