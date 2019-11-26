@@ -82,21 +82,40 @@
                 <div class="col-md-12 mx-auto">
 <?php
 $_SESSION['messagerror'] = "";
+
 ?>
                     <form class="text-center mb-3" action="registroProceso.php" enctype="multipart/form-data" method="POST">
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Nombre</label>
-                            <span class="row"><input name="username" type="text" class="form-control col-12" id="Ingresá tu nombre"
-                                    aria-describedby="emailHelp"></span>
+                            <span class='row'><input 
+                                <?php 
+                                    if (isset($_SESSION['completarCorrectos']['nombre'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['nombre']."' ";
+                                    }
+                                ?>
+                            name='username' type='text' class='form-control col-12' id='Ingresá tu nombre'
+                                    aria-describedby='emailHelp'></span>
                         </div>
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Apellido</label>
-                            <span class="row"><input name="usersecondname" type="text" class="form-control col-12" id="Ingresá tu apellido"
+                            <span class="row"><input 
+                                <?php 
+                                    if (isset($_SESSION['completarCorrectos']['secondname'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['secondname']."' ";
+                                    }
+                                ?>
+                            name="usersecondname" type="text" class="form-control col-12" id="Ingresá tu apellido"
                                     aria-describedby="emailHelp"></span>
                         </div>
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
-                            <span class="row"><input name="useremail" type="email" class="form-control col-12" id="exampleInputEmail1"
+                            <span class="row"><input 
+                                <?php 
+                                    if (isset($_SESSION['completarCorrectos']['email'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['email']."' ";
+                                    }
+                                ?>
+                            name="useremail" type="email" class="form-control col-12" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"></span>
                         </div>
                         <div class="form-group column">
@@ -137,7 +156,9 @@ $_SESSION['messagerror'] = "";
             </div>
         </footer>
     </main>
-
+    <?php  
+            session_destroy();
+    ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

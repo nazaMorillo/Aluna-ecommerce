@@ -10,24 +10,30 @@ function validarDatos(){
                 $_SESSION['messagerror'] .= "<br><br>El nombre no puede estar vacío<br>";
             } elseif(strlen($_POST['username']) < 2) {
                 $_SESSION['messagerror'] .= "<br><br>El nombre no puede tener menos de 2 caracteres<br>";
+            } else{
+                $_SESSION['completarCorrectos']['nombre'] = $_POST['username'];
             };
 
             if(strlen($_POST['usersecondname']) == 0) {
-                $_SESSION['messagerror'] .= "El apellido no puede estar vacío<br>";
+                $_SESSION['messagerror'] .= "<br><br>El apellido no puede estar vacío<br>";
             } elseif(strlen($_POST['usersecondname']) < 2) {
-                $_SESSION['messagerror'] .= "El apellido no puede tener menos de 2 caracteres<br>";
+                $_SESSION['messagerror'] .= "<br><br>El apellido no puede tener menos de 2 caracteres<br>";
+            }else{
+                $_SESSION['completarCorrectos']['secondname'] = $_POST['usersecondname'];
             };
 
             if(strlen($_POST['useremail']) == 0) {
-                $_SESSION['messagerror'] .= "El email no puede estar vacío<br>";
+                $_SESSION['messagerror'] .= "<br><br>El email no puede estar vacío<br>";
             } elseif(!filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['messagerror'] .= "El email ingresado no es válido<br>";
+                $_SESSION['messagerror'] .= "<br><br>El email ingresado no es válido<br>";
+            }else{
+                $_SESSION['completarCorrectos']['email'] = $_POST['useremail'];
             };
 
             if(strlen($_POST['userpassword']) == 0) {
-                $_SESSION['messagerror'] .= "La contraseña no puede estar vacía<br>";
+                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede estar vacía<br>";
             } elseif(strlen($_POST['userpassword']) < 5) {
-                $_SESSION['messagerror'] .= "La contraseña no puede ser menor a 5<br>";
+                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede ser menor a 5<br>";
             };
 
             if($_SESSION['messagerror'] == ""){
