@@ -1,10 +1,10 @@
 <?php 
     session_start();
-    if(isset($_SESSION['messagerror'])){
-        if ($_SESSION['messagerror'] != "") {
-            echo $_SESSION['messagerror'];
+    if(isset($_SESSION['messagerror']['returnsearch'])){
+        if ($_SESSION['messagerror']['returnsearch'] != "") {
+            echo '<span class="messagerror">'.$_SESSION['messagerror']['returnsearch'].'</span>';
         }
-    }    
+    }   
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0fbb5c7ed7.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href=" css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -60,10 +60,10 @@
                         <a class="nav-link" href="ayuda.html">Ayuda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registro.html">Registro</a>
+                        <a class="nav-link" href="registro.php">Registro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="login.html">Login </a>
+                        <a class="nav-link active" href="login.php">Login </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
@@ -85,24 +85,45 @@
                             <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
                             <span class="row"><input 
                             <?php 
-                                    if (isset($_SESSION['completarCorrectos']['email'])) {
+                                    if (isset($_COOKIE['email'])) {
+                                        echo "value='".$_COOKIE['email']."' ";
+                                    }
+                                    elseif (isset($_SESSION['completarCorrectos']['email'])) {
                                         echo "value='".$_SESSION['completarCorrectos']['email']."' ";
                                     }
                             ?>
                              type="email" name="email" class="form-control col-12" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"></span>
+                            <?php
+                                if(isset($_SESSION['messagerror']['email'])){
+                                    if ($_SESSION['messagerror']['email'] != "") {
+                                        echo '<span class="messagerror">'.$_SESSION['messagerror']['email'].'</span>';
+                                    }
+                                }    
+                            ?>
                         </div>
                         <div class="form-group column">
                             <label for="exampleInputPassword1 col-sm-12 col-md-6">Contraseña</label>
                             <span class="row"><input 
                             <?php 
-                                    if (isset($_SESSION['completarCorrectos']['password'])) {
+                                    if (isset($_COOKIE['password'])) {
+                                        echo "value='".$_COOKIE['password']."' ";
+                                    }
+                                    elseif (isset($_SESSION['completarCorrectos']['password'])) {
                                         echo "value='".$_SESSION['completarCorrectos']['password']."' ";
                                     }
                             ?>
                              type="password" name="password" class="form-control col-12"
                                     id="exampleInputPassword1"></span>
+                            <?php
+                                if(isset($_SESSION['messagerror']['password'])){
+                                    if ($_SESSION['messagerror']['password'] != "") {
+                                        echo '<span class="messagerror">'.$_SESSION['messagerror']['password'].'</span>';
+                                    }
+                                }    
+                            ?>
                         </div>
+                        <label><input type="checkbox" name="recordarUsuario" value="marcado"></input> Recordarme</label><br>
                         <input type="submit" name="Submit" value="Enviar" class="btn btn-outline-dark bg-dark col-md-6 text-white mb-2"></input>
                     </form>
                 </div>

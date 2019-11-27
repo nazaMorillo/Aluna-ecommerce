@@ -4,31 +4,50 @@ session_start();
 function validarLogin(){
 	if ($_POST) {
 
-            $_SESSION['messagerror'] = "";
+            $_SESSION['messagerror']['email'] = "";
+            $_SESSION['messagerror']['password'] = "";
 
             if(strlen($_POST['email']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>El email no puede estar vacío<br>";
+                $_SESSION['messagerror']['email'] = "El email no puede estar vacío<br>";
             } elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['messagerror'] .= "<br><br>El email ingresado no es válido<br>";
+                $_SESSION['messagerror']['email'] = "El email ingresado no es válido<br>";
             }else{
                 $_SESSION['completarCorrectos']['email'] = $_POST['email'];
             };
 
             if(strlen($_POST['password']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede estar vacía<br>";
+                $_SESSION['messagerror']['password'] = "La contraseña no puede estar vacía<br>";
             } elseif(strlen($_POST['password']) < 5) {
-                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede ser menor a 5<br>";
+                $_SESSION['messagerror']['password'] = "La contraseña no puede ser menor a 5<br>";
             }else{
                 $_SESSION['completarCorrectos']['password'] = $_POST['password'];
             };
 
-            if($_SESSION['messagerror'] == ""){
+            if($_SESSION['messagerror']['email'] == "" && $_SESSION['messagerror']['password'] == ""){
                 return true;
             } else{
                 header('Location: login.php');
             }
         }
     }
+
+function redordarUsuario(){
+    if (!empty($_POST['recordarUsuario'])) {
+        $cookie_email = "email";
+        $cookie_emailvalue = $_POST['email'];
+        setcookie($cookie_email, $cookie_emailvalue, time()+604800);
+        $cookie_password = "password";
+        $cookie_passwordvalue = $_POST['password'];
+        setcookie($cookie_password, $cookie_passwordvalue, time()+604800);
+        header('Location: login.php');
+    } elseif(isset($_COOKIE['email'])){
+        setcookie('email',"",time()-604800);
+        setcookie('password',"",time()-604800);
+        $_SESSION['completarCorrectos']['email'] = "";
+        $_SESSION['completarCorrectos']['password'] = "";
+        header('Location: login.php');
+    }
+}
 
 function guardarInfoUsuario(){
     // Si se envían datos por el método POST se guarda la información en variables
@@ -72,15 +91,16 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
         	$_SESSION['messagexito'] = "Usuario <br>".$nuevousuario['email']." Bienvenido!!";
             return true;
         } elseif($flagemail){
-        $_SESSION['messagerror'] = "<br><br>Contraseña incorrecta";
+        $_SESSION['messagerror']['returnsearch'] = "<br><br>Contraseña incorrecta";
         header('Location: login.php');
 	    } else{
-	    	$_SESSION['messagerror'] = "<br><br>El usuario no existe";
+	    	$_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
 	        header('Location: login.php');
 	    }
 }
 
 if (validarLogin()) {
+    redordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){
 		header('Location: loginExito.php');
 	}

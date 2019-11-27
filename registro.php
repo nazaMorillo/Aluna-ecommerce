@@ -60,10 +60,10 @@
                         <a class="nav-link" href="ayuda.html">Ayuda</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="registro.html">Registro</a>
+                        <a class="nav-link" href="registro.php">Registro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login </a>
+                        <a class="nav-link" href="login.php">Login </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contacto.html">Contacto</a>
