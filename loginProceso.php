@@ -10,12 +10,16 @@ function validarLogin(){
                 $_SESSION['messagerror'] .= "<br><br>El email no puede estar vacío<br>";
             } elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['messagerror'] .= "<br><br>El email ingresado no es válido<br>";
+            }else{
+                $_SESSION['completarCorrectos']['email'] = $_POST['email'];
             };
 
             if(strlen($_POST['password']) == 0) {
                 $_SESSION['messagerror'] .= "<br><br>La contraseña no puede estar vacía<br>";
             } elseif(strlen($_POST['password']) < 5) {
                 $_SESSION['messagerror'] .= "<br><br>La contraseña no puede ser menor a 5<br>";
+            }else{
+                $_SESSION['completarCorrectos']['password'] = $_POST['password'];
             };
 
             if($_SESSION['messagerror'] == ""){

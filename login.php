@@ -83,12 +83,24 @@
                     <form class="text-center mb-3" action="loginProceso.php" method="post">
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
-                            <span class="row"><input type="email" name="email" class="form-control col-12" id="exampleInputEmail1"
+                            <span class="row"><input 
+                            <?php 
+                                    if (isset($_SESSION['completarCorrectos']['email'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['email']."' ";
+                                    }
+                            ?>
+                             type="email" name="email" class="form-control col-12" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"></span>
                         </div>
                         <div class="form-group column">
                             <label for="exampleInputPassword1 col-sm-12 col-md-6">Contraseña</label>
-                            <span class="row"><input type="password" name="password" class="form-control col-12"
+                            <span class="row"><input 
+                            <?php 
+                                    if (isset($_SESSION['completarCorrectos']['password'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['password']."' ";
+                                    }
+                            ?>
+                             type="password" name="password" class="form-control col-12"
                                     id="exampleInputPassword1"></span>
                         </div>
                         <input type="submit" name="Submit" value="Enviar" class="btn btn-outline-dark bg-dark col-md-6 text-white mb-2"></input>
