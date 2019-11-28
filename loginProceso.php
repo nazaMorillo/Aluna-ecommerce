@@ -43,8 +43,6 @@ function redordarUsuario(){
     } elseif(isset($_COOKIE['email'])){
         setcookie('email',"",time()-604800);
         setcookie('password',"",time()-604800);
-        $_SESSION['completarCorrectos']['email'] = "";
-        $_SESSION['completarCorrectos']['password'] = "";
         header('Location: login.php');
     }
 }

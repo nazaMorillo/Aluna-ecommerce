@@ -1,10 +1,5 @@
 <?php
     session_start();
-    if(isset($_SESSION['messagerror'])){
-        if ($_SESSION['messagerror'] != "") {
-            echo $_SESSION['messagerror'];
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -80,10 +75,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mx-auto">
-<?php
-$_SESSION['messagerror'] = "";
-
-?>
                     <form class="text-center mb-3" action="registroProceso.php" enctype="multipart/form-data" method="POST">
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Nombre</label>
@@ -95,6 +86,11 @@ $_SESSION['messagerror'] = "";
                                 ?>
                             name='username' type='text' class='form-control col-12' id='Ingresá tu nombre'
                                     aria-describedby='emailHelp'></span>
+                                <?php 
+                                    if (isset($_SESSION['registErrMsj']['username'])) {
+                                        echo '<span class="messagerror">'.$_SESSION['registErrMsj']['username'].'</span>';
+                                    }
+                                ?> 
                         </div>
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Apellido</label>
@@ -106,6 +102,11 @@ $_SESSION['messagerror'] = "";
                                 ?>
                             name="usersecondname" type="text" class="form-control col-12" id="Ingresá tu apellido"
                                     aria-describedby="emailHelp"></span>
+                                <?php 
+                                    if (isset($_SESSION['registErrMsj']['secondname'])) {
+                                        echo '<span class="messagerror">'.$_SESSION['registErrMsj']['secondname'].'</span>';
+                                    }
+                                ?>
                         </div>
                         <div class="form-group column d-flex flex-column">
                             <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
@@ -117,11 +118,25 @@ $_SESSION['messagerror'] = "";
                                 ?>
                             name="useremail" type="email" class="form-control col-12" id="exampleInputEmail1"
                                     aria-describedby="emailHelp"></span>
+                                <?php 
+                                    if (isset($_SESSION['registErrMsj']['email'])) {
+                                        echo '<span class="messagerror">'.$_SESSION['registErrMsj']['email'].'</span>';
+                                    }
+                                ?>    
                         </div>
                         <div class="form-group column">
                             <label for="exampleInputPassword1 col-sm-12 col-md-6">Contraseña</label>
-                            <span class="row"><input name="userpassword" type="password" class="form-control col-12"
+                            <span class="row"><input <?php 
+                                    if (isset($_SESSION['completarCorrectos']['password'])) {
+                                        echo "value='".$_SESSION['completarCorrectos']['password']."' ";
+                                    }
+                                ?> name="userpassword" type="password" class="form-control col-12"
                                     id="exampleInputPassword1"></span>
+                                <?php 
+                                    if (isset($_SESSION['registErrMsj']['password'])) {
+                                        echo '<span class="messagerror">'.$_SESSION['registErrMsj']['password'].'</span>';
+                                    }
+                                ?>    
                         </div>
 
                         <div class="container row">

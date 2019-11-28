@@ -4,39 +4,44 @@
 function validarDatos(){
         if ($_POST) {
 
-            $_SESSION['messagerror'] = "";
+            $_SESSION['registErrMsj']['username'] = "";
+            $_SESSION['registErrMsj']['secondname'] = "";
+            $_SESSION['registErrMsj']['email'] = "";
+            $_SESSION['registErrMsj']['password'] = "";
 
             if (strlen($_POST['username']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>El nombre no puede estar vacío<br>";
+                $_SESSION['registErrMsj']['username'] = "El nombre no puede estar vacío<br>";
             } elseif(strlen($_POST['username']) < 2) {
-                $_SESSION['messagerror'] .= "<br><br>El nombre no puede tener menos de 2 caracteres<br>";
+                $_SESSION['registErrMsj']['username'] = "El nombre no puede tener menos de 2 caracteres<br>";
             } else{
                 $_SESSION['completarCorrectos']['nombre'] = $_POST['username'];
             };
 
             if(strlen($_POST['usersecondname']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>El apellido no puede estar vacío<br>";
+                $_SESSION['registErrMsj']['secondname'] = "El apellido no puede estar vacío<br>";
             } elseif(strlen($_POST['usersecondname']) < 2) {
-                $_SESSION['messagerror'] .= "<br><br>El apellido no puede tener menos de 2 caracteres<br>";
+                $_SESSION['registErrMsj']['secondname'] = "El apellido no puede tener menos de 2 caracteres<br>";
             }else{
                 $_SESSION['completarCorrectos']['secondname'] = $_POST['usersecondname'];
             };
 
             if(strlen($_POST['useremail']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>El email no puede estar vacío<br>";
+                $_SESSION['registErrMsj']['email'] = "El email no puede estar vacío<br>";
             } elseif(!filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['messagerror'] .= "<br><br>El email ingresado no es válido<br>";
+                $_SESSION['registErrMsj']['email'] = "El email ingresado no es válido<br>";
             }else{
                 $_SESSION['completarCorrectos']['email'] = $_POST['useremail'];
             };
 
             if(strlen($_POST['userpassword']) == 0) {
-                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede estar vacía<br>";
+                $_SESSION['registErrMsj']['password'] = "La contraseña no puede estar vacía<br>";
             } elseif(strlen($_POST['userpassword']) < 5) {
-                $_SESSION['messagerror'] .= "<br><br>La contraseña no puede ser menor a 5<br>";
+                $_SESSION['registErrMsj']['password'] = "La contraseña no puede ser menor a 5<br>";
+            }else{
+                $_SESSION['completarCorrectos']['password'] = $_POST['userpassword'];
             };
 
-            if($_SESSION['messagerror'] == ""){
+            if($_SESSION['registErrMsj'] == ""){
                 return true;
             } else{
                 header('Location: registro.php');
