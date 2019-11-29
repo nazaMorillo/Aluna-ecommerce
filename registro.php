@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(isset($_SESSION['registErrExistMsj'])){
+        if ($_SESSION['registErrExistMsj'] != "") {
+            echo '<span class="messagerror">'.$_SESSION['registErrExistMsj'].'</span>';
+        }
+    }  
 ?>
 
 <!DOCTYPE html>
@@ -126,11 +131,13 @@
                         </div>
                         <div class="form-group column">
                             <label for="exampleInputPassword1 col-sm-12 col-md-6">Contraseña</label>
-                            <span class="row"><input <?php 
+                            <span class="row"><input 
+                                <?php 
                                     if (isset($_SESSION['completarCorrectos']['password'])) {
                                         echo "value='".$_SESSION['completarCorrectos']['password']."' ";
                                     }
-                                ?> name="userpassword" type="password" class="form-control col-12"
+                                ?> 
+                                name="userpassword" type="password" class="form-control col-12"
                                     id="exampleInputPassword1"></span>
                                 <?php 
                                     if (isset($_SESSION['registErrMsj']['password'])) {
@@ -138,7 +145,7 @@
                                     }
                                 ?>    
                         </div>
-
+                        <label><input type="checkbox" name="recordarUsuario" value="marcado"></input> Recordarme</label><br>
                         <div class="container row">
                             <img src="./images/images.png" class="rounded-circle mx-auto d-block">
                             <div class="col-sm-12">

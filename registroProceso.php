@@ -41,13 +41,29 @@ function validarDatos(){
                 $_SESSION['completarCorrectos']['password'] = $_POST['userpassword'];
             };
 
-            if($_SESSION['registErrMsj'] == ""){
+            if($_SESSION['registErrMsj']['username'] == "" && $_SESSION['registErrMsj']['secondname'] == "" && $_SESSION['registErrMsj']['email'] == "" && $_SESSION['registErrMsj']['password'] == ""){
                 return true;
             } else{
                 header('Location: registro.php');
             }
         }
     }
+
+function redordarUsuario(){
+    if (!empty($_POST['recordarUsuario'])) {
+        $cookie_email = "email";
+        $cookie_emailvalue = $_POST['useremail'];
+        setcookie($cookie_email, $cookie_emailvalue, time()+604800);
+        $cookie_password = "password";
+        $cookie_passwordvalue = $_POST['userpassword'];
+        setcookie($cookie_password, $cookie_passwordvalue, time()+604800);
+        header('Location: registro.php');
+    } elseif(isset($_COOKIE['email'])){
+        setcookie('email',"",time()-604800);
+        setcookie('password',"",time()-604800);
+        header('Location: registro.php');
+    }
+}    
 
 function guardarInfoUsuario(){
     // Si se envían datos por el método POST se guarda la información en variables
@@ -94,7 +110,7 @@ function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
             foreach ($usersJsonDecode[$i] as $key => $value) {
                 if ($key == 'email') {
                         if ($value == $nuevousuario['email']) {
-                        $_SESSION['messagerror'] = "<br><br>El usuario ya existe<br>";
+                        $_SESSION['registErrExistMsj'] = "<br><br>El usuario ya existe<br>";
                         header('Location: registro.php');
                         exit;
                         };
@@ -118,6 +134,7 @@ function guardarJson($usersJsonDecode, $username){
 
 
 if (validarDatos()) {
+    redordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
 }
 
