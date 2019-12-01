@@ -1,14 +1,27 @@
 <?php
+// include_once("plugins/componentes.php");
 
+// if(!segunHoraDia() ){
+//     $saludo = segunHoraDia();
+//     echo "entre por hora del día";
+// }else{
+//     $saludo = "Bienvenido ";
+//     echo "entre por bienvenida";
+// }
 
 if($sec=="inicio"){$inicio='active';}else{$inicio='';}
 if($sec=="home"){$home='active';}else{$home='';}
 if($sec=="listado"){$catalogo='active';}else{$catalogo='';}
 if($sec=="ayuda"){$ayuda='active';}else{$ayuda='';}
-if($sec=="registro"){$registro='active';}else{$registro='';}
-if($sec=="login"){$login='active';}else{$login='';}
+if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
+$saludo = "Bienvenido "; 
+if (isset($_SESSION['nombre']) ){
+    $nombreUsuario = $_SESSION['nombre'];
+}else{
+    $nombreUsuario = 'Usuario';
+}
 ?>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="index.php">A-M</a>
@@ -21,6 +34,12 @@ if($sec=="contacto"){$contacto='active';}else{$contacto='';}
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="margin: 0px 10px 0px 10px;">
+                <a class="nav-link" href="index.php?sec=perfil#TOP" style="display: flex; flex-wrap: nowrap;">
+                    <img width="42px" height="42px" src="pics/genericAvatar.png" alt="avatar">
+                    <h6 style="margin: 0px 5px;" ><?php echo $saludo.'<br>'.$nombreUsuario; ?></h6>
+                </a>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link <?=$home ?>" href="index.php?sec=home#TOP">Home</a><span class="sr-only">(current)</span>
             </li>
@@ -28,16 +47,16 @@ if($sec=="contacto"){$contacto='active';}else{$contacto='';}
                 <a class="nav-link <?=$catalogo?>" href="index.php?sec=listado#TOP">Catalogo</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?=$ayuda ?>" href="index.php?sec=ayuda#TOP">Ayuda</a>
+                <a class="nav-link <?=$ayuda; ?>" href="index.php?sec=ayuda#TOP">Ayuda</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?=$registro ?>" href="index.php?sec=registro#TOP">Registro</a>
+                <a class="nav-link <?=$perfil; ?>" href="index.php?sec=perfil#TOP">Perfil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?=$login ?>" href="index.php?sec=login#TOP">Login </a>
+                <a class="nav-link <?=$contacto; ?>" href="index.php?sec=contacto#TOP">Contacto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?=$contacto ?>" href="index.php?sec=contacto#TOP">Contacto</a>
+                <a class="nav-link <?=$salir; ?>" href="index.php?sec=salir#TOP">Salir</a>
             </li>
         </ul>
     </div>
