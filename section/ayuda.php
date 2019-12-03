@@ -1,3 +1,8 @@
+<?php 
+// include_once('admin/core/funciones.php');
+// devuelvePost();
+// exit;
+?>
 <section class="text-center container">
     <h2 id="contact" class="mt-2">Preguntas Frecuentes</h2>
     <div class="accordion" id="accordionExample">

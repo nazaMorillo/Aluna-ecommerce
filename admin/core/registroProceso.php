@@ -1,5 +1,8 @@
+
 <?php
     session_start();
+    include_once('funciones.php');
+    
 function validarDatos(){
         if ($_POST) {
             $_SESSION['registErrMsj']['username'] = "";
@@ -115,8 +118,10 @@ function guardarJson($usersJsonDecode, $username){
     $_SESSION['messagexito'] = "Bienvenido $username";
     header('Location: ../../index.php?sec=login#TOP');
 }    
-if (validarDatos()) {
+if (validarDatos()) {    
     redordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    pre($_SESSION['completarCorrectos']);
+    saludar();
 }
 ?>

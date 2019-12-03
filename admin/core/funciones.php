@@ -2,9 +2,29 @@
 session_start();
 // $_FILES["avatar"]["name"] nos retornará el nombre con el que fue subido el archivo.
 
+// Para mostrar fechas y horas
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+setlocale(LC_TIME, "es_AR");
+
+function mostrarFecha($fecha)
+{
+	return date_format(date_create($fecha), 'd/m/Y');
+}
+
+function mostrarFechaHora($fecha)
+{
+	return date_format(date_create($fecha), 'd/m/Y H:m');
+}
+
+function mostrarHora($fecha)
+{
+	return date_format(date_create($fecha), 'H:m');
+}
 
 function saludar(){
-    echo 'Hola';
+    echo '<br><br>';
+    echo '<h1>Hola</h1>';
+    exit;
 }
 // Muestra un con formato de array asociativo
 function pre($array){
@@ -68,14 +88,38 @@ function subirArchivo($fileNombre, $ruta) {
     $ext=pathinfo($nombre, PATHINFO_EXTENSION);
     move_uploaded_file($archivo, $ruta.$ext);  
 }
+// Recuperar datos de sessión
+function sesionUsuario(){
+    foreach($_SESSION['completarCorrectos'] as $key => $value){
+        echo "$key : $value<br>";
+    }    
+}
+// validar si existe $_POST, debuelve true si existe
+function exitePOST(){
+    $res=false;
+    if(isset($_POST)){
+        $res=true;
+    }
+    return $res;
+}
+// Devuelve POST si existe
+function devuelvePost(){
+    // echo '<br><br>entra por acá';
+    pre($_POST);
+    // exit;
+}
+
+// Recuperar datos de sessión
+function arrayUserForm(){
+    foreach($_SESSION['completarCorrectos'] as $key => $value){
+        echo "$key : $value<br>";
+    }    
+}
+
 // Recibe valores de formulario y lo agrega el usuario json
 function crearUsuario() {
     $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $usuario = [
-    "email" => $_POST["email"],
-    "username" => $_POST["username"],
-    "password" => $hash
-  ];
+    $usuario = [];
     $usuarios = file_get_contents("usuarios.json");
     $usuariosArray  = json_decode($usuarios,true);
     $usuariosArray[] = $usuario;

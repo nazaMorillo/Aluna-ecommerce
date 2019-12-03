@@ -1,8 +1,10 @@
 <?php
 include_once('funciones.php');
+echo '<br><br>';
+
 // session_start();
 function validarLogin(){
-
+    
 	if ($_POST) {
             $_SESSION['messagerror']['email'] = "";
             $_SESSION['messagerror']['password'] = "";
@@ -23,6 +25,7 @@ function validarLogin(){
             if($_SESSION['messagerror']['email'] == "" && $_SESSION['messagerror']['password'] == ""){
                 return true;
             } else{
+                $_SESSION['completarCorrectos']['nombre']=$_POST['nombre'];
                 header('Location: ../../index.php?sec=login#TOP');
             }
         }
@@ -56,7 +59,7 @@ function guardarInfoUsuario(){
     return $nuevousuario;
 }
 function abrirJson(){
-    $usersJsonEncode = file_get_contents('admin/data/dataBase.json');
+    $usersJsonEncode = file_get_contents('../data/dataBase.json');
     $usersJsonDecode = json_decode($usersJsonEncode, true);
     return $usersJsonDecode;
 }
@@ -84,15 +87,16 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
         $_SESSION['messagerror']['returnsearch'] = "<br><br>Contraseña incorrecta";
         header('Location: ../../index.php?sec=login#TOP');
 	    } else{
-	    	$_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
-	        header('Location: ../../index.php?sec=login#TOP');
+            $_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
+            header('Location: ../../index.php?sec=login#TOP');
 	    }
 }
 if (validarLogin()) {
     echo '<br><br>hola';
+    devuelvePost();
     redordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){
-		header('Location: loginExito.php');
+		header('Location: ../../index.php?sec=home#TOP');
 	}
 }
 ?>

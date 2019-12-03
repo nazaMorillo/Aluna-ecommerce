@@ -32,9 +32,9 @@ if(isset($_GET['sec'])){$sec=$_GET['sec'];}else{$sec="inicio";}
   <body>
     <header>
        <?php
-       $_SESSION['UserID']=null;
-      //  $_SESSION['UserID']="seLoguea";
-        if(isset($_SESSION['UserID'])){
+      //  $_SESSION['completarCorrectos']['nombre']=null;
+      // $_SESSION['completarCorrectos']['nombre']='Nazareno';
+      if (isset($_SESSION['completarCorrectos']['nombre']) ){
           include_once("plugins/user-navbar.php");
           echo "<br>";
        }else{

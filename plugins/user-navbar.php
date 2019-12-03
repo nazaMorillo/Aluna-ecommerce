@@ -17,8 +17,8 @@ if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
 $saludo = "Bienvenido "; 
-if (isset($_SESSION['nombre']) ){
-    $nombreUsuario = $_SESSION['nombre'];
+if (isset($_SESSION['completarCorrectos']['nombre']) ){
+    $nombreUsuario = $_SESSION['completarCorrectos']['nombre'];
 }else{
     $nombreUsuario = 'Usuario';
 }

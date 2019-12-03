@@ -1,5 +1,11 @@
 <?php
 session_start();
+include_once('admin/core/funciones.php');
+// pre($_SESSION['completarCorrectos']);
+// sesionUsuario();
+// exit;
+
+// exit;
 
 if (isset($_SESSION['messagerror']['returnsearch'])) {
     if ($_SESSION['messagerror']['returnsearch'] != "") {
