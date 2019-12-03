@@ -56,7 +56,7 @@ function guardarInfoUsuario(){
     return $nuevousuario;
 }
 function abrirJson(){
-    $usersJsonEncode = file_get_contents('admin/data/dataBase.json');
+    $usersJsonEncode = file_get_contents('../data/dataBase.json');
     $usersJsonDecode = json_decode($usersJsonEncode, true);
     return $usersJsonDecode;
 }
@@ -68,6 +68,7 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
                 if ($key == 'email') {
                         if ($value == $nuevousuario['email']) {
                         	$flagemail = true;
+													$_SESSION['nombre'] = $usersJsonDecode[$i]['name'];
                         }
                     }
                 if ($key == 'password') {
@@ -82,9 +83,11 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
             return true;
         } elseif($flagemail){
         $_SESSION['messagerror']['returnsearch'] = "<br><br>Contraseña incorrecta";
+				$_SESSION['nombre'] = null;
         header('Location: ../../index.php?sec=login#TOP');
 	    } else{
 	    	$_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
+				$_SESSION['nombre'] = null;
 	        header('Location: ../../index.php?sec=login#TOP');
 	    }
 }

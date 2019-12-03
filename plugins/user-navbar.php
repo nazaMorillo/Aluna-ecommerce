@@ -16,7 +16,7 @@ if($sec=="ayuda"){$ayuda='active';}else{$ayuda='';}
 if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
-$saludo = "Bienvenido "; 
+$saludo = "Bienvenido ";
 if (isset($_SESSION['nombre']) ){
     $nombreUsuario = $_SESSION['nombre'];
 }else{
