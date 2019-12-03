@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['registErrExistMsj'])) {
     if ($_SESSION['registErrExistMsj'] != "") {
-        echo '<span class="messagerror">' . $_SESSION['registErrExistMsj'] . '</span>';
+        echo '<span class="messagerror  text-danger">' . $_SESSION['registErrExistMsj'] . '</span>';
     }
 }
 ?>
@@ -23,7 +23,7 @@ if (isset($_SESSION['registErrExistMsj'])) {
                                                 ?> name='username' type='text' class='form-control' placeholder='Ingresá tu nombre' aria-describedby='emailHelp'>
                     <?php
                     if (isset($_SESSION['registErrMsj']['username'])) {
-                        echo '<span class="messagerror">' . $_SESSION['registErrMsj']['username'] . '</span>';
+                        echo '<span class="messagerror text-danger">' . $_SESSION['registErrMsj']['username'] . '</span>';
                     }
                     ?>
                 </div>
@@ -36,7 +36,7 @@ if (isset($_SESSION['registErrExistMsj'])) {
                                                 ?> name="usersecondname" type="text" class="form-control col-12" placeholder="Ingresá tu apellido" aria-describedby="emailHelp">
                     <?php
                     if (isset($_SESSION['registErrMsj']['secondname'])) {
-                        echo '<span class="messagerror">' . $_SESSION['registErrMsj']['secondname'] . '</span>';
+                        echo '<span class="messagerror text-danger">' . $_SESSION['registErrMsj']['secondname'] . '</span>';
                     }
                     ?>
                 </div>
@@ -49,7 +49,7 @@ if (isset($_SESSION['registErrExistMsj'])) {
                                                 ?> name="useremail" type="email" class="form-control col-12" id="exampleInputEmail1" placeholder="Ingresa tu correo" aria-describedby="emailHelp">
                     <?php
                     if (isset($_SESSION['registErrMsj']['email'])) {
-                        echo '<span class="messagerror">' . $_SESSION['registErrMsj']['email'] . '</span>';
+                        echo '<span class="messagerror text-danger">' . $_SESSION['registErrMsj']['email'] . '</span>';
                     }
                     ?>
                 </div>
@@ -59,10 +59,10 @@ if (isset($_SESSION['registErrExistMsj'])) {
                                                 if (isset($_SESSION['completarCorrectos']['password'])) {
                                                     echo "value='" . $_SESSION['completarCorrectos']['password'] . "' ";
                                                 }
-                                                ?> name="userpassword" type="password" class="form-control col-12" id="exampleInputPassword1">
+                                                ?> name="userpassword" type="password" class="form-control col-12" id="exampleInputPassword1" placeholder="Ingresa tu contraseña">
                     <?php
                     if (isset($_SESSION['registErrMsj']['password'])) {
-                        echo '<span class="messagerror">' . $_SESSION['registErrMsj']['password'] . '</span>';
+                        echo '<span class="messagerror text-danger">' . $_SESSION['registErrMsj']['password'] . '</span>';
                     }
                     ?>
                 </div>
