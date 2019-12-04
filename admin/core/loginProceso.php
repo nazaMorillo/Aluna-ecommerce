@@ -1,4 +1,4 @@
-<?php
+S<?php
 include_once('funciones.php');
 echo '<br><br>';
 
@@ -89,14 +89,9 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
 				$_SESSION['nombre'] = null;
         header('Location: ../../index.php?sec=login#TOP');
 	    } else{
-<<<<<<< HEAD
-            $_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
-            header('Location: ../../index.php?sec=login#TOP');
-=======
 	    	$_SESSION['messagerror']['returnsearch'] = "<br><br>El usuario no existe";
 				$_SESSION['nombre'] = null;
 	        header('Location: ../../index.php?sec=login#TOP');
->>>>>>> 0dffc7610328da2eb0f69f13df2cec9905ef55a0
 	    }
 }
 if (validarLogin()) {

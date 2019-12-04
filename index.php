@@ -32,13 +32,7 @@ if(isset($_GET['sec'])){$sec=$_GET['sec'];}else{$sec="inicio";}
   <body>
     <header>
        <?php
-<<<<<<< HEAD
-      //  $_SESSION['completarCorrectos']['nombre']=null;
-      // $_SESSION['completarCorrectos']['nombre']='Nazareno';
-      if (isset($_SESSION['completarCorrectos']['nombre']) ){
-=======
         if(isset($_SESSION['UserID'])){
->>>>>>> 0dffc7610328da2eb0f69f13df2cec9905ef55a0
           include_once("plugins/user-navbar.php");
           echo "<br>";
        }else{

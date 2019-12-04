@@ -122,13 +122,8 @@ function guardarJson($usersJsonDecode, $username){
     file_put_contents('../data/dataBase.json', $usersMustSave);
     $_SESSION['messagexito'] = "Bienvenido $username";
     header('Location: ../../index.php?sec=login#TOP');
-<<<<<<< HEAD
-}    
-if (validarDatos()) {    
-=======
 }
 if (validarDatos()) {
->>>>>>> 0dffc7610328da2eb0f69f13df2cec9905ef55a0
     redordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
     pre($_SESSION['completarCorrectos']);
