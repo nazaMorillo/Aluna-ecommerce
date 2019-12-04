@@ -9,7 +9,7 @@ include_once('admin/core/funciones.php');
 
 if (isset($_SESSION['messagerror']['returnsearch'])) {
     if ($_SESSION['messagerror']['returnsearch'] != "") {
-        echo '<span class="messagerror">' . $_SESSION['messagerror']['returnsearch'] . '</span>';
+        echo '<span class="messagerror  text-danger">' . $_SESSION['messagerror']['returnsearch'] . '</span>';
     }
 }
 ?>
@@ -23,7 +23,7 @@ if (isset($_SESSION['messagerror']['returnsearch'])) {
             <form class="text-center mb-3" action="admin/core/loginProceso.php" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1 col-sm-12">Correo electronico</label>
-                    
+
                     <input <?php
                                                 if (isset($_COOKIE['email'])) {
                                                     echo "value='" . $_COOKIE['email'] . "' ";
@@ -34,7 +34,7 @@ if (isset($_SESSION['messagerror']['returnsearch'])) {
                     <?php
                     if (isset($_SESSION['messagerror']['email'])) {
                         if ($_SESSION['messagerror']['email'] != "") {
-                            echo '<span class="messagerror">' . $_SESSION['messagerror']['email'] . '</span>';
+                            echo '<span class="messagerror  text-danger">' . $_SESSION['messagerror']['email'] . '</span>';
                         }
                     }
                     ?>
@@ -51,7 +51,7 @@ if (isset($_SESSION['messagerror']['returnsearch'])) {
                     <?php
                     if (isset($_SESSION['messagerror']['password'])) {
                         if ($_SESSION['messagerror']['password'] != "") {
-                            echo '<span class="messagerror">' . $_SESSION['messagerror']['password'] . '</span>';
+                            echo '<span class="messagerror  text-danger">' . $_SESSION['messagerror']['password'] . '</span>';
                         }
                     }
                     ?>

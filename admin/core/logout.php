@@ -1,4 +1,4 @@
-<?php 
-echo "<br><h1> acá se valida que se desloguee<h1>";
+<?php
+$_SESSION['UserID']=null;
 session_destroy();
 ?>

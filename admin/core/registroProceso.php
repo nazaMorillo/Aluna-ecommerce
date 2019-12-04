@@ -9,6 +9,11 @@ function validarDatos(){
             $_SESSION['registErrMsj']['secondname'] = "";
             $_SESSION['registErrMsj']['email'] = "";
             $_SESSION['registErrMsj']['password'] = "";
+            $_SESSION['completarCorrectos']['nombre'] = "";
+            $_SESSION['completarCorrectos']['secondname'] = "";
+            $_SESSION['completarCorrectos']['email'] = "";
+            $_SESSION['completarCorrectos']['password'] = "";
+            
             if (strlen($_POST['username']) == 0) {
                 $_SESSION['registErrMsj']['username'] = "El nombre no puede estar vacío<br>";
             } elseif(strlen($_POST['username']) < 2) {
@@ -58,7 +63,7 @@ function redordarUsuario(){
         setcookie('password',"",time()-604800);
         header('Location: ../../index.php?sec=registro#TOP');
     }
-}    
+}
 function guardarInfoUsuario(){
     // Si se envían datos por el método POST se guarda la información en variables
     if ($_POST) {
@@ -82,9 +87,9 @@ function guardarInfoUsuario(){
         $nameimage = pathinfo($_FILES['userimage']['name'], PATHINFO_FILENAME);
         $extimage = pathinfo($_FILES['userimage']['name'], PATHINFO_EXTENSION);
         move_uploaded_file($pathimage, '../images/avatar/'.$nameimage.'.'.$extimage);
-        $nuevousuario['image'] = '../images/avatar/'.$nameimage.'.'.$extimage;        
+        $nuevousuario['image'] = '../images/avatar/'.$nameimage.'.'.$extimage;
         }
-    };    
+    };
     return $nuevousuario;
 }
 function abrirJson(){
@@ -108,7 +113,7 @@ function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
                 }
             }
         array_push($usersJsonDecode, $nuevousuario);
-        return $usersJsonDecode;            
+        return $usersJsonDecode;
         }
         return $usersJsonDecode;
     }
@@ -117,8 +122,13 @@ function guardarJson($usersJsonDecode, $username){
     file_put_contents('../data/dataBase.json', $usersMustSave);
     $_SESSION['messagexito'] = "Bienvenido $username";
     header('Location: ../../index.php?sec=login#TOP');
+<<<<<<< HEAD
 }    
 if (validarDatos()) {    
+=======
+}
+if (validarDatos()) {
+>>>>>>> 0dffc7610328da2eb0f69f13df2cec9905ef55a0
     redordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
     pre($_SESSION['completarCorrectos']);

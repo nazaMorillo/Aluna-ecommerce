@@ -16,9 +16,15 @@ if($sec=="ayuda"){$ayuda='active';}else{$ayuda='';}
 if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
+<<<<<<< HEAD
 $saludo = "Bienvenido "; 
 if (isset($_SESSION['completarCorrectos']['nombre']) ){
     $nombreUsuario = $_SESSION['completarCorrectos']['nombre'];
+=======
+$saludo = "Bienvenido ";
+if (isset($_SESSION['nombre']) ){
+    $nombreUsuario = $_SESSION['nombre'];
+>>>>>>> 0dffc7610328da2eb0f69f13df2cec9905ef55a0
 }else{
     $nombreUsuario = 'Usuario';
 }
