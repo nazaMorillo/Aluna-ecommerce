@@ -121,6 +121,12 @@ h1, h2, h3, h4 {
     /* border: 1px solid  #fafafa; */
     border: none;
 }
+
+.messagerror{
+    color: red;
+    font-size: 14px;
+}
+
 footer .row {
     padding: 5%;
 } 
