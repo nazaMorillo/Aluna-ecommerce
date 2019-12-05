@@ -69,6 +69,7 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
                         if ($value == $nuevousuario['email']) {
                         	$flagemail = true;
                                                     $_SESSION['nombre'] = $usersJsonDecode[$i]['name'];
+                                                    $_SESSION['apellido'] = $usersJsonDecode[$i]['secondname'];
                                                     $_SESSION['foto'] = $usersJsonDecode[$i]['image'];
                         }
                     }

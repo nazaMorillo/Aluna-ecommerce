@@ -16,16 +16,16 @@
             <h3>Resumen</h3>
             <p>Esta sección está vacía! Compra o vende artículos en nuestra página y así obtienes puntos de ventaja para
                 adquirir oportunidades únicas!</p>
-            
+
             <section class="container mt-3">
                 <h3>Perfil</h3>
                 <div class="row">
                     <!-- <div class="col-md-12"> -->
                         <form class=" mb-3" action="admin/core/registroProceso.php" enctype="multipart/form-data" method="POST">
                             <div class="form-group column d-flex flex-column">
-                                
+
                                 <input  name='username' type='text'class='form-control' placeholder="Ingresa tu nombre"
-                                <?= "value='" . $_SESSION['completarCorrectos']['nombre'] . "' ";?>  >
+                                <?= "value='" . $_SESSION['nombre'] . "' ";?>  >
                                 <?php
                                 if (isset($_SESSION['registErrMsj']['username'])) {
                                     echo '<span class="messagerror">' . $_SESSION['registErrMsj']['username'] . '</span>';
@@ -33,10 +33,10 @@
                                 ?>
                             </div>
                             <div class="form-group column d-flex flex-column">
-                                
+
                                 <input <?php
-                                        if (isset($_SESSION['completarCorrectos']['secondname'])) {
-                                            echo "value='" . $_SESSION['completarCorrectos']['secondname'] . "' ";
+                                        if (isset($_SESSION['apellido'])) {
+                                            echo "value='" . $_SESSION['apellido'] . "' ";
                                         }
                                         ?> name="usersecondname" type="text" class="form-control col-12" placeholder="Ingresá tu apellido" aria-describedby="emailHelp">
                                 <?php

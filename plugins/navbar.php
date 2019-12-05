@@ -10,7 +10,8 @@ if($sec=="login"){$login='active';}else{$login='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
 ?>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
+    padding-bottom: 9px;">
     <a class="navbar-brand" href="index.php">A-M</a>
     <form class="form-inline mt-2 mt-md-0" style="width: 65%;">
         <input style="max-width: 150px!important;" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
