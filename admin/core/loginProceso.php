@@ -1,10 +1,8 @@
-S<?php
+<?php
 include_once('funciones.php');
-echo '<br><br>';
-
 // session_start();
 function validarLogin(){
-    
+
 	if ($_POST) {
             $_SESSION['messagerror']['email'] = "";
             $_SESSION['messagerror']['password'] = "";
@@ -25,7 +23,6 @@ function validarLogin(){
             if($_SESSION['messagerror']['email'] == "" && $_SESSION['messagerror']['password'] == ""){
                 return true;
             } else{
-                $_SESSION['completarCorrectos']['nombre']=$_POST['nombre'];
                 header('Location: ../../index.php?sec=login#TOP');
             }
         }
@@ -96,10 +93,9 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
 }
 if (validarLogin()) {
     echo '<br><br>hola';
-    devuelvePost();
     redordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){
-		header('Location: ../../index.php?sec=home#TOP');
+		header('Location: loginExito.php');
 	}
 }
 ?>

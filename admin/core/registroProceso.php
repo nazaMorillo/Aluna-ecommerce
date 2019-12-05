@@ -1,8 +1,5 @@
-
 <?php
     session_start();
-    include_once('funciones.php');
-    
 function validarDatos(){
         if ($_POST) {
             $_SESSION['registErrMsj']['username'] = "";
@@ -126,7 +123,5 @@ function guardarJson($usersJsonDecode, $username){
 if (validarDatos()) {
     redordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
-    pre($_SESSION['completarCorrectos']);
-    saludar();
 }
 ?>
