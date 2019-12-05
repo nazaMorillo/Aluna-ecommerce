@@ -84,7 +84,7 @@ function guardarInfoUsuario(){
         $nameimage = pathinfo($_FILES['userimage']['name'], PATHINFO_FILENAME);
         $extimage = pathinfo($_FILES['userimage']['name'], PATHINFO_EXTENSION);
         move_uploaded_file($pathimage, '../images/avatar/'.$nameimage.'.'.$extimage);
-        $nuevousuario['image'] = '../images/avatar/'.$nameimage.'.'.$extimage;
+        $nuevousuario['image'] = 'admin/images/avatar/'.$nameimage.'.'.$extimage;
         }
     };
     return $nuevousuario;

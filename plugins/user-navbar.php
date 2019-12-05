@@ -1,6 +1,7 @@
 <?php
 // include_once("plugins/componentes.php");
 
+
 // if(!segunHoraDia() ){
 //     $saludo = segunHoraDia();
 //     echo "entre por hora del día";
@@ -22,6 +23,11 @@ if (isset($_SESSION['nombre']) ){
 }else{
     $nombreUsuario = 'Usuario';
 }
+if ( isset($_SESSION['foto']) ){
+    $urlAvatar= $_SESSION['foto'];
+}else{
+    $urlAvatar= "pics/genericAvatar.png";
+}
 ?>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="index.php">A-M</a>
@@ -36,7 +42,7 @@ if (isset($_SESSION['nombre']) ){
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" style="margin: 0px 10px 0px 10px;">
                 <a class="nav-link" href="index.php?sec=perfil#TOP" style="display: flex; flex-wrap: nowrap;">
-                    <img width="42px" height="42px" src="pics/genericAvatar.png" alt="avatar">
+                    <img width="42px" height="42px" src="<?=$urlAvatar?>" alt="avatar">
                     <h6 style="margin: 0px 5px;" ><?php echo $saludo.'<br>'.$nombreUsuario; ?></h6>
                 </a>
             </li>
