@@ -18,13 +18,13 @@ if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
 $saludo = "Bienvenido ";
-if (isset($_SESSION['nombre']) ){
-    $nombreUsuario = $_SESSION['nombre'];
+if (isset($_SESSION['nombreSesion']) ){
+    $nombreUsuario = $_SESSION['nombreSesion'];
 }else{
     $nombreUsuario = 'Usuario';
 }
-if ( isset($_SESSION['foto']) ){
-    $urlAvatar= $_SESSION['foto'];
+if ( isset($_SESSION['fotoSesion']) ){
+    $urlAvatar= $_SESSION['fotoSesion'];
 }else{
     $urlAvatar= "pics/genericAvatar.png";
 }

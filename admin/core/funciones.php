@@ -1,5 +1,4 @@
 <?php
-session_start();
 // $_FILES["avatar"]["name"] nos retornará el nombre con el que fue subido el archivo.
 
 
@@ -22,7 +21,7 @@ function jsonDeArray($array) {
 }
 // Recibe un json y agrega un array
 function agregarUsuario($jsonUsuarios, $usuarioNuevo) {
-    $arrayUsuarios= arrayDeJson($jsonUsuarios);
+    $arrayUsuarios = arrayDeJson($jsonUsuarios);
     $arrayUsuarios[] = $usuarioNuevo;
     return jsonDeArray($arrayUsuarios);
 }
@@ -82,5 +81,7 @@ function crearUsuario() {
     $usuariosFinal = json_encode($usuariosArray );
     file_put_contents("usuarios.json", $usuariosFinal);
 }
+
+
 
 ?>
