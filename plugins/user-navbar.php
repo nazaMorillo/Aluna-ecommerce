@@ -42,7 +42,8 @@ if ( isset($_SESSION['foto']) ){
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" style="margin: 0px 10px 0px 10px;">
                 <a class="nav-link" href="index.php?sec=perfil#TOP" style="display: flex; flex-wrap: nowrap;">
-                    <img width="42px" height="42px" src="<?=$urlAvatar?>" alt="avatar">
+                    <span class="rounded-circle border border-primary" style="background-image: url('<?=$urlAvatar?>'); background-size: cover;  width:42px; height: 42px;"></span>
+                    <!-- <img width="42px" height="42px" src="<?=$urlAvatar?>" alt="avatar"> -->
                     <h6 style="margin: 0px 5px;" ><?php echo $saludo.'<br>'.$nombreUsuario; ?></h6>
                 </a>
             </li>
