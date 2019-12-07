@@ -90,6 +90,10 @@ function crearUsuario($dataForm, $dataFile=null) {
         return $usuario;
     }
     if(validaSubidaArchivo($dataFile)){
+        foreach($dataFile as $file){
+                $usuario[$key]=$value;
+            }       
+        }
         subirArchivo($dataFile,"admin/images/avatar/");
         $usuario["urlAvatar"]="admin/images/avatar/";
     }
