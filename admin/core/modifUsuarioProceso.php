@@ -50,28 +50,28 @@ function validarDatos(){
             if(strlen($_POST['userpassword']) == 0) {
                 $passVacia = "&passVacia=La contraseña no puede estar vacía";
                 $errores .= $passVacia;
-                $_SESSION['completarCorrectos']['password'] = "";
+                $banderaPasword = false;
             } elseif(strlen($_POST['userpassword']) < 5) {
                 $passMin = "&passMin=La contraseña no puede ser menor a 5";
                 $errores .= $passMin;
-                $_SESSION['completarCorrectos']['password'] = "";
+                $banderaPasword = false;
             }else{
-                $_SESSION['completarCorrectos']['password'] = $_POST['userpassword'];
+                $banderaPasword = true;
             };
 
             if(strlen($_POST['userpassword2']) == 0) {
                 $passVacia2 = "&passVacia2=La contraseña no puede estar vacía";
                 $errores .= $passVacia2;
-                $_SESSION['completarCorrectos']['password2'] = "";
+                $banderaPasword2 = false;
             } elseif(strlen($_POST['userpassword']) < 5) {
                 $passMin2 = "&passMin2=La contraseña no puede ser menor a 5";
                 $errores .= $passMin2;
-                $_SESSION['completarCorrectos']['password2'] = "";
+                $banderaPasword2 = false;
             }else{
-                $_SESSION['completarCorrectos']['password2'] = $_POST['userpassword2'];
+                $banderaPasword2 = true;
             };
 
-            if ($_SESSION['completarCorrectos']['password'] != "" && $_SESSION['completarCorrectos']['password2'] != "") {
+            if ($banderaPasword && $banderaPasword2) {
              
                 if($_POST['userpassword'] != $_POST['userpassword2']) {
 

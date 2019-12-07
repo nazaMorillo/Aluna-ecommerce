@@ -23,7 +23,7 @@ session_start();
                 <h3>Perfil</h3>
                 <div class="row">
                     <!-- <div class="col-md-12"> -->
-                        <form class=" mb-3" action="admin/core/modifUsuarioProceso2.php" enctype="multipart/form-data" method="POST">
+                        <form class=" mb-3" action="admin/core/modifUsuarioProceso.php" enctype="multipart/form-data" method="POST">
                             <div class="form-group column d-flex flex-column">
 
                                 <input  name='username' type='text'class='form-control' placeholder="Ingresa tu nombre"
