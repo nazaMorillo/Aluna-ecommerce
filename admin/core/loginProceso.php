@@ -92,7 +92,21 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
 	        header('Location: ../../index.php?sec=login#TOP');
 	    }
 }
+
+function recorrerUsuarioPDO($usuario){
+    var_dump($usuario);
+
+    include_once("../data/PDOconnect.php");
+    $query = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+    $query->bindValue(":email", "qqq@gmail.com");
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    var_dump($result);
+    exit;
+}
+
 if (validarLogin()) {
+    recorrerUsuarioPDO(guardarInfoUsuario());
     echo '<br><br>hola';
     recordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){

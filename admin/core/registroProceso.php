@@ -123,18 +123,21 @@ function guardarPDO($usuario){
     $email = $usuario['email'];
     $name = $usuario['name'];
     $secondname = $usuario['secondname'];
-    if(!empty($usuario['image'])){
+    $password = $usuario['password'];
+
+    if(isset($usuario['image'])){
      $avatar = $usuario['image'];   
  } else { $avatar = "none.jpg"; }
-    $password = $usuario['password'];
+
     include_once("../data/PDOconnect.php");
-    $query = $pdo->prepare("INSERT INTO usuarios VALUES(null, :email, :name, :secondname, :avatar, :password)");
+    $query = $pdo->prepare("INSERT INTO usuarios (email,name,secondname,avatar,password) VALUES (:email, :name, :secondname, :avatar, :password)");
     /*$query->bindValue(":email",$email);
     $query->bindValue(":name",$name);
     $query->bindValue(":secondname",$secondname);
     $query->bindValue(":avatar",$avatar);
     $query->bindValue(":password",$password);
     $query->execute();*/
+ 
     $query->execute([
         ":email" => $email,
         ":name" => $name,
@@ -144,9 +147,11 @@ function guardarPDO($usuario){
     ]);
 }
 
+
+
 if (validarDatos()) {
     recordarUsuario();
-    guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    //guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
     guardarPDO(guardarInfoUsuario());
     $_SESSION['messagexito'] = "Bienvenido!";
     header('Location: ../../index.php?sec=login#TOP');
