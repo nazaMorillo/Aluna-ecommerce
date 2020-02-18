@@ -46,7 +46,7 @@ function validarDatos(){
             }
         }
     }
-function redordarUsuario(){
+function recordarUsuario(){
     if (!empty($_POST['recordarUsuario'])) {
         $cookie_email = "email";
         $cookie_emailvalue = $_POST['useremail'];
@@ -117,11 +117,38 @@ function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
 function guardarJson($usersJsonDecode, $username){
     $usersMustSave = json_encode($usersJsonDecode);
     file_put_contents('../data/dataBase.json', $usersMustSave);
-    $_SESSION['messagexito'] = "Bienvenido $username";
-    header('Location: ../../index.php?sec=login#TOP');
 }
+
+function guardarPDO($usuario){
+    $email = $usuario['email'];
+    $name = $usuario['name'];
+    $secondname = $usuario['secondname'];
+    if(!empty($usuario['image'])){
+     $avatar = $usuario['image'];   
+ } else { $avatar = "none.jpg"; }
+    $password = $usuario['password'];
+    include_once("../data/PDOconnect.php");
+    $query = $pdo->prepare("INSERT INTO usuarios VALUES(null, :email, :name, :secondname, :avatar, :password)");
+    /*$query->bindValue(":email",$email);
+    $query->bindValue(":name",$name);
+    $query->bindValue(":secondname",$secondname);
+    $query->bindValue(":avatar",$avatar);
+    $query->bindValue(":password",$password);
+    $query->execute();*/
+    $query->execute([
+        ":email" => $email,
+        ":name" => $name,
+        ":secondname" => $secondname,
+        ":avatar" => $avatar,
+        ":password" => $password
+    ]);
+}
+
 if (validarDatos()) {
-    redordarUsuario();
+    recordarUsuario();
     guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    guardarPDO(guardarInfoUsuario());
+    $_SESSION['messagexito'] = "Bienvenido!";
+    header('Location: ../../index.php?sec=login#TOP');
 }
 ?>

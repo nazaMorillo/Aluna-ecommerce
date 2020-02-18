@@ -20,13 +20,13 @@ function arrayDeJson($json){
 function jsonDeArray($array) {
     return json_encode($array);
 }
-// Recibe un json, agrega un array de usuario y retorna un Json 
+// Recibe un json y agrega un array
 function agregarUsuario($jsonUsuarios, $usuarioNuevo) {
     $arrayUsuarios= arrayDeJson($jsonUsuarios);
     $arrayUsuarios[] = $usuarioNuevo;
     return jsonDeArray($arrayUsuarios);
 }
-// Recibe la ubicación de un archivo y le agrega el contenido
+// Recibe la ubicación de un archivo y lo que hay que escribir en el
 function escribirArchivo($rutaArchivo, $contenido) {
     file_put_contents($rutaArchivo, $contenido);
  }
@@ -43,10 +43,9 @@ function encriptar($textoPlano) {
 function verificarPass($texto, $hash) {
     return password_verify($texto, $hash);
 }
-// Valida si se subió archivo, recibe nombre del input, lo agrega a $_FILE['avatar']['error'] y devuelve true o false
-function validaSubidaArchivo($fileNombre) {
-    $error=$_FILES[$fileNombre]["error"];
-    if($error == 0 ){
+// Valida si se subió archivo, recibe $_FILE['avatar']['error'] y devuelve true o false
+function validaSubidaArchivo($fileError) {
+    if($fileError == 0 ){
       return true;
     }else{
       return false;
@@ -62,49 +61,21 @@ function validarExtFile($fileNombre) {
       return true;
     }
 }
-// Extraer nombre y extension de $_FILES pasandole nombre del input file
-function nombreYExtensionFile($inputfile){
-    $nombre=$_FILES[$inputfile]["name"];
-    $ext=pathinfo($nombre, PATHINFO_EXTENSION);
-    return "$nombre.$ext";
-}
-
 // Sube un archivo, recibiendo por parametro nombre de input y ruta
-function subirArchivo($inputfile, $ruta) {
-    $archivo=$_FILES[$inputfile]["tmp_name"];
-    $nombreConExtension=nombreYExtensionFile($inputfile);  
-    move_uploaded_file($archivo, $ruta.$nombreConExtension);  
+function subirArchivo($fileNombre, $ruta) {
+    $nombre=$_FILES[$fileNombre]["name"];
+    $archivo=$_FILES[$fileNombre]["tmp_name"];
+    $ext=pathinfo($nombre, PATHINFO_EXTENSION);
+    move_uploaded_file($archivo, $ruta.$ext);  
 }
-// Recibe valores de formulario si existe y lo agrega al usuario json
-function crearUsuario($dataForm, $dataFile=null) {
-    $usuario=[];
-    if( isset($dataForm) ){
-        foreach($dataForm as $key => $value){
-            if($key=="password" || $key =="clave" || $key =="pass" ){
-                $usuario[$key]=encriptar($value);;
-            }else{
-                $usuario[$key]=$value;
-            }       
-        }
-    }else{
-        return $usuario;
-    }
-    if(validaSubidaArchivo($dataFile)){
-        foreach($dataFile as $file){
-                $usuario[$key]=$value;
-            }       
-        }
-        subirArchivo($dataFile,"admin/images/avatar/");
-        $usuario["urlAvatar"]="admin/images/avatar/";
-    }
-
-
-//     $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-//     $usuario = [
-//     "email" => $_POST["email"],
-//     "username" => $_POST["username"],
-//     "password" => $hash
-//   ];
+// Recibe valores de formulario y lo agrega el usuario json
+function crearUsuario() {
+    $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $usuario = [
+    "email" => $_POST["email"],
+    "username" => $_POST["username"],
+    "password" => $hash
+  ];
     $usuarios = file_get_contents("usuarios.json");
     $usuariosArray  = json_decode($usuarios,true);
     $usuariosArray[] = $usuario;
