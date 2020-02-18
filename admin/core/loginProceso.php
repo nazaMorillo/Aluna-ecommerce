@@ -1,7 +1,6 @@
 <?php
 include_once('funciones.php');
-session_destroy();
-session_start();
+// session_start();
 function validarLogin(){
 
 	if ($_POST) {
@@ -9,19 +8,15 @@ function validarLogin(){
             $_SESSION['messagerror']['password'] = "";
             if(strlen($_POST['email']) == 0) {
                 $_SESSION['messagerror']['email'] = "El email no puede estar vacío<br>";
-                $_SESSION['completarCorrectos']['email'] = "";
             } elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['messagerror']['email'] = "El email ingresado no es válido<br>";
-                $_SESSION['completarCorrectos']['email'] = "";
             }else{
                 $_SESSION['completarCorrectos']['email'] = $_POST['email'];
             };
             if(strlen($_POST['password']) == 0) {
                 $_SESSION['messagerror']['password'] = "La contraseña no puede estar vacía<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
             } elseif(strlen($_POST['password']) < 5) {
                 $_SESSION['messagerror']['password'] = "La contraseña no puede ser menor a 5<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
             }else{
                 $_SESSION['completarCorrectos']['password'] = $_POST['password'];
             };
@@ -32,7 +27,7 @@ function validarLogin(){
             }
         }
     }
-function redordarUsuario(){
+function recordarUsuario(){
     if (!empty($_POST['recordarUsuario'])) {
         $cookie_email = "email";
         $cookie_emailvalue = $_POST['email'];
@@ -73,11 +68,8 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
                 if ($key == 'email') {
                         if ($value == $nuevousuario['email']) {
                         	$flagemail = true;
-                                                    $nameForEach = $usersJsonDecode[$i]['name'];
-                                                    $lastNameForEach = $usersJsonDecode[$i]['secondname'];
-                                                    $imageForEach = $usersJsonDecode[$i]['image'];
-                                                    $emailForEach = $usersJsonDecode[$i]['email'];
-
+                                                    $_SESSION['nombre'] = $usersJsonDecode[$i]['name'];
+                                                    $_SESSION['foto'] = $usersJsonDecode[$i]['image'];
                         }
                     }
                 if ($key == 'password') {
@@ -88,14 +80,7 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
                 }
             }
         if ($flagemail && $flagpassword) {
-            session_destroy();
-            //$_SESSION = array();
-            session_start();
-            $_SESSION['nombreSesion'] = $nameForEach;
-            $_SESSION['apellidoSesion'] = $lastNameForEach;
-            $_SESSION['fotoSesion'] = $imageForEach;
-            $_SESSION['emailSesion'] = $emailForEach;            
-        	$_SESSION['messagexito'] = "Usuario <br>".$_SESSION['nombreSesion']." Bienvenido!!";
+        	$_SESSION['messagexito'] = "Usuario <br>".$nuevousuario['email']." Bienvenido!!";
             return true;
         } elseif($flagemail){
         $_SESSION['messagerror']['returnsearch'] = "<br><br>Contraseña incorrecta";
@@ -107,9 +92,23 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
 	        header('Location: ../../index.php?sec=login#TOP');
 	    }
 }
+
+function recorrerUsuarioPDO($usuario){
+    var_dump($usuario);
+
+    include_once("../data/PDOconnect.php");
+    $query = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+    $query->bindValue(":email", "qqq@gmail.com");
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    var_dump($result);
+    exit;
+}
+
 if (validarLogin()) {
+    recorrerUsuarioPDO(guardarInfoUsuario());
     echo '<br><br>hola';
-    redordarUsuario();
+    recordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){
 		header('Location: loginExito.php');
 	}

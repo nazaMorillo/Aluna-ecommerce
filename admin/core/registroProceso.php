@@ -1,20 +1,23 @@
 <?php
-    session_destroy();    
     session_start();
-   // include_once("funciones.php");
 function validarDatos(){
         if ($_POST) {
-
+            $_SESSION['registErrMsj']['username'] = "";
+            $_SESSION['registErrMsj']['secondname'] = "";
+            $_SESSION['registErrMsj']['email'] = "";
+            $_SESSION['registErrMsj']['password'] = "";
+            $_SESSION['completarCorrectos']['nombre'] = "";
+            $_SESSION['completarCorrectos']['secondname'] = "";
+            $_SESSION['completarCorrectos']['email'] = "";
+            $_SESSION['completarCorrectos']['password'] = "";
+            
             if (strlen($_POST['username']) == 0) {
                 $_SESSION['registErrMsj']['username'] = "El nombre no puede estar vacío<br>";
-                $_SESSION['completarCorrectos']['nombre'] = "";
             } elseif(strlen($_POST['username']) < 2) {
                 $_SESSION['registErrMsj']['username'] = "El nombre no puede tener menos de 2 caracteres<br>";
-                $_SESSION['completarCorrectos']['nombre'] = "";
             } else{
                 $_SESSION['completarCorrectos']['nombre'] = $_POST['username'];
             };
-
             if(strlen($_POST['usersecondname']) == 0) {
                 $_SESSION['registErrMsj']['secondname'] = "El apellido no puede estar vacío<br>";
             } elseif(strlen($_POST['usersecondname']) < 2) {
@@ -22,37 +25,28 @@ function validarDatos(){
             }else{
                 $_SESSION['completarCorrectos']['secondname'] = $_POST['usersecondname'];
             };
-
             if(strlen($_POST['useremail']) == 0) {
                 $_SESSION['registErrMsj']['email'] = "El email no puede estar vacío<br>";
-                $_SESSION['completarCorrectos']['secondname'] = "";
             } elseif(!filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['registErrMsj']['email'] = "El email ingresado no es válido<br>";
-                $_SESSION['completarCorrectos']['secondname'] = "";
             }else{
                 $_SESSION['completarCorrectos']['email'] = $_POST['useremail'];
             };
-
             if(strlen($_POST['userpassword']) == 0) {
                 $_SESSION['registErrMsj']['password'] = "La contraseña no puede estar vacía<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
             } elseif(strlen($_POST['userpassword']) < 5) {
                 $_SESSION['registErrMsj']['password'] = "La contraseña no puede ser menor a 5<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
             }else{
                 $_SESSION['completarCorrectos']['password'] = $_POST['userpassword'];
             };
-
-            if(!isset($_SESSION['registErrMsj'])){             
+            if($_SESSION['registErrMsj']['username'] == "" && $_SESSION['registErrMsj']['secondname'] == "" && $_SESSION['registErrMsj']['email'] == "" && $_SESSION['registErrMsj']['password'] == ""){
                 return true;
             } else{
-                $errores = 1;
                 header('Location: ../../index.php?sec=registro#TOP');
             }
         }
     }
-
-function redordarUsuario(){
+function recordarUsuario(){
     if (!empty($_POST['recordarUsuario'])) {
         $cookie_email = "email";
         $cookie_emailvalue = $_POST['useremail'];
@@ -67,7 +61,6 @@ function redordarUsuario(){
         header('Location: ../../index.php?sec=registro#TOP');
     }
 }
-
 function guardarInfoUsuario(){
     // Si se envían datos por el método POST se guarda la información en variables
     if ($_POST) {
@@ -96,13 +89,11 @@ function guardarInfoUsuario(){
     };
     return $nuevousuario;
 }
-
 function abrirJson(){
     $usersJsonEncode = file_get_contents('../data/dataBase.json');
     $usersJsonDecode = json_decode($usersJsonEncode, true);
     return $usersJsonDecode;
 }
-
 function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
     if ($usersJsonDecode == "" ) {
         $usersJsonDecode[0] = $nuevousuario;
@@ -123,17 +114,46 @@ function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
         }
         return $usersJsonDecode;
     }
-
 function guardarJson($usersJsonDecode, $username){
     $usersMustSave = json_encode($usersJsonDecode);
     file_put_contents('../data/dataBase.json', $usersMustSave);
-    $_SESSION['messagexito'] = "Bienvenido $username";
-    header('Location: ../../index.php?sec=login#TOP');
 }
+
+function guardarPDO($usuario){
+    $email = $usuario['email'];
+    $name = $usuario['name'];
+    $secondname = $usuario['secondname'];
+    $password = $usuario['password'];
+
+    if(isset($usuario['image'])){
+     $avatar = $usuario['image'];   
+ } else { $avatar = "none.jpg"; }
+
+    include_once("../data/PDOconnect.php");
+    $query = $pdo->prepare("INSERT INTO usuarios (email,name,secondname,avatar,password) VALUES (:email, :name, :secondname, :avatar, :password)");
+    /*$query->bindValue(":email",$email);
+    $query->bindValue(":name",$name);
+    $query->bindValue(":secondname",$secondname);
+    $query->bindValue(":avatar",$avatar);
+    $query->bindValue(":password",$password);
+    $query->execute();*/
+ 
+    $query->execute([
+        ":email" => $email,
+        ":name" => $name,
+        ":secondname" => $secondname,
+        ":avatar" => $avatar,
+        ":password" => $password
+    ]);
+}
+
+
 
 if (validarDatos()) {
-    redordarUsuario();
-    guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    recordarUsuario();
+    //guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    guardarPDO(guardarInfoUsuario());
+    $_SESSION['messagexito'] = "Bienvenido!";
+    header('Location: ../../index.php?sec=login#TOP');
 }
-
 ?>

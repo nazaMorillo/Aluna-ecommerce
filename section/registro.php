@@ -68,10 +68,11 @@ if (isset($_SESSION['registErrExistMsj'])) {
                 </div>
                 <label><input type="checkbox" name="recordarUsuario" value="marcado"> Recordarme</label><br>
                 <div class="row">
-                    <img src="pics/images.png" class="profile rounded-circle d-block col-sm-3 col-4" >
+                    <div id="preview"></div>
+                    <img id="imagen" src="pics/images.png" class="profile rounded-circle d-block col-sm-3 col-4" >
                     <div class="col-xs-6 col-md-9">
                         <h6>Seleccionar imagen</h6>
-                        <input type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
+                        <input id="file" type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
                         <h6>Aun no elige una imagen</h6>
                     </div>
                 </div>
@@ -79,12 +80,10 @@ if (isset($_SESSION['registErrExistMsj'])) {
                 <button type="reset" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">CANCELAR</button>
                 <input type="submit" name="Submit" value="GUARDAR" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">
             </form>
-<?php
-if (isset($errores)) {
-    session_destroy();
-}
-    
-?>
         </div>
     </div>
 </section>
+<script type="text/javascript" src="admin/core/preview.js"></script>
+<?php
+session_destroy();
+?>

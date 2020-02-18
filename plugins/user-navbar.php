@@ -18,19 +18,18 @@ if($sec=="perfil"){$perfil='active';}else{$perfil='';}
 if($sec=="contacto"){$contacto='active';}else{$contacto='';}
 
 $saludo = "Bienvenido ";
-if (isset($_SESSION['nombreSesion']) ){
-    $nombreUsuario = $_SESSION['nombreSesion'];
+if (isset($_SESSION['nombre']) ){
+    $nombreUsuario = $_SESSION['nombre'];
 }else{
     $nombreUsuario = 'Usuario';
 }
-if ( isset($_SESSION['fotoSesion']) ){
-    $urlAvatar= $_SESSION['fotoSesion'];
+if ( isset($_SESSION['foto']) ){
+    $urlAvatar= $_SESSION['foto'];
 }else{
     $urlAvatar= "pics/genericAvatar.png";
 }
 ?>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
-    padding-bottom: 9px;">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="index.php">A-M</a>
     <form class="form-inline mt-2 mt-md-0" style="width: 65%;">
         <input style="max-width: 150px!important;" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
