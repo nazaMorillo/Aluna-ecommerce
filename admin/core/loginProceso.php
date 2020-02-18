@@ -27,7 +27,7 @@ function validarLogin(){
             }
         }
     }
-function redordarUsuario(){
+function recordarUsuario(){
     if (!empty($_POST['recordarUsuario'])) {
         $cookie_email = "email";
         $cookie_emailvalue = $_POST['email'];
@@ -94,7 +94,7 @@ function recorrerBDBuscandoUsuario($usersJsonDecode, $nuevousuario){
 }
 if (validarLogin()) {
     echo '<br><br>hola';
-    redordarUsuario();
+    recordarUsuario();
 	if (recorrerBDBuscandoUsuario(abrirJson(), guardarInfoUsuario())){
 		header('Location: loginExito.php');
 	}

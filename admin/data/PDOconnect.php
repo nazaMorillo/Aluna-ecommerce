@@ -1,5 +1,5 @@
 <?php
-	$dns = "mysql:host=localhost;dbname=ecommerce";
+	$dns = "mysql:host=localhost;dbname=ecommerce;port:3306";
 	$usuario = "root";
 	$password = "";
 	$pdo = new PDO($dns,$usuario,$password);

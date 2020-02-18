@@ -1,8 +1,18 @@
 <?php
+
 include_once("admin/data/PDOconnect.php");
-$query = $pdo->prepare("SELECT * FROM usuarios JOIN carrito on usuarios.id = carrito.id_usuario JOIN productos on carrito.id_producto = productos.id");
+$queryid = $pdo->prepare("SELECT id FROM usuarios WHERE email = :email");
+$queryid->bindValue(":email",$_SESSION['completarCorrectos']['email']);
+$queryid->execute();
+$user = $queryid->fetchAll(PDO::FETCH_ASSOC);
+
+$id = $user[0]['id'];
+
+$query = $pdo->prepare("SELECT productos.name, productos.price, productos.image FROM usuarios JOIN carrito on usuarios.id = carrito.id_usuario JOIN productos on carrito.id_producto = productos.id WHERE carrito.id_usuario = $id");
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+//exit;
 $sumaprod = 0;
 ?>
 

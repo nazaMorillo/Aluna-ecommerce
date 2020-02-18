@@ -88,7 +88,12 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                             </div>-->
                             <div class="row">
                             <div id="preview"></div>
-                            <img id="imagen" src="pics/images.png" class="profile rounded-circle d-block col-sm-3 col-4" >
+                            <img id="imagen" src="<?php 
+                                if ( isset($_SESSION['foto']) ){
+                                    echo $_SESSION['foto'];
+                                }else echo "pics/images.png" ;
+                            ?>" 
+                            class="profile rounded-circle d-block col-sm-3 col-4" >
                             <div class="col-xs-6 col-md-9">
                                 <h6>Seleccionar imagen</h6>
                                 <input id="file" type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
