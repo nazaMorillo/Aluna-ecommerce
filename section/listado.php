@@ -27,6 +27,9 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                         <div class="card-body">
                             <h3>$ <?= $producto['price']; ?></h3>
                             <p class="card-text"> <?= $producto['name']; ?> </p>
+
+                            <a class="btn btn-secondary col-12 col-md-12" role="button">Agregar al carrito</a>
+
                         </div>
                     </a>
                 </div>
