@@ -1,53 +1,94 @@
 <?php
-    session_destroy();    
+    //session_destroy();
     session_start();
    // include_once("funciones.php");
 function validarDatos(){
         if ($_POST) {
 
+            if (isset($errores)) {
+                unset($errores);
+            }
+
+            $errores = "";
+
             if (strlen($_POST['username']) == 0) {
-                $_SESSION['registErrMsj']['username'] = "El nombre no puede estar vacío<br>";
+                $nameVacio = "&nameVacio=El nombre no puede estar vacío";
+                $errores .= $nameVacio;
                 $_SESSION['completarCorrectos']['nombre'] = "";
             } elseif(strlen($_POST['username']) < 2) {
-                $_SESSION['registErrMsj']['username'] = "El nombre no puede tener menos de 2 caracteres<br>";
+                $nameMin = "&nameMin=El nombre no puede tener menos de 2 caracteres";
+                $errores .= $nameMin;
                 $_SESSION['completarCorrectos']['nombre'] = "";
             } else{
                 $_SESSION['completarCorrectos']['nombre'] = $_POST['username'];
             };
 
             if(strlen($_POST['usersecondname']) == 0) {
-                $_SESSION['registErrMsj']['secondname'] = "El apellido no puede estar vacío<br>";
+                $secondNameVacio = "&secondNameVacio=El apellido no puede estar vacío";
+                $errores .= $secondNameVacio;
+                $_SESSION['completarCorrectos']['secondname'] = "";
             } elseif(strlen($_POST['usersecondname']) < 2) {
-                $_SESSION['registErrMsj']['secondname'] = "El apellido no puede tener menos de 2 caracteres<br>";
+                $secondNameMin = "&secondNameVacio=El apellido no puede tener menos de 2 caracteres";
+                $errores .= $secondnameMin;
+                $_SESSION['completarCorrectos']['secondname'] = "";
             }else{
                 $_SESSION['completarCorrectos']['secondname'] = $_POST['usersecondname'];
             };
 
             if(strlen($_POST['useremail']) == 0) {
-                $_SESSION['registErrMsj']['email'] = "El email no puede estar vacío<br>";
-                $_SESSION['completarCorrectos']['secondname'] = "";
+                $emailVacio = "&emailVacio=El email no puede estar vacío";
+                $errores .= $emailVacio;
+                $_SESSION['completarCorrectos']['email'] = "";
             } elseif(!filter_var($_POST['useremail'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['registErrMsj']['email'] = "El email ingresado no es válido<br>";
-                $_SESSION['completarCorrectos']['secondname'] = "";
+                $emailVal = "&emailMin=El email ingresado no es válido";
+                $errores .= $emailVal;
+                $_SESSION['completarCorrectos']['email'] = "";
             }else{
                 $_SESSION['completarCorrectos']['email'] = $_POST['useremail'];
             };
 
             if(strlen($_POST['userpassword']) == 0) {
-                $_SESSION['registErrMsj']['password'] = "La contraseña no puede estar vacía<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
+                $passVacia = "&passVacia=La contraseña no puede estar vacía";
+                $errores .= $passVacia;
+                $banderaPasword = false;
             } elseif(strlen($_POST['userpassword']) < 5) {
-                $_SESSION['registErrMsj']['password'] = "La contraseña no puede ser menor a 5<br>";
-                $_SESSION['completarCorrectos']['password'] = "";
+                $passMin = "&passMin=La contraseña no puede ser menor a 5";
+                $errores .= $passMin;
+                $banderaPasword = false;
             }else{
-                $_SESSION['completarCorrectos']['password'] = $_POST['userpassword'];
+                $banderaPasword = true;
             };
 
-            if(!isset($_SESSION['registErrMsj'])){             
+            if(strlen($_POST['userpassword2']) == 0) {
+                $passVacia2 = "&passVacia2=La contraseña no puede estar vacía";
+                $errores .= $passVacia2;
+                $banderaPasword2 = false;
+            } elseif(strlen($_POST['userpassword']) < 5) {
+                $passMin2 = "&passMin2=La contraseña no puede ser menor a 5";
+                $errores .= $passMin2;
+                $banderaPasword2 = false;
+            }else{
+                $banderaPasword2 = true;
+            };
+
+            if ($banderaPasword && $banderaPasword2) {
+             
+                if($_POST['userpassword'] != $_POST['userpassword2']) {
+
+                $passSame = "&passSame=Las contraseñas deben ser iguales";
+                $passSame2 = "&passSame2=Las contraseñas deben ser iguales";
+                $errores .= $passSame;
+                $errores .= $passSame2;
+                }else{
+                $_SESSION['completarCorrectos']['passwordConfirmada'] = $_POST['userpassword'];
+                };
+
+            }
+
+            if($errores == ""){             
                 return true;
             } else{
-                $errores = 1;
-                header('Location: ../../index.php?sec=registro#TOP');
+                header("Location: ../../index.php?sec=perfil".$errores."&noCompletar=true");
             }
         }
     }
@@ -103,37 +144,40 @@ function abrirJson(){
     return $usersJsonDecode;
 }
 
-function recorrerBDyGuardarUsuario($usersJsonDecode, $nuevousuario){
-    if ($usersJsonDecode == "" ) {
-        $usersJsonDecode[0] = $nuevousuario;
-    } else{
-        for ($i=0; $i<count($usersJsonDecode); $i++) {
-            foreach ($usersJsonDecode[$i] as $key => $value) {
-                if ($key == 'email') {
-                        if ($value == $nuevousuario['email']) {
-                        $_SESSION['registErrExistMsj'] = "<br><br>El usuario ya existe<br>";
-                        header('Location: ../../index.php?sec=registro#TOP');
-                        exit;
-                        };
-                    };
+function recorrerBDyGuardarUsuarioEditado($usersJsonDecode, $nuevousuario){
+    for ($i=0; $i<count($usersJsonDecode); $i++) {
+        foreach ($usersJsonDecode[$i] as $key => $value) {
+            if ($key == 'email') {
+                    if ($value == $nuevousuario['email']) {
+                    $usersJsonDecode[$i]['name'] =  $nuevousuario['name'];
+                    $usersJsonDecode[$i]['secondname'] =  $nuevousuario['secondname'];
+                    if (isset($nuevousuario['image'])) {
+                       $usersJsonDecode[$i]['image'] = $nuevousuario['image']; 
+                    }
+                    $usersJsonDecode[$i]['email'] = $nuevousuario['email'];
+                    $usersJsonDecode[$i]['password'] = $nuevousuario['password'];
+                    return $usersJsonDecode;
                 }
             }
-        array_push($usersJsonDecode, $nuevousuario);
-        return $usersJsonDecode;
         }
-        return $usersJsonDecode;
     }
+}
 
 function guardarJson($usersJsonDecode, $username){
     $usersMustSave = json_encode($usersJsonDecode);
     file_put_contents('../data/dataBase.json', $usersMustSave);
     $_SESSION['messagexito'] = "Bienvenido $username";
+    unset($_SESSION['nombreSesion']);
+    unset($_SESSION['apellidoSesion']);
+    unset($_SESSION['fotoSesion']);
+    unset($_SESSION['emailSesion']);
+    unset($_SESSION['UserID']);
     header('Location: ../../index.php?sec=login#TOP');
 }
 
 if (validarDatos()) {
     redordarUsuario();
-    guardarJson( recorrerBDyGuardarUsuario(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
+    guardarJson( recorrerBDyGuardarUsuarioEditado(  abrirJson(),guardarInfoUsuario()  ), guardarInfoUsuario()['name'] );
 }
 
 ?>

@@ -79,9 +79,12 @@ if (isset($_SESSION['registErrExistMsj'])) {
                 <button type="reset" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">CANCELAR</button>
                 <input type="submit" name="Submit" value="GUARDAR" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">
             </form>
+<?php
+if (isset($errores)) {
+    session_destroy();
+}
+    
+?>
         </div>
     </div>
 </section>
-<?php
-//session_destroy();
-?>

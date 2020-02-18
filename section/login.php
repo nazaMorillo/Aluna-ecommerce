@@ -38,8 +38,6 @@ if (isset($_SESSION['messagerror']['returnsearch'])) {
                     <input <?php
                                                 if (isset($_COOKIE['password'])) {
                                                     echo "value='" . $_COOKIE['password'] . "' ";
-                                                } elseif (isset($_SESSION['completarCorrectos']['password'])) {
-                                                    echo "value='" . $_SESSION['completarCorrectos']['password'] . "' ";
                                                 }
                                                 ?> type="password" name="password" class="form-control col-12" id="exampleInputPassword1">
                     <?php
