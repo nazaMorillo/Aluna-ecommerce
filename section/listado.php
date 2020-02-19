@@ -17,7 +17,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-<?php   foreach($result as $producto){ ?>
+<?php foreach($result as $producto){ ?>
 
 
         <div class="card producto col-md-4">
@@ -28,7 +28,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                             <h3>$ <?= $producto['price']; ?></h3>
                             <p class="card-text"> <?= $producto['name']; ?> </p>
 
-                            <a class="btn btn-secondary col-12 col-md-12" role="button">Agregar al carrito</a>
+                            <a class="btn btn-secondary col-12 col-md-12 agregarcarrito" role="button" id="<?php echo $producto['id'] ?>" onclick="agregarCarrito(this)">Agregar al carrito</a>
 
                         </div>
                     </a>
@@ -44,3 +44,4 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <?php include_once('plugins/categories.php'); ?>
 </section>
+<script type="text/javascript" src="section/agregarCarrito.js"></script>
