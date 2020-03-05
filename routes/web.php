@@ -18,3 +18,22 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/listado', function () {
+    return view('pages.listado');
+});
+
+Route::get('/login', function () {
+    return view('pages.login');
+});
+Route::get('/ayuda', function () {
+    return view('pages.ayuda');
+});
+
+Route::get('/contacto', function () {
+    return view('pages.contacto');
+});
+
+Route::get('/registro', function () {
+    return view('pages.registro');
+});
