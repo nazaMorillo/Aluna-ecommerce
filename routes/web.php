@@ -37,3 +37,6 @@ Route::get('/contacto', function () {
 Route::get('/registro', function () {
     return view('pages.registro');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
