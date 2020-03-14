@@ -26,7 +26,8 @@
                 @if (Route::has('login'))
                 <!-- <div class="top-right links"> -->                
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <!-- solo aparece si el usuario está logeado -->
+                        <!-- <a href="{{ url('/home') }}">Home</a> -->
                     @else
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="#">Login </a> -->
