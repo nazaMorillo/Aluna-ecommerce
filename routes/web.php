@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/logout', function () {
+    return view('home');
+});
+
 Route::get('/listado', function () {
     return view('pages.listado');
 });
