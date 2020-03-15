@@ -23,9 +23,11 @@ Route::get('/logout', function () {
     return view('home');
 });
 
-Route::get('/listado', function () {
-    return view('pages.listado');
-});
+// Route::get('/listado', function () {
+//     return view('pages.listado');
+// });
+
+Route::get('/listado', 'ProductController@show' );
 
 Route::get('/login', function () {
     return view('pages.login');
