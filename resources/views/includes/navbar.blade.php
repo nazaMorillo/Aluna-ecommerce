@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="/">Home</a><span class="sr-only">(current)</span>
+                <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/listado">Catalogo</a>

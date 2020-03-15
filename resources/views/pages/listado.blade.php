@@ -9,9 +9,9 @@
 
         <div class="row">
         <?php $j=0; ?>
-        @for($i= 1; $i<=6; $i++)
+        @for($i= 1; $i<=8; $i++)
         <?php $j++; ?>               
-            <div class="card producto col-md-4">
+            <div class="card producto col-6 col-4-sm col-md-4 col-lg-3">
                 <a href="#TOP" style="text-decoration: none; color: rgb(46, 46, 46);">
                     <img src="/storage/product/product-{{$j}}.jpg" class="card-img-top" alt="Producto1">
 
