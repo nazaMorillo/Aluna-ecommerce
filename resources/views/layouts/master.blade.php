@@ -16,9 +16,11 @@
         @include("includes.navbar")
     </header>
     
-    <section>
-        @yield("content")
-    </section>
+    <main class="py-4 mt-4">
+        <section>
+            @yield('content')
+        </section>        
+    </main>
 
     @include("includes.footer") 
 
