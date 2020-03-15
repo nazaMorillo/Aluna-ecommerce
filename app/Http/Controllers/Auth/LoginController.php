@@ -19,6 +19,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    // use App\Auth;
 
     /**
      * Where to redirect users after login.
