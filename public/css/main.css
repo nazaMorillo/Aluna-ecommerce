@@ -113,6 +113,9 @@ section{
 .producto a{
     margin-top: 0.3em;
 }
+.producto > a > img{
+    object-fit: cover;
+}
 
 .pagination {
     margin-top: 2em;

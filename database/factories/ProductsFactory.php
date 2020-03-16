@@ -8,8 +8,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        //
-        'image'=>"http://lorempixel.com/400/200/technics",
+        // "http://lorempixel.com/400/200/technics/"
+        'image'=>"storage/product/".$faker->numberBetween($min = 1, $max = 8).".jpg",
         'produc_name'=>$faker->text(10),
         'description'=>$faker->text(45),
         'price'=>$faker->randomFloat(2, 300, 1000),
