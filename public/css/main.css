@@ -101,10 +101,10 @@ footer .row {
     padding: 5%;
 } 
 
-section{
+/* section{
     margin-top: 4.5rem;
     margin-bottom: 4.5rem;
-}
+} */
 
 .producto {
     padding: 1px;
@@ -123,17 +123,12 @@ section{
     justify-content: center;
 }
 
-@media (min-width: 890px) {
-    .bd-placeholder-img-lg {
-        font-size: 2.5rem;
-      }
-      
-  }
-  @media (max-width: 550px) {
-    section{
+
+@media (max-width: 550px) {
+    /* section{
         margin-top: 1rem;
         margin-bottom: 1rem;
-    }
+    } */
    
       body{
          padding-top: 2rem;
@@ -162,10 +157,34 @@ section{
        
     } 
   }
-  @media (min-width: 920px) {
-    /* body{
-        padding-top: 3.2rem;
-     } */
+
+
+@media (min-width: 551px) {
+    body{
+        padding-top: 2rem;
+     }      
+}
+
+@media (min-width: 576px) {
+    body{
+        padding-top: 1rem;
+     }      
+}
+
+@media (min-width: 767px) {
+    body{
+        padding-top: 0.6rem;
+     }      
+}
+
+@media (min-width: 890px) {
+    .bd-placeholder-img-lg {
+        font-size: 1rem;
+      }      
+}
+
+@media (min-width: 920px) {
+    
     .carousel-item {
         padding: 0 20%;
     }
