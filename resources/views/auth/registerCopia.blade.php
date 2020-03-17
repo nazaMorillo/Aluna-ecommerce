@@ -1,15 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- <div class="card-header">{{ __('Register') }}</div> -->
-                <div class="card-header">Registro</div>
-                <div align="center" class="star-navy">
-                    <i class="fa fa-star"></i>
-                </div>
+                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -82,8 +78,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <!-- {{ __('Register') }} -->
-                                    Registrar
+                                    {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
@@ -91,22 +86,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">ó</div>
-                <div class="btn text-center bg-dark text-white mb-2">
-                    <i class="fab fa-facebook float-left"></i><a href="#" class="nav-link text-white">INGRESA CON
-                        FACEBOOK</a>
-                </div>
-                <div class="btn text-center bg-dark btn-outline-dark text-white mb-2">
-                    <i class="fab fa-twitter float-left"></i><a href="#" class="nav-link text-white">INGRESA CON TWITTER</a>
-                </div>
-                <div class="btn text-center text-white bg-dark mb-2">
-                    <i class="fab fa-google float-left"></i><a href="#" class="nav-link text-white">INGRESA CON GOOGLE</a>
-                </div>
-
-            </div>
     </div>
 </div>
 @endsection
