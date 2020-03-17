@@ -1,0 +1,166 @@
+*{
+    /* Sirve para ver los bordes de todos los contenedores */
+    /* box-shadow: red 0px 0px 1px; */
+}
+#search {
+    width: 70%!important;
+}
+#carrito {
+    padding: 6px;
+    border:none; 
+    border-radius: 100px;
+}
+body {
+    background-color: #ccc;
+    /* padding-top: 55px; */
+}
+
+.bg-dark {
+    /* background-color: #8bc34a!important; */
+    background-color: #343a40!important;    
+}
+.bg-azul {
+    background-color: #0063c5;    
+}
+.bg-azul-oscuro {
+    background-color: #1A252F;
+}
+
+.carousel-item {
+    background-color: #1a1a1a;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+.carousel-item img {        
+    /* min-height: 32rem; */
+    
+    /* -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); */
+
+    /* -webkit-filter: blur(3px); 
+    filter: blur(3px); */
+
+    /* -webkit-filter: invert(100%);
+    filter: invert(100%); */
+
+    /* -webkit-filter: sepia(100%); */
+
+    /* filter: hue-rotate(45deg); */
+
+    /* -webkit-filter: contrast(200%);
+    filter: contrast(200%); */
+
+    -webkit-filter: brightness(50%);
+    filter: brightness(40%);
+
+    /* -webkit-filter: saturate(250%);
+    filter: saturate(250%); */
+}
+
+.nav {
+    position: relative;
+    z-index: 999;
+  }
+
+
+.navbar-brand {
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.list-group a {
+    text-decoration: none;
+    color: #343a40;
+}
+
+.copy {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+} 
+
+.brands a {
+    color: #fafafa;
+    padding: 7px ;
+    font-size: 2rem;
+    border: none;
+}
+
+.messagerror{
+    color: red;
+    font-size: 14px;
+}
+
+footer .row {
+    padding: 5%;
+} 
+
+section{
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+}
+
+.producto {
+    padding: 1px;
+}
+
+.producto a{
+    margin-top: 0.3em;
+}
+
+@media (min-width: 890px) {
+    .bd-placeholder-img-lg {
+        font-size: 2.5rem;
+      }
+      
+  }
+  @media (max-width: 550px) {
+    section{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+   
+      body{
+         padding-top: 2rem;
+      }
+     .carousel-item img {
+        max-height: 32rem;
+    } 
+    .carousel-caption h2{
+        font-size: 1.2rem;
+    }
+    .carousel-caption .btn{
+        padding:2px 40px;
+        font-size: 1rem;
+    }
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+    .nav .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .nav .navbar {
+        background-color: green;
+    }
+    .copy {        
+        font-size: 1rem;
+       
+    } 
+  }
+  @media (min-width: 920px) {
+    /* body{
+        padding-top: 3.2rem;
+     } */
+    .carousel-item {
+        padding: 0 20%;
+    }
+    .carousel-item img {
+        height: 32rem;
+    } 
+  }
