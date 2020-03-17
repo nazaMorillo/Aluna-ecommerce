@@ -26,9 +26,6 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['user', 'admin']);
         
             return view('home');
-        
-        
 
-        
     }
 }
