@@ -23,9 +23,15 @@ Route::get('/logout', function () {
     return view('home');
 });
 
-// Route::get('/listado', function () {
-//     return view('pages.listado');
+Route::get('/producto/{id}', 'ProductController@showProduct');
+
+// Route::get('/producto/{id}', function ($id) {
+//     $vac = compact('id');
+//     return view('pages.detalleProducto', $vac);
 // });
+
+
+
 
 Route::get('/listado', 'ProductController@show' );
 

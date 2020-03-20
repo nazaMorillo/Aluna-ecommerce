@@ -14,4 +14,11 @@ class ProductController extends Controller
 
         return view('pages.listado', $vac);
     }
+
+    public function showProduct ($id){
+        $producto= Product::find($id);
+        $vac = compact("producto");
+
+        return view('pages.detalleProducto', $vac);
+    }
 }

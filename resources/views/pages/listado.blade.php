@@ -11,7 +11,7 @@
         @forelse($productos as $producto)    
         
             <div class="card producto col-6 col-4-sm col-md-4 col-lg-3">
-                <a href="#TOP" style="text-decoration: none; color: rgb(46, 46, 46);">
+                <a href="/producto/{{$producto->id}}" style="text-decoration: none; color: rgb(46, 46, 46);">
                     <img src="{{$producto->image}}" class="card-img-top img-thumbnail" alt="Producto1">
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
