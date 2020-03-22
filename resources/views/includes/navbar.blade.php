@@ -15,10 +15,10 @@
             <!-- <div class="top-right links"> -->
             @auth
             <!-- solo aparece si el usuario está logeado -->
-            <li class="nav-item" style="margin: 0px 10px 0px 10px;">
-                <a class="nav-link" href="#" style="display: flex; flex-wrap: nowrap;">
-                    <img src="/storage/{{Auth::user()->avatar}}" class="rounded-circle border border-primary" alt="avatar">
-                    <h6 class="nav-link">Bienvenido {{Auth::user()->name}}</h6>
+            <li class="nav-item">
+                <a class="nav-link" href="#" style="display: flex; padding:0px">
+                    <img src="/storage/{{Auth::user()->avatar}}" width="42px" height="42px"  class="rounded-circle border border-primary" alt="avatar">
+                    <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
                 </a>
             </li>
 
