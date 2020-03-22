@@ -12,7 +12,7 @@
         <div class="card mb-3 ml-auto  col-md-12" style="max-width: 1080px;">
             <div class="row no-gutters">
                 <div class="col-md-7 col-lg-8">
-                    <img src="/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
+                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
                 </div>
                 <div class="col-md-5 col-lg-4">
                     <div class="card-body">

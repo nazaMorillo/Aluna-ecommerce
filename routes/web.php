@@ -30,14 +30,11 @@ Route::get('/producto/{id}', 'ProductController@showProduct');
 //     return view('pages.detalleProducto', $vac);
 // });
 
-
-
-
 Route::get('/listado', 'ProductController@show' );
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
+// Route::get('/login', function () {
+//     return view('pages.login');
+// });
 Route::get('/ayuda', function () {
     return view('pages.ayuda');
 });
@@ -46,9 +43,9 @@ Route::get('/contacto', function () {
     return view('pages.contacto');
 });
 
-Route::get('/registro', function () {
-    return view('pages.registro');
-});
+// Route::get('/registro', function () {
+//     return view('pages.registro');
+// });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
