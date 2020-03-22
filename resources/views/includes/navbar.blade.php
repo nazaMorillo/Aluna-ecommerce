@@ -12,37 +12,44 @@
 
 
             @if (Route::has('login'))
-                <!-- <div class="top-right links"> -->
-                @auth
-                    <li class="nav-item">
-                        <a href="*" class="nav-link">Bienvenido {{Auth::user()->name}}</a>
-                    </li>
-                    <!-- solo aparece si el usuario está logeado -->
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Salir</a>
-                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
+            <!-- <div class="top-right links"> -->
+            @auth
+            <!-- solo aparece si el usuario está logeado -->
+            <li class="nav-item" style="margin: 0px 10px 0px 10px;">
+                <a class="nav-link" href="#" style="display: flex; flex-wrap: nowrap;">
+                    <img src="/storage/{{Auth::user()->avatar}}" class="rounded-circle border border-primary" alt="avatar">
+                    <h6 class="nav-link">Bienvenido {{Auth::user()->name}}</h6>
+                </a>
+            </li>
 
-                @else
-                    <li class="nav-item">
-                        <!-- <a class="nav-link" href="#">Login </a> -->
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <!-- <a class="nav-link" href="#">Registro</a> -->
-                            <a class="nav-link" href="{{ route('register') }}">Registro</a>
-                        </li>
-                    @endif
-                @endauth
-                @guest
-                <!-- <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Salir</a>
+                <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+
+
+            @else
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Login </a> -->
+                <a class="nav-link" href="{{ route('login') }}">Login</a>
+            </li>
+            @if (Route::has('register'))
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Registro</a> -->
+                <a class="nav-link" href="{{ route('register') }}">Registro</a>
+            </li>
+            @endif
+            @endauth
+            @guest
+            <!-- <li class="nav-item">
                     <a href="*" class="nav-link">No estás logueado</a>
                 </li>             -->
-                @endguest
+            @endguest
             @endif
 
-            
+
             <li class="nav-item ">
                 <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
             </li>
@@ -53,7 +60,7 @@
                 <a class="nav-link" href="/ayuda">Ayuda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/contacto">Contacto</a>
+                <a class="nav-link" href="/contacto">Contacto</a>
             </li>
         </ul>
     </div>
