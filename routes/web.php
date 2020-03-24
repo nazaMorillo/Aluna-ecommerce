@@ -32,6 +32,8 @@ Route::get('/producto/{id}', 'ProductController@showProduct');
 
 Route::get('/listado', 'ProductController@show' );
 
+Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );
+
 // Route::get('/login', function () {
 //     return view('pages.login');
 // });

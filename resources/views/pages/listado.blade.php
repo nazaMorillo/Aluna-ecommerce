@@ -15,9 +15,12 @@
                     <img src="/storage/product/{{$producto->image}}" class="card-img-top img-thumbnail" alt="Producto1">
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> Producto : {{$producto->produc_name}}</p>                       
+                        <p class="card-text"> Producto : {{$producto->produc_name}} Unidades: {{$producto->stock}}</p>
+                        @auth
+                        <!-- <h1> User Id : {{Auth::user()->id}}</h1>                   -->
                         <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar()">Comprar</a>
-                        <a class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="comprar()">Agregar al carrito</a>
+                        <a class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" href="/carrito/{{Auth::user()->id}}/{{$producto->id}}">Agregar al carrito</a>
+                        @endauth
                     </div>
                 </a>
             </div>

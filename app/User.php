@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Product;
+use App\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -15,6 +18,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public $listaProductos=[];
     protected $fillable = [
         'surname','name', 'email', 'password', 'avatar'
     ];
@@ -36,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function products(){
+        return $this->belongsToMany("Product", "carts", "user_id","product_id");
+    }
+
+    public function decrementProductStock(Product $product){
+        
+        $producto = Product::find($product->id);
+        $producto->stock -= 1;
+        $producto->save();        
+        // $vac = compact("producto","nuevoStock");
+        return ($producto);  
+    }
 }
