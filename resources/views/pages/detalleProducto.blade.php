@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-5 col-lg-4">
                     <div class="card-body">
-                        <h4 class="card-title">{{$producto->produc_name}}</h4>
+                        <h4 class="card-title">{{$producto->name}}</h4>
                         <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
                         <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
 

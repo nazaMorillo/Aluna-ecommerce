@@ -17,7 +17,7 @@
             <!-- solo aparece si el usuario está logeado -->
             <li class="nav-item">
                 <a class="nav-link" href="#" style="display: flex; padding:0px">
-                    <img src="/storage/{{Auth::user()->avatar}}" width="42px" height="42px"  class="rounded-circle border border-primary" alt="avatar">
+                    <img src="/storage/{{Auth::user()->avatar}}"  style="object-fit: cover;" width="42px"  class="rounded-circle border border-primary" alt="avatar">
                     <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
                 </a>
             </li>

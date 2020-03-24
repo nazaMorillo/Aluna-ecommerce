@@ -10,7 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         // "http://lorempixel.com/400/200/technics/"
         'image'=>$faker->numberBetween($min = 1, $max = 8).".jpg",
-        'produc_name'=>$faker->text(10),
+        'name'=>$faker->text(10),
         'description'=>$faker->text(45),
         'price'=>$faker->randomFloat(2, 300, 1000),
         'stock'=>$faker->numberBetween($min = 1000, $max = 9000),
