@@ -32,7 +32,13 @@ Route::get('/producto/{id}', 'ProductController@showProduct');
 
 Route::get('/listado', 'ProductController@show' );
 
-Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );
+/*Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
+
+Route::post('/agregarProducto', 'UserController@addToCart');
+
+Route::post('/eliminarProducto', 'UserController@dropToCart');
+
+Route::get('/carrito', 'UserController@viewCart');
 
 // Route::get('/login', function () {
 //     return view('pages.login');

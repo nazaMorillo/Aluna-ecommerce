@@ -9,7 +9,7 @@ use App\Cart;
 
 class UserController extends Controller
 {
-    public function addToCart($id, $idProduct){
+    /*public function addToCart($id, $idProduct){
         $estaEncarrito = Cart::find($id)->where('product_id', "=", $idProduct);
         // if (!in_array($id, $estaEncarrito->product_id)) {
             $cart = new Cart();        
@@ -31,5 +31,27 @@ class UserController extends Controller
         // }
         
         return view('/pages.listado', $vac); 
+    }*/
+
+    public function addToCart(Request $req){
+        $agregarACarrito = new Cart();
+        $agregarACarrito->user_id = auth()->user()->id;
+        $agregarACarrito->product_id = $req['productid'];
+        $agregarACarrito->save();
+        return redirect('/listado');
+    }
+
+    public function viewCart(){
+        $user = User::find(auth()->user()->id);
+        $productos = $user->products()->orderBy('pivot_id','desc')->get();
+        $vac = compact('productos');
+        return view('pages.carrito',$vac);
+    }
+
+    public function dropToCart(Request $req){
+        $idusuario = auth()->user()->id;
+        $eliminarCarrito = Cart::find($req['productid']);
+        $eliminarCarrito->delete();
+        return redirect('carrito');
     }
 }

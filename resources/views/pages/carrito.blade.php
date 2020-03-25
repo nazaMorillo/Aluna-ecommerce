@@ -3,7 +3,6 @@
 @section("content")
 
 
-
     @auth
         <div class="container marketing">
             <!-- START THE FEATURETTES -->        
@@ -17,7 +16,7 @@
                    
                 <div class="card producto col-md-4" id="Producto{{$producto->id}}">
                     <a href="#TOP" style="text-decoration: none; color: rgb(46, 46, 46);">
-                        <img src="/storage/{{$producto->image}}" class="card-img-top" alt="{{$producto->id}}">
+                        <img src="/storage/product/{{$producto->image}}" class="card-img-top" alt="{{$producto->id}}">
 
                         <div class="card-body">
                             <h3>$ {{$producto->price}}</h3>
@@ -30,7 +29,7 @@
                             <!--Fin Función Comprar-->
                             <!--Agregar al Carrito-->
 
-                            <a id="{{$producto->id}}" class='btn btn-danger col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="eliminarCarrito({{$producto->id}},'Producto{{$producto->id}}')">Eliminar del carrito</a>
+                            <a id="{{$producto->id}}" class='btn btn-danger col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}')">Eliminar del carrito</a>
 
 
                             <!--Fin Agregar al Carrito-->
