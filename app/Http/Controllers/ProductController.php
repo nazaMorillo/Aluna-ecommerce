@@ -25,10 +25,16 @@ class ProductController extends Controller
     }
 
     public function showProduct ($id){
-        $user = User::find(auth()->user()->id);
-        $producto = Product::find($id);
-        $productosAgregados = $user->products;
-        $vac = compact("producto","productosAgregados");
+        if (auth()->user()) {
+            $user = User::find(auth()->user()->id);
+            $producto = Product::find($id);
+            $productosAgregados = $user->products;
+            $vac = compact("producto","productosAgregados");
+        }else{
+            $producto = Product::find($id);
+            $vac = compact("producto");
+        }
+        
         return view('pages.detalleProducto', $vac);
     }
 }
