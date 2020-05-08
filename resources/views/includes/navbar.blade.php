@@ -1,9 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
+    padding-bottom: 9px;
+    padding-top: 9px;
+">
     <a class="navbar-brand" href="/">A-M</a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
-        <input id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
+        <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
         @auth
-        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="carrito"><img width="30px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
+        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito"><img width="30px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
         @endauth
         @guest
         <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="35px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
@@ -14,14 +17,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-
-
-            @if (Route::has('login'))
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/listado">Catalogo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ayuda">Ayuda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacto">Contacto</a>
+            </li>
+                        @if (Route::has('login'))
             <!-- <div class="top-right links"> -->
             @auth
             <!-- solo aparece si el usuario está logeado -->
             <li class="nav-item">
-                <a class="nav-link" href="#" style="display: flex; padding:0px">
+                <a class="nav-link" href="/perfil" style="display: flex; padding:0px">
                     <img src="/storage/{{Auth::user()->avatar}}"  style="object-fit: cover;" width="42px"  class="rounded-circle border border-primary" alt="avatar">
                     <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
                 </a>
@@ -53,20 +66,6 @@
                 </li>             -->
             @endguest
             @endif
-
-
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/listado">Catalogo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ayuda">Ayuda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contacto">Contacto</a>
-            </li>
         </ul>
     </div>
 

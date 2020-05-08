@@ -30,6 +30,7 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="/js/kit-fontawesome.js"></script>
+    <script src="/js/main.js"></script>
     @yield("scripts")
 </body>
 </html>

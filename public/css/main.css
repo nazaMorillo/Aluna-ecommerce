@@ -11,8 +11,14 @@
     border-radius: 100px;
 }
 body {
-    background-color: #ccc;
+    background-color: #FFFFFF;
     /* padding-top: 55px; */
+    /*background-image: url("/storage/pics/background.png");
+    background-size: cover;*/
+}
+
+.bg-black {
+    background-color: #000000;
 }
 
 .bg-dark {
@@ -121,6 +127,13 @@ footer .row {
     margin-top: 2em;
     display: flex;
     justify-content: center;
+}
+
+.busquedasnav{
+    color:black;
+}
+.busquedasnav:hover{
+    color:blue;
 }
 
 

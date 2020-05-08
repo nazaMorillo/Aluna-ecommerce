@@ -13,14 +13,20 @@ function agregarCarrito(productid){
                 console.log("productoAgregado");
             }
         });
-           document.getElementById(productid).removeAttribute("class");
-           document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-           document.getElementById(productid).innerHTML = "Agregado al carrito";
+            if(window.location.href.split("/")[3] == "listado"){
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+            }else if(window.location.href.split("/")[3] == "productos"){
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-lg btn-secondary col-12 col-md-3");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+            }
+           
     });
-    console.log("luego de la funcion");
 }
 
-function eliminarCarrito(productid, divprodid){
+function eliminarCarrito(productid, divprodid,precioProd){
     $(document).ready(function(){
         console.log(productid);
         console.log(divprodid);
@@ -41,6 +47,18 @@ function eliminarCarrito(productid, divprodid){
             }
         });
         $('#'+divprodid).hide();
+        var resultado = document.getElementById("total").innerHTML - precioProd;
+        console.log(resultado);
+        document.getElementById("total").innerHTML = resultado.toFixed(2);
+        document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
+        document.getElementById("cantprodtop").innerHTML = parseInt(document.getElementById("cantprodtop").innerHTML) - 1;
     });
-    console.log("Eliminando del carrito");
 }
+
+function comprar(productid){
+    $(document).ready(function(){
+        console.log("Comprando el producto: "+productid);
+    });
+}
+
+console.log(window.location.href.split("/"));

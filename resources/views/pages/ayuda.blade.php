@@ -1,20 +1,13 @@
 @extends("layouts.master")
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header"><h2 id="contact" class="mt-2">{{ __('Preguntas Frecuentes') }}</h2></div>
                 
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
-                <div align="center" class="star-navy">
-                    <i class="fa fa-star"></i>
-                </div>
-
-                <div class="card-body">
-
-                </div>
             </div>
         </div>
         <div class="col-md-10">

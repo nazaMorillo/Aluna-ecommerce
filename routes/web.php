@@ -23,7 +23,7 @@ Route::get('/logout', function () {
     return view('home');
 });
 
-Route::get('/producto/{id}', 'ProductController@showProduct');
+Route::get('/productos/{id}', 'ProductController@showProduct');
 
 // Route::get('/producto/{id}', function ($id) {
 //     $vac = compact('id');
@@ -32,13 +32,19 @@ Route::get('/producto/{id}', 'ProductController@showProduct');
 
 Route::get('/listado', 'ProductController@show' );
 
+Route::get('/listado/{texto}', 'UserController@searchProductPage' );
+
 /*Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
 
 Route::post('/agregarProducto', 'UserController@addToCart');
 
 Route::post('/eliminarProducto', 'UserController@dropToCart');
 
+Route::get('/buscarProducto', 'UserController@searchProduct');
+
 Route::get('/carrito', 'UserController@viewCart');
+
+Route::get('/perfil', 'UserController@viewPerfil');
 
 // Route::get('/login', function () {
 //     return view('pages.login');
@@ -57,3 +63,5 @@ Route::get('/contacto', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

@@ -54,4 +54,29 @@ class UserController extends Controller
         $eliminarCarrito->delete();
         return redirect('carrito');
     }
+
+    public function searchProduct(Request $req){
+        $texto = $req['texto'];
+        $busqueda = Product::where('name','LIKE','%'.$texto.'%')->get();
+        return $busqueda;
+    }
+
+    public function searchProductPage($texto){
+        //$texto = $req['texto'];
+        $productos = Product::where('name','LIKE','%'.$texto.'%')->paginate(8);
+        if (auth()->user()) {
+            $user = User::find(auth()->user()->id);
+            $productosAgregados = $user->products;
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }else{
+            $productosAgregados = [];
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }
+    }
+
+    public function viewPerfil(){
+        return view('pages.perfil');
+    }
 }
