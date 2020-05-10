@@ -20,8 +20,8 @@ class CreateCartsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE')->onUpdate('CASCADE');
 
             $table->timestamps();
         });
@@ -34,12 +34,9 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::table("carts",function(Blueprint $table) {
-            $table->dropForeign('carts_users_id_foreign');
-            $table->dropForeign('carts_products_id_foreign');
-            
-          });
-        Schema::dropIfExists('carts');
-        
+            Schema::disableForeignKeyConstraints();
+            Schema::drop("carts"); 
+            Schema::enableForeignKeyConstraints();
+               
     }
 }

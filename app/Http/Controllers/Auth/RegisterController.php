@@ -67,7 +67,7 @@ class RegisterController extends Controller
     {
         $ruta = request()->file('avatar')->store('public');
         $fileName = basename($ruta);
-        return User::create([
+        $user = User::create([
             'surname' => $data['surname'],
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,5 +75,10 @@ class RegisterController extends Controller
             'avatar' => $fileName
 
         ]);
+
+       /* $user->roles()->attach(Role::where('name', 'user')->first());*/
+
+        return $user;
+
     }
 }

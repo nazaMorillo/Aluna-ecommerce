@@ -59,4 +59,31 @@ class User extends Authenticatable
     public function roles() {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
+
+    public function authorizeRoles($roles) {
+        if(is_array($roles)) {
+            return $this->hasAnyRole($roles) || abort(401, 'No autorizado');
+        }
+
+        //return $this->hasRole($roles) || abort(401, 'No Autorizado');
+
+    }
+
+    public function hasAnyRole($roles) {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    public function hasRole($role) {
+
+       /* $roles_array = explore("|", $roles);
+
+        if($this->roles()->whereIn('name', $roles_array)->first()) {
+            return true;
+        }
+
+        return false;  Para multiples usuarios  */
+
+        return /*null !==*/ $this->roles()->where('name', $role)->first();
+    }
+
 }
