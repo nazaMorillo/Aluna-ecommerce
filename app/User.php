@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Cart;
+use App\Role;
+use App\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Product;
-use App\Cart;
-use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -53,5 +54,9 @@ class User extends Authenticatable
         $producto->save();        
         // $vac = compact("producto","nuevoStock");
         return ($producto);  
+    }
+
+    public function roles() {
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 }
