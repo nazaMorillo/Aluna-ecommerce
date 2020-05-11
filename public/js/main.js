@@ -173,19 +173,13 @@ $(document).ready(function () {
 		fetch("/api/getPaisesProvinciasLocalidades")
 			.then(response => response.json())
 			.then(data => {
-				console.log("Entré al Ajax");
+				
 				// borramos la lista en donde se cargarán las peliculas de la BD
 				let selectState = document.getElementById('state');
 				let selectCity = document.getElementById('city');
-				//select.innerHTML= "";
-
-				// data['localidades'].forEach(element => {
-				// 	console.log(element.id + " " + element.localidad);
-				// });
-				// etiqueta en donde mostramos cuantas películas has en la BD
-				// for (let elemento in data['provincias']) {
-				// 	console.log(elemento['provincia']);
-				// }
+				let fieldAddress= document.getElementById('address');
+				selectCity.disabled = true;
+				fieldAddress.disabled = true;
 
 				data['provincias'].forEach(provincia => {
 					let opcion = document.createElement("option");
@@ -198,46 +192,38 @@ $(document).ready(function () {
 
 				function listarLocalidades(state_id) {
 					if (state_id != null) {
-						//alert(state_id);
 						let localidadesfiltradas = data['localidades'].filter(localidad => {
-							console.log(localidad.localidad.length);
 							return localidad.provincia_id == state_id && localidad.localidad.length >2;
-						});
-							
+						});							
 						
 						localidadesfiltradas.forEach(localidad => {
-							console.log(localidad);
+							//console.log(localidad);
 							let opcion = document.createElement("option");
 							let nombre = document.createTextNode(localidad.localidad);
 							opcion.setAttribute("value", localidad.id);
 							opcion.append(nombre);
 							selectCity.append(opcion);
 						});
-					} //else {
-					// 	data['localidades'].forEach(localidad => {
-					// 		let opcion = document.createElement("option");
-					// 		let nombre = document.createTextNode(localidad.provincia_id+" - "+localidad.localidad);
-					// 		opcion.setAttribute("value", localidad.id);
-					// 		opcion.append(nombre);
-					// 		selectCity.append(opcion);
-					// 	});
-					// }
-				}
+						
+					} 
+					
+				}				
 				selectState.onchange = (e) => {
-					let citySelected = document.querySelectorAll("#city >option[selected='selected']");
-					citySelected.setAttribute('value', '');
+					selectCity.disabled = false;
 					id_state = e.target.value;
-					alert(e.target.value);
 					listarLocalidades(id_state);
 				}
+				selectCity.onchange = (e) => {
+							fieldAddress.disabled = false;
+						}
 
 				listarLocalidades(id_state);
 
 			})
-		// .catch(error => {
-		// 	console.log("Se encontro el siguiente error: " + error);
-		// 	//select.innerHTML = "<option value=''>Sin provincias</option>";
-		// })
+		.catch(error => {
+			console.log("Se encontro el siguiente error: " + error);
+			//select.innerHTML = "<option value=''>Sin provincias</option>";
+		})
 
 
 	}
