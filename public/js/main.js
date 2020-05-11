@@ -27,6 +27,12 @@ document.querySelector("#search").addEventListener("keyup",function(){
 	timeout = setTimeout(() =>  {
 	var texto = document.querySelector("#search").value;
 	console.log(texto);
+	if(texto == ""){
+		if(document.querySelector("#divbusqueda")){
+		document.querySelector("#divbusqueda").innerHTML = "";
+		document.querySelector("#divbusqueda").style.display = "none";
+		}
+	}
 	if(!bandera(texto)){
 		if(document.querySelector("#divbusqueda")){
 		document.querySelector("#divbusqueda").style.display = "none";
@@ -61,6 +67,9 @@ document.querySelector("#search").addEventListener("keyup",function(){
 					});
 					link.addEventListener("mouseout", function(){
 						this.setAttribute("class","list-group-item list-group-item-action");
+					});
+					link.addEventListener("click", function(){
+						console.log("clickeado");
 					});
 					//link.append(textoa);
 
@@ -110,7 +119,24 @@ document.querySelector("#search").addEventListener("keyup",function(){
 		clearTimeout(timeout);
 	}, 1000);
 	
-})
+});
+
+document.querySelector("#search").addEventListener("focus",function(){
+	if(document.querySelector("#divbusqueda")){
+		document.querySelector("#divbusqueda").style.display = "block";
+	}
+});
+
+document.querySelector("#search").addEventListener("blur",function(){
+	var timeout;
+	clearTimeout(timeout);
+	if(document.querySelector("#divbusqueda")){
+		timeout = setTimeout(() => {
+			document.querySelector("#divbusqueda").style.display = "none";
+			clearTimeout(timeout);
+		}, 200);
+	}
+});
 
 
 
