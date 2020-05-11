@@ -166,5 +166,60 @@ document.querySelector("#search").parentNode.addEventListener("submit",function(
 	})*/
 })
 
+
+
+
+function actualizarPaisesProvinciasLocalidades() {
+	fetch("/api/getPaisesProvinciasLocalidades")
+		.then(response => response.json())
+		.then(data => {
+			alert("Eston en Ajax");
+			// borramos la lista en donde se cargarán las peliculas de la BD
+			let selectState = document.getElementById('state');
+			let selectCity = document.getElementById('city');
+			//select.innerHTML= "";
+
+			data['provincias'].forEach(element => {
+				console.log(element.provincia);
+			});
+			// etiqueta en donde mostramos cuantas películas has en la BD
+			for(let elemento in data['provincias']){
+				console.log(elemento['provincia']);
+			}
+			data['provincias'].forEach(provincia => {
+				let opcion = document.createElement("option");
+				let nombre = document.createTextNode(provincia.provincia);
+				opcion.setAttribute("id", provincia.id);
+				opcion.append(nombre);
+				selectState.append(opcion);
+
+				opcion.onclick = (e) => {
+					console.log(e.target.id);
+					this.setAttribute('selected', 'selected')
+				}
+			});
+
+			data['localidades'].forEach(localidad => {
+				let opcion = document.createElement("option");
+				let nombre = document.createTextNode(localidad.localidad);
+				opcion.setAttribute("id", localidad.id);
+				opcion.append(nombre);
+				selectCity.append(opcion);
+
+				opcion.onclick = (e) => {
+					console.log(e.target.id);
+					this.setAttribute('selected', 'selected')
+				}
+			});
+		})
+		.catch(error => {
+			console.log("Se encontro el siguiente error: " + error);
+			//select.innerHTML = "<option value=''>Sin provincias</option>";
+		})
+
+		
+}
+actualizarPaisesProvinciasLocalidades();
+
 });
 	

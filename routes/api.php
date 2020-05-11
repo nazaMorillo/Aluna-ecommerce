@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Country;
+use App\State;
+use App\City;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,13 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/getPaisesProvinciasLocalidades', function (){
+    $paises = Country::orderBy('pais')->get();
+    $provincias = State::orderBy('provincia')->get();
+    $localidades = City::orderBy('localidad')->get();
+    $vac = compact('paises','provincias','localidades');
+    
+    return $vac;
 });
