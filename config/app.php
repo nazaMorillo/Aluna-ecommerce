@@ -161,11 +161,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Cardumen\ArgentinaProvinciasLocalidades\ArgentinaProvinciasLocalidades::class,
 
         /*
          * Package Service Providers...
          */
-
+        
         /*
          * Application Service Providers...
          */
