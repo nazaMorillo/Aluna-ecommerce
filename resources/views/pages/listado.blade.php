@@ -243,7 +243,7 @@
         </div>
         @endguest
     </div>
-    
+    @include("includes.modal")
 
 
 @endsection

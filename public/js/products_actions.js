@@ -58,7 +58,28 @@ function eliminarCarrito(productid, divprodid,precioProd){
 function comprar(productid){
     $(document).ready(function(){
         console.log("Comprando el producto: "+productid);
+        activarVentanaEmergente(productid);
     });
+}
+
+
+function activarVentanaEmergente(productid) {
+    var overlay = document.getElementById('overlay'),
+        popup = document.getElementById('popup'),
+        btnCerrarPopup = document.getElementById('btn-cerrar-popup'),
+        descripcion = document.querySelector('.popup > h4');
+
+    overlay.classList.add('active');
+    popup.classList.add('active');
+    if(productid != undefined){
+        descripcion.innerHTML = "Completa los datos a continuación para confirmar compra<br>Producto Cod: #"+productid;
+    }    
+
+
+    btnCerrarPopup.onclick= ()=>{
+        overlay.classList.remove('active');
+    };
+    
 }
 
 console.log(window.location.href.split("/"));
