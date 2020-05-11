@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public $listaProductos=[];
     protected $fillable = [
-        'surname','name', 'email', 'password', 'avatar'
+        'surname','name', 'email', 'password', 'avatar', 'address'
     ];
 
     /**
