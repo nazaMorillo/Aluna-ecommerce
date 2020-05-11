@@ -72,12 +72,13 @@ function activarVentanaEmergente(productid) {
     overlay.classList.add('active');
     popup.classList.add('active');
     if(productid != undefined){
-        descripcion.innerHTML = "Completa los datos a continuación para confirmar compra<br>Producto Cod: #"+productid;
+        descripcion.innerHTML = "Completa los datos para confirmar la compra<br>Producto Cod: #"+productid;
     }    
 
 
     btnCerrarPopup.onclick= ()=>{
         overlay.classList.remove('active');
+        popup.classList.remove('active');
     };
     
 }

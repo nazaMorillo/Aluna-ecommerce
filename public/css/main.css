@@ -135,6 +135,9 @@ footer .row {
 .busquedasnav:hover{
     color:blue;
 }
+
+
+
 /* Estilos para el modal de compra */
 /* POPUP */
 .overlay {
@@ -148,6 +151,7 @@ footer .row {
     align-items: center;
     justify-content: center;
     visibility: hidden;
+    z-index: 10000;
 }
 
 .overlay.active {
@@ -162,38 +166,41 @@ footer .row {
     padding: 20px;
     text-align: center;
     width: 700px;
+
+    transition: .3s ease all;
+    opacity: 0;
+    transform: scale(0.7);
 }
 
 .popup .btn-cerrar-popup {
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 16px;
     display: block;
     text-align: right;
     color: #BBBBBB;
     transition: .3s ease all;
-
 }
 
 .popup .btn-cerrar-popup:hover {
-    color: #000
+    color: #000;
 }
 
 .popup h3{
-    font-size: 36px;
+    /* font-size: 36px; */
     font-weight: 600px;
     margin-bottom: 10px;
-    /* opacity: 0; */
+    opacity: 0;
 }
 
 .popup h4{
-    font-size: 26px;
+    /* font-size: 26px; */
     font-weight: 300px;
     margin-bottom: 40px;
-    /* opacity: 0; */
+    opacity: 0;
 }
 
-.popup form .contenedor-inputs {
-
+.popup form .contenedor-inputs , .fa-credit-card{
+    opacity: 0;
 }
 
 .popup form .contenedor-inputs input {
@@ -223,9 +230,59 @@ footer .row {
 }
 
 
-/* VENTANA EMERGENTE */
+/* ANIMACIONES DE VENTANA EMERGENTE */
+.popup.active {opacity: 1;transform: scale(1);}
+.popup.active h3{ animation: entradaTitulo .8s ease .5s forwards;}
+.popup.active h4{ animation: entradaSubtitulo .8s ease .5s forwards;}
+.popup.active .contenedor-inputs{ animation: entradaInputs 1s ease 1s forwards;}
+.popup.active .fa-credit-card{ animation: entradaTarjeta .5s ease .5s forwards;}
 
+@keyframes entradaTitulo {
+    from {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
+@keyframes entradaSubtitulo {
+    from {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entradaInputs {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes entradaTarjeta {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*MEDIA QUERY PARA DIFERENTES RESOUCIONES*/
+@media (max-width: 320px){
+    .overlay {
+        top:10px;
+    }
+}
 
 @media (max-width: 550px) {
     /* section{
