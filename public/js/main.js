@@ -1,225 +1,247 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-var url = window.location;
+	var url = window.location;
 
-if (url.href.split("/").length > 4) {
-	document.querySelector("#search").value = url.href.split("/")[4];
-}
-
-/*document.querySelector("#carrito").addEventListener("click",function(e){
-	e.preventDefault();
-	if(url.href.split("/").length > 4){
-		window.location = "carrito";
+	if (url.href.split("/").length > 4) {
+		document.querySelector("#search").value = url.href.split("/")[4];
 	}
-})*/
 
-//document.querySelector('body').setAttribute('style','overflow-x:hidden');
-//document.querySelector('html').setAttribute('style','overflow-x:hidden');
+	/*document.querySelector("#carrito").addEventListener("click",function(e){
+		e.preventDefault();
+		if(url.href.split("/").length > 4){
+			window.location = "carrito";
+		}
+	})*/
 
-function bandera(cadena){
-    var acum = cadena.split(" ");
-	for(ele in acum){
-	    if(acum[ele] != ""){
-	    return true;
-	    }
-	}return false
-}
+	//document.querySelector('body').setAttribute('style','overflow-x:hidden');
+	//document.querySelector('html').setAttribute('style','overflow-x:hidden');
 
-/*function inicializarHTMLtemporal(){
+	function bandera(cadena) {
+		var acum = cadena.split(" ");
+		for (ele in acum) {
+			if (acum[ele] != "") {
+				return true;
+			}
+		} return false
+	}
+
+	/*function inicializarHTMLtemporal(){
+		var divmin = document.createElement('div');
+		divmin.setAttribute('style','height:1px;margin-top:-1px;margin-left:48px;z-index:2;position:relative');
+		divmin.setAttribute('class','col-md-6');
+		var ulista = document.createElement('ul');
+		ulista.setAttribute('style','background-color:white; list-style:none;max-height:49.813px');
+		ulista.setAttribute('id','ulbusqueda');
+		divmin.append(ulista);
+	}
+	
+	inicializarHTMLtemporal();*/
+
 	var divmin = document.createElement('div');
-	divmin.setAttribute('style','height:1px;margin-top:-1px;margin-left:48px;z-index:2;position:relative');
-	divmin.setAttribute('class','col-md-6');
+	divmin.setAttribute('style', 'height:1px;margin-top:1px;z-index:2;position:relative;width:100%');
+	divmin.setAttribute('id', 'divbusqueda');
+	//divmin.setAttribute('class','col-md-6');
+
 	var ulista = document.createElement('ul');
-	ulista.setAttribute('style','background-color:white; list-style:none;max-height:49.813px');
-	ulista.setAttribute('id','ulbusqueda');
+	ulista.setAttribute('style', 'background-color:white; list-style:none;width:100%');
+	ulista.setAttribute('class', 'border-right border-left');
+	ulista.setAttribute('id', 'ulbusqueda');
 	divmin.append(ulista);
-}
 
-inicializarHTMLtemporal();*/
+	var imgsbusqueda = [];
+	var timeout;
+	document.querySelector("#search").addEventListener("keyup", function () {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			var texto = document.querySelector("#search").value;
+			console.log(texto);
+			if (!bandera(texto)) {
+				if (document.querySelector("#divbusqueda")) {
+					document.querySelector("#divbusqueda").style.display = "none";
+				}
+			} else {
+				if (document.querySelector("#ulbusqueda")) {
+					document.querySelector("#ulbusqueda").innerHTML = "";
+					document.querySelector("#divbusqueda").style.display = "block";
+				}
 
-var divmin = document.createElement('div');
-divmin.setAttribute('style','height:1px;margin-top:1px;z-index:2;position:relative;width:100%');
-divmin.setAttribute('id','divbusqueda');
-//divmin.setAttribute('class','col-md-6');
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					url: "/buscarProducto",
+					type: "GET",
+					data: { texto },
+					success: function (response) {
+						var resbusqueda = [];
 
-var ulista = document.createElement('ul');
-ulista.setAttribute('style','background-color:white; list-style:none;width:100%');
-ulista.setAttribute('class','border-right border-left');
-ulista.setAttribute('id','ulbusqueda');
-divmin.append(ulista);
+						for (elemento in response) {
+							var textoa = document.createTextNode(response[elemento]['name']);
 
-var imgsbusqueda = [];
-var timeout;
-document.querySelector("#search").addEventListener("keyup",function(){
-	clearTimeout(timeout);
-	timeout = setTimeout(() =>  {
-	var texto = document.querySelector("#search").value;
-	console.log(texto);
-	if(!bandera(texto)){
-		if(document.querySelector("#divbusqueda")){
-		document.querySelector("#divbusqueda").style.display = "none";
-		}
-	}else{
-			if(document.querySelector("#ulbusqueda")){
-		document.querySelector("#ulbusqueda").innerHTML = "";
-		document.querySelector("#divbusqueda").style.display = "block";
-		}
+							var link = document.createElement('a');
+							link.setAttribute('href', '/productos/' + response[elemento]['id']);
+							link.setAttribute('style', 'text-decoration:none;width:100%;hover:');
+							link.setAttribute('class', 'busquedasnav');
+							link.addEventListener("mouseover", function () {
+								this.parentNode.setAttribute("style", "background-color:#DDDDDD;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center");
+							});
+							link.addEventListener("mouseout", function () {
+								this.parentNode.setAttribute("style", "background-color:white;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center");
+							});
+							link.append(textoa);
 
-		$.ajaxSetup({
+							var img = document.createElement('img');
+							img.setAttribute('src', '/storage/product/' + response[elemento]['image']);
+							img.setAttribute('style', 'max-width:40px;margin-left:auto');
+
+							var objeto = new Object();
+							objeto.link = link;
+							objeto.img = img;
+
+							resbusqueda[parseInt(elemento)] = (objeto);
+							//link.append(img);
+							//resbusqueda[parseInt(elemento)] = link;
+							//console.log(resbusqueda[parseInt(elemento)]);
+
+
+							//console.log(ulista);
+							//document.querySelector('section').prepend(divmin);
+						}
+						for (ele in resbusqueda) {
+							var lilista = document.createElement('li');
+							lilista.setAttribute('style', 'background-color:white;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center');
+							//lilista.setAttribute('style','background-color:white;max-height:49.813px');
+							lilista.setAttribute('class', 'border-bottom');
+							lilista.append(resbusqueda[ele].link);
+							lilista.append(resbusqueda[ele].img);
+							//lilista.append(resbusqueda[ele]);
+							ulista.append(lilista);
+						}
+						console.log("ul li:");
+						console.log(ulista);
+						for (ele in ulista.innerHTML.split("/li>")) {
+							console.log(ulista.innerHTML.split("/li>")[ele] + "/li>");
+						}
+						for (elements in ulista) {
+							//console.log(elements);	
+						}
+						divmin.append(ulista);
+						document.querySelector('section').prepend(divmin);
+					},
+					error: function () {
+						console.log("error!!!!");
+					}
+				});
+			}
+			clearTimeout(timeout);
+		}, 1000);
+
+	})
+
+
+
+	document.querySelector("#search").parentNode.addEventListener("submit", function (e) {
+		e.preventDefault();
+		var texto = document.querySelector("#search").value;
+		window.location = "/listado/" + texto;
+		/*$.ajaxSetup({
 			headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
 		});
 		$.ajax({
-			url : "/buscarProducto",
+			url:'/busqueda',
 			type: "GET",
 			data:{texto},
 			success: function(response){
-				var resbusqueda = [];
-
-				for(elemento in response){
-					var textoa = document.createTextNode(response[elemento]['name']);
-
-					var link = document.createElement('a');
-					link.setAttribute('href','/productos/'+response[elemento]['id']);
-					link.setAttribute('style','text-decoration:none;width:100%;hover:');
-					link.setAttribute('class','busquedasnav');
-					link.addEventListener("mouseover", function(){
-						this.parentNode.setAttribute("style","background-color:#DDDDDD;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center");
-					});
-					link.addEventListener("mouseout", function(){
-						this.parentNode.setAttribute("style","background-color:white;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center");
-					});
-					link.append(textoa);
-
-					var img = document.createElement('img');
-					img.setAttribute('src','/storage/product/'+response[elemento]['image']);
-					img.setAttribute('style','max-width:40px;margin-left:auto');
-
-					var objeto = new Object();
-					objeto.link = link;
-					objeto.img = img;
-
-					resbusqueda[parseInt(elemento)] = (objeto);
-					//link.append(img);
-					//resbusqueda[parseInt(elemento)] = link;
-					//console.log(resbusqueda[parseInt(elemento)]);
-					
-
-					//console.log(ulista);
-					//document.querySelector('section').prepend(divmin);
-				}
-				for(ele in resbusqueda){
-					var lilista = document.createElement('li');
-					lilista.setAttribute('style','background-color:white;max-height:49.813px;margin-left:-40px;display:flex;justify-content:center;align-items:center');
-					//lilista.setAttribute('style','background-color:white;max-height:49.813px');
-					lilista.setAttribute('class','border-bottom');
-					lilista.append(resbusqueda[ele].link);
-					lilista.append(resbusqueda[ele].img);
-					//lilista.append(resbusqueda[ele]);
-					ulista.append(lilista);
-				}
-				console.log("ul li:");
-				console.log(ulista);
-				for(ele in ulista.innerHTML.split("/li>")){
-					console.log(ulista.innerHTML.split("/li>")[ele]+"/li>");
-				}
-				for(elements in ulista){
-				//console.log(elements);	
-				}
-				divmin.append(ulista);
-				document.querySelector('section').prepend(divmin);
+				console.log(response);
+				console.log('paso la prueba');
 			},
-	        error:function(){ 
-	            console.log("error!!!!");
-	        }
-		});
-	}
-		clearTimeout(timeout);
-	}, 1000);
-	
-})
-
-
-
-document.querySelector("#search").parentNode.addEventListener("submit",function(e){
-	e.preventDefault();
-	var texto = document.querySelector("#search").value;
-	window.location = "/listado/"+texto;
-	/*$.ajaxSetup({
-		headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-	});
-	$.ajax({
-		url:'/busqueda',
-		type: "GET",
-		data:{texto},
-		success: function(response){
-			console.log(response);
-			console.log('paso la prueba');
-		},
-		error: function(response){
-			console.log(response);
-			console.log('error');
-		}
-	})*/
-})
-
-
-
-
-function actualizarPaisesProvinciasLocalidades() {
-	fetch("/api/getPaisesProvinciasLocalidades")
-		.then(response => response.json())
-		.then(data => {
-			alert("Eston en Ajax");
-			// borramos la lista en donde se cargarán las peliculas de la BD
-			let selectState = document.getElementById('state');
-			let selectCity = document.getElementById('city');
-			//select.innerHTML= "";
-
-			data['provincias'].forEach(element => {
-				console.log(element.provincia);
-			});
-			// etiqueta en donde mostramos cuantas películas has en la BD
-			for(let elemento in data['provincias']){
-				console.log(elemento['provincia']);
+			error: function(response){
+				console.log(response);
+				console.log('error');
 			}
-			data['provincias'].forEach(provincia => {
-				let opcion = document.createElement("option");
-				let nombre = document.createTextNode(provincia.provincia);
-				opcion.setAttribute("id", provincia.id);
-				opcion.append(nombre);
-				selectState.append(opcion);
+		})*/
+	})
 
-				opcion.onclick = (e) => {
-					console.log(e.target.id);
-					this.setAttribute('selected', 'selected')
+
+
+
+	function actualizarPaisesProvinciasLocalidades() {
+		fetch("/api/getPaisesProvinciasLocalidades")
+			.then(response => response.json())
+			.then(data => {
+				console.log("Entré al Ajax");
+				// borramos la lista en donde se cargarán las peliculas de la BD
+				let selectState = document.getElementById('state');
+				let selectCity = document.getElementById('city');
+				//select.innerHTML= "";
+
+				// data['localidades'].forEach(element => {
+				// 	console.log(element.id + " " + element.localidad);
+				// });
+				// etiqueta en donde mostramos cuantas películas has en la BD
+				// for (let elemento in data['provincias']) {
+				// 	console.log(elemento['provincia']);
+				// }
+
+				data['provincias'].forEach(provincia => {
+					let opcion = document.createElement("option");
+					let nombre = document.createTextNode(provincia.provincia);
+					opcion.setAttribute("value", provincia.id);
+					opcion.append(nombre);
+					selectState.append(opcion);
+				});
+				let id_state = null;
+
+				function listarLocalidades(state_id) {
+					if (state_id != null) {
+						//alert(state_id);
+						let localidadesfiltradas = data['localidades'].filter(localidad => {
+							console.log(localidad.localidad.length);
+							return localidad.provincia_id == state_id && localidad.localidad.length >2;
+						});
+							
+						
+						localidadesfiltradas.forEach(localidad => {
+							console.log(localidad);
+							let opcion = document.createElement("option");
+							let nombre = document.createTextNode(localidad.localidad);
+							opcion.setAttribute("value", localidad.id);
+							opcion.append(nombre);
+							selectCity.append(opcion);
+						});
+					} //else {
+					// 	data['localidades'].forEach(localidad => {
+					// 		let opcion = document.createElement("option");
+					// 		let nombre = document.createTextNode(localidad.provincia_id+" - "+localidad.localidad);
+					// 		opcion.setAttribute("value", localidad.id);
+					// 		opcion.append(nombre);
+					// 		selectCity.append(opcion);
+					// 	});
+					// }
 				}
-			});
-
-			data['localidades'].forEach(localidad => {
-				let opcion = document.createElement("option");
-				let nombre = document.createTextNode(localidad.localidad);
-				opcion.setAttribute("id", localidad.id);
-				opcion.append(nombre);
-				selectCity.append(opcion);
-
-				opcion.onclick = (e) => {
-					console.log(e.target.id);
-					this.setAttribute('selected', 'selected')
+				selectState.onchange = (e) => {
+					let citySelected = document.querySelectorAll("#city >option[selected='selected']");
+					citySelected.setAttribute('value', '');
+					id_state = e.target.value;
+					alert(e.target.value);
+					listarLocalidades(id_state);
 				}
-			});
-		})
-		.catch(error => {
-			console.log("Se encontro el siguiente error: " + error);
-			//select.innerHTML = "<option value=''>Sin provincias</option>";
-		})
 
-		
-}
-actualizarPaisesProvinciasLocalidades();
+				listarLocalidades(id_state);
+
+			})
+		// .catch(error => {
+		// 	console.log("Se encontro el siguiente error: " + error);
+		// 	//select.innerHTML = "<option value=''>Sin provincias</option>";
+		// })
+
+
+	}
+	actualizarPaisesProvinciasLocalidades();
 
 });
-	
+
