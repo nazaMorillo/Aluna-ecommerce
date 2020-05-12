@@ -40,6 +40,11 @@ Route::get('/provincias', function () {
     //return view('register', $vac);
 });
 
+Route::get('/nuevaCompra/{id}/{cant}', function ($id, $cant = 1){
+    dd($id, $cant);
+   return "Respuesta del endPoint";
+});
+
 Route::get('/logout', function () {
     return view('home');
 });

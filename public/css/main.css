@@ -270,11 +270,20 @@ footer .row {
 
 @keyframes entradaTarjeta {
     from {
+        transform: translateY(-25px);
         opacity: 0;
     }
     to {
+        transform: translateY(0);
         opacity: 1;
     }
+}
+
+
+.error{
+    /* background-color: red; */
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.863)!important;
+    /* border-color :red!important; */
 }
 
 /*MEDIA QUERY PARA DIFERENTES RESOUCIONES*/

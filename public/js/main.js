@@ -209,7 +209,7 @@ $(document).ready(function () {
 					
 				}				
 				selectState.onchange = (e) => {
-					selectCity.disabled = false;
+					// selectCity.disabled = false;
 					id_state = e.target.value;
 					listarLocalidades(id_state);
 				}
