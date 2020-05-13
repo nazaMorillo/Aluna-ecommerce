@@ -19,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-
+ 
     public $listaProductos=[];
     protected $fillable = [
         'surname','name', 'email', 'password', 'avatar'
@@ -65,7 +65,7 @@ class User extends Authenticatable
             return $this->hasAnyRole($roles) || abort(401, 'No autorizado');
         }
 
-        //return $this->hasRole($roles) || abort(401, 'No Autorizado');
+        return $this->hasRole($roles) || abort(401, 'No Autorizado');
 
     }
 
@@ -83,7 +83,7 @@ class User extends Authenticatable
 
         return false;  Para multiples usuarios  */
 
-        return /*null !==*/ $this->roles()->where('name', $role)->first();
+        return null !== $this->roles()->where('name', $role)->first();
     }
 
 }

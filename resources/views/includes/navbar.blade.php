@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
     padding-bottom: 9px;
     padding-top: 9px;
@@ -23,12 +24,21 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/listado">Catalogo</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ayuda">Ayuda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contacto">Contacto</a>
-            </li>
+            
+            
+            
+            
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/ayuda">Ayuda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacto">Contacto</a>
+                </li>
+          
+                
+            
                         @if (Route::has('login'))
             <!-- <div class="top-right links"> -->
             @auth

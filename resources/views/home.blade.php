@@ -5,8 +5,10 @@
 @endsection
 
 @section("content")
+
     
     @include("includes.carousel")
+
 
     <div class="container marketing" style="margin: 10px 0px;">
         <!-- Three columns of text below the carousel -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -76,7 +77,22 @@ class RegisterController extends Controller
 
         ]);
 
-       $user->roles()->attach(Role::where('name', 'user')->first());
+        $domain = explode('@', $data['email']);
+
+        $nameDomain = explode('.', $domain[1]);
+
+        if( $nameDomain[0] == 'allmarket') {
+
+            $user->roles()->attach(Role::where('name', 'admin')->first());
+
+        }
+
+        else {
+        
+            $user->roles()->attach(Role::where('name', 'user')->first());
+
+        }
+
 
         return $user;
 
