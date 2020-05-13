@@ -20,7 +20,7 @@
             } 
             ?>
             @endforeach
-            @if(empty($totalCarrito))
+            @if(count($productos) == 0)
             <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
             @else
             @foreach($productos as $producto)
@@ -34,7 +34,7 @@
                     <!-- </div> -->
                     
                     <a class='btn col-12 col-md-12 text-white mt-2 comprar bg-black disabled' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}">Sin unidades</a>
-                    <a class='btn btn-danger col-12 col-md-12 text-white mt-2 eliminar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}})">Eliminar</a>
+                    <a class='btn btn-danger col-12 col-md-12 text-white mt-2 eliminar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',0)">Eliminar</a>
                 </div>
 
             </div>            

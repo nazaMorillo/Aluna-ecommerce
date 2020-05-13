@@ -30,7 +30,12 @@ function eliminarCarrito(productid, divprodid,precioProd){
     $(document).ready(function(){
         console.log("usuario "+productid);
         console.log(divprodid);
-        var cantidad = document.querySelector("#"+divprodid).querySelector(".cantidad").getAttribute("value");
+        console.log(precioProd);
+        if(precioProd==0){
+            var cantidad =  0;
+        }else{
+            var cantidad = document.querySelector("#"+divprodid).querySelector(".cantidad").getAttribute("value");
+        }
         console.log(cantidad);
         $.ajaxSetup({
             headers: {
@@ -60,8 +65,29 @@ function eliminarCarrito(productid, divprodid,precioProd){
 function comprar(productid){
     $(document).ready(function(){
         console.log("Comprando el producto: "+productid);
-        console.log(document.querySelector("#Producto"+productid).querySelector(".cantidad").getAttribute("value"));
+        activarVentanaEmergente(productid);
     });
+}
+
+
+function activarVentanaEmergente(productid) {
+    var overlay = document.getElementById('overlay'),
+        popup = document.getElementById('popup'),
+        btnCerrarPopup = document.getElementById('btn-cerrar-popup'),
+        descripcion = document.querySelector('.popup > h4');
+
+    overlay.classList.add('active');
+    popup.classList.add('active');
+    if(productid != undefined){
+        descripcion.innerHTML = "Completa los datos para confirmar la compra<br>Producto Cod: #"+productid;
+    }    
+
+
+    btnCerrarPopup.onclick= ()=>{
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+    };
+    
 }
 
 console.log(window.location.href.split("/"));

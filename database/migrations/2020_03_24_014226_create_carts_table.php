@@ -13,15 +13,23 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('carts');
+        
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->unsignedInteger('user_id');
-            // $table->unsignedInteger('product_id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            // $table->integer('user_id')->unsigned();
+            // $table->integer('product_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+            $table->foreign('product_id')
+                    ->references('id')
+                    ->on('products')
+                    ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -34,11 +42,11 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::table("carts",function(Blueprint $table) {
-            $table->dropForeign('carts_users_id_foreign');
-            $table->dropForeign('carts_products_id_foreign');
+        // Schema::table("carts",function(Blueprint $table) {
+        //     $table->dropForeign('carts_users_id_foreign');
+        //     $table->dropForeign('carts_products_id_foreign');
             
-          });
+        //   });
         Schema::dropIfExists('carts');
         
     }
