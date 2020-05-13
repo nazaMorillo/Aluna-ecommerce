@@ -117,4 +117,4 @@ Route::get('/home', 'HomeController@index')->middleware('role:user');
     else
         return redirect('/');
 });*/
-Route::view('/admin', 'pages.admin')->middleware('role:admin');
+Route::view('/admin', 'pages.admin');

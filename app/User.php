@@ -4,6 +4,7 @@ namespace App;
 
 use App\Cart;
 use App\Role;
+use App\User;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
@@ -57,7 +58,7 @@ class User extends Authenticatable
     }
 
     public function roles() {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsTo(User::class);
     }
 
     public function authorizeRoles($roles) {
@@ -73,17 +74,26 @@ class User extends Authenticatable
         return null !== $this->roles()->whereIn('name', $roles)->first();
     }
 
-    public function hasRole($role) {
+   public function hasRole($role) {
 
-       /* $roles_array = explore("|", $roles);
+        // $roles_array = explore("|", $roles);
 
-        if($this->roles()->whereIn('name', $roles_array)->first()) {
-            return true;
-        }
+        // if($this->roles()->whereIn('name', $roles_array)->first()) {
+        //     return true;
+        // }
 
-        return false;  Para multiples usuarios  */
+        // return false;  Para multiples usuarios  
 
-        return null !== $this->roles()->where('name', $role)->first();
-    }
+       return null !== $this->roles()->where('name', $role)->first();
+    } 
+
+// function hasRoles(array $roles){
+//     foreach($roles as $role){
+//       if($this->role === $role){
+//           return true;
+//       }
+//     }
+//     return false;
+  
 
 }
