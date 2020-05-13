@@ -166,20 +166,50 @@ $(document).ready(function () {
 		})*/
 	})
 
+	let selectState = document.getElementById('state');
+	let password_confirm = document.getElementById('password-confirm');
+	let selectCity = document.getElementById('city');
+	let optionsCity = document.querySelectorAll('#city option');
+	let fieldAddress = document.getElementById('address');
+	let localidadesfiltradas = [];
 
+
+	selectCity.disabled = true;
+	fieldAddress.disabled = true;
+
+	// selectState.onclick = () => {
+	// 	//alert("Después del click de provincia");	
+	// 	actualizarPaisesProvinciasLocalidades();
+	// 	selectCity.disabled = false;
+	// 	for (var i = 0, l = optionsCity.length; i < l; i++) {
+	// 		optionsCity[i].selected = optionsCity[i].defaultSelected;
+	// 	}
+
+	// }
+
+	function listarLocalidades(state_id) {
+
+		console.log(localidadesfiltradas);
+		if (state_id != null) {
+			localidadesfiltradas.forEach(localidad => {
+				let opcion = document.createElement("option");
+				let nombre = document.createTextNode(localidad.localidad);
+				opcion.setAttribute("value", localidad.id);
+				opcion.append(nombre);
+				selectCity.append(opcion);
+			});
+		}
+		var options = document.querySelectorAll('#city option');
+		for (var i = 0, l = options.length; i < l; i++) {
+			options[i].selected = options[i].defaultSelected;
+		}
+	}
 
 
 	function actualizarPaisesProvinciasLocalidades() {
 		fetch("/api/getPaisesProvinciasLocalidades")
 			.then(response => response.json())
 			.then(data => {
-				
-				// borramos la lista en donde se cargarán las peliculas de la BD
-				let selectState = document.getElementById('state');
-				let selectCity = document.getElementById('city');
-				let fieldAddress= document.getElementById('address');
-				selectCity.disabled = true;
-				fieldAddress.disabled = true;
 
 				data['provincias'].forEach(provincia => {
 					let opcion = document.createElement("option");
@@ -188,44 +218,38 @@ $(document).ready(function () {
 					opcion.append(nombre);
 					selectState.append(opcion);
 				});
-				let id_state = null;
 
-				function listarLocalidades(state_id) {
-					if (state_id != null) {
-						let localidadesfiltradas = data['localidades'].filter(localidad => {
-							return localidad.provincia_id == state_id && localidad.localidad.length >2;
-						});							
-						
-						localidadesfiltradas.forEach(localidad => {
-							//console.log(localidad);
-							let opcion = document.createElement("option");
-							let nombre = document.createTextNode(localidad.localidad);
-							opcion.setAttribute("value", localidad.id);
-							opcion.append(nombre);
-							selectCity.append(opcion);
-						});
-						
-					} 
-					
-				}				
+				console.log(localidadesfiltradas);
+				let id_state = undefined;
+
 				selectState.onchange = (e) => {
-					// selectCity.disabled = false;
+					selectCity.disabled = false;
 					id_state = e.target.value;
+					console.log("Onchage en stateId/ id_state : " + id_state);
+
+					data['localidades'].forEach(localidad => {
+						if (localidad.provincia_id == id_state) {
+							localidadesfiltradas.push(localidad);
+						}
+					});
+					// localidadesfiltradas = data['localidades'].filter(localidad => {
+					// 	return localidad.provincia_id == id_state && localidad.localidad.length > 2;
+					// });
+
 					listarLocalidades(id_state);
 				}
-				selectCity.onchange = (e) => {
-							fieldAddress.disabled = false;
-						}
 
-				listarLocalidades(id_state);
+				selectCity.onchange = (e) => {
+					fieldAddress.disabled = false;
+				}
+
+				//listarLocalidades(id_state);
 
 			})
-		.catch(error => {
-			console.log("Se encontro el siguiente error: " + error);
-			//select.innerHTML = "<option value=''>Sin provincias</option>";
-		})
-
-
+		// .catch(error => {
+		// 	console.log("Se encontro el siguiente error: " + error);
+		// 	//select.innerHTML = "<option value=''>Sin provincias</option>";
+		// })
 	}
 	actualizarPaisesProvinciasLocalidades();
 

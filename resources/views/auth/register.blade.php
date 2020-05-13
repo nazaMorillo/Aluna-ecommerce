@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                             
                                 <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" required autocomplete="state" autofocus>
-                                    <option value="" selected disabled >Selecciona una provincia</option>
+                                    <option value="" selected="selected" disabled >Selecciona una provincia</option>
                                 </select>
 
                                 <!-- <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus> -->
@@ -120,7 +120,7 @@
                             <div class="col-md-6">
                             
                                 <select name="city" id="city" class="form-control @error('city') is-invalid @enderror">
-                                    <option value="" selected disabled >Selecciona localidad</option>
+                                    <option value="" selected="selected" disabled >Selecciona localidad</option>
                                 </select>
 
                                 @error('city')

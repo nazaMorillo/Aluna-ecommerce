@@ -23,22 +23,22 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/provincias', function () {
-    $paises = Country::orderBy('pais')->get();
-    $provincias = State::orderBy('provincia')->get();
-    $localidades = City::orderBy('localidad')->get();
-    $vac = compact('paises','provincias','localidades');
-    //dd($provincias);
-    // echo "<pre>";
-    // var_dump($vac['provincias'][0]);
-    // echo "</pre>";
+// Route::get('/provincias', function () {
+//     $paises = Country::orderBy('pais')->get();
+//     $provincias = State::orderBy('provincia')->get();
+//     $localidades = City::orderBy('localidad')->get();
+//     $vac = compact('paises','provincias','localidades');
+//     //dd($provincias);
+//     // echo "<pre>";
+//     // var_dump($vac['provincias'][0]);
+//     // echo "</pre>";
 
-    // foreach ($vac['provincias'] as $provincia) {
-    //     echo $provincia['provincia']."<br>";
-    // }
-    return $vac['provincias'];
-    //return view('register', $vac);
-});
+//     // foreach ($vac['provincias'] as $provincia) {
+//     //     echo $provincia['provincia']."<br>";
+//     // }
+//     return $vac['provincias'];
+//     //return view('register', $vac);
+// });
 
 Route::get('/nuevaCompra/{id}/{cant}', function ($id, $cant = 1){
     dd($id, $cant);
