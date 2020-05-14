@@ -16,16 +16,16 @@
                     <div class="col-md-8 mx-auto">
                         <form class="text-left mb-3">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nombre:</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="exampleInputName">Nombre:</label>
+                                <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Telefono:</label>
-                                <input type="telephone" class="form-control" id="exampleInputPassword1">
+                                <label for="exampleInputTelephone">Telefono:</label>
+                                <input type="telephone" class="form-control" id="exampleInputTelephone">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Dirección:</label>
-                                <input type="telephone" class="form-control" id="exampleInputPassword1">
+                                <label for="exampleInputAddress">Dirección:</label>
+                                <input type="telephone" class="form-control" id="exampleInputAddress">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Correo electronico:</label>
@@ -178,4 +178,56 @@
         </div> -->
     </div>
 </div>
+@endsection
+
+@section("scripts")
+    <script>
+function ValidateEmail(mail){
+    var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(mail.value.match(mailFormat)){
+        return (true);
+        }
+    return (false);
+    }
+        $(document).ready(function(){
+            elementos = document.forms[2].elements;
+            console.log();
+            for(var i = 0; i < elementos.length -1; i++){
+                elementos[i].addEventListener("blur",function(){
+                    console.log(this);
+                    if(this.id == "exampleInputName"){
+                        if(this.value.length < 4){
+                        this.style.borderColor = "red";
+                        }else{
+                        this.style.borderColor = "";
+                        }
+                    }else if(this.id == "exampleInputAddress"){
+                        if(this.value.length < 6){
+                        this.style.borderColor = "red";
+                        }else{
+                        this.style.borderColor = "";
+                        }
+                    }else if(this.id == "exampleInputTelephone"){
+                        if(this.value.length < 7){
+                        this.style.borderColor = "red";
+                        }else{
+                        this.style.borderColor = "";
+                        }
+                    }else if(this.id == "exampleFormControlTextarea1"){
+                        if(this.value.length < 20){
+                        this.style.borderColor = "red";
+                        }else{
+                        this.style.borderColor = "";
+                        }
+                    }else if(this.id == "exampleInputEmail1"){
+                        if(!ValidateEmail(this)){
+                        this.style.borderColor = "red";
+                        }else{
+                        this.style.borderColor = "";
+                        }
+                    }
+                });
+            }
+        })
+    </script>
 @endsection
