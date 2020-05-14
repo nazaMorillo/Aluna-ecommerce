@@ -57,120 +57,127 @@ function eliminarCarrito(productid, divprodid, precioProd) {
 
 function comprar(productid) {
     $(document).ready(function () {
-        console.log("comprar() producto: " + productid);
-        let overlay = document.getElementById('overlay');
-        let popup = document.getElementById('popup');
-        let btnCerrarPopup = document.getElementById('btn-cerrar-popup');
-        let descripcion = document.querySelector('.popup > h4');
-        let btnConfirmar = document.getElementById('btn-confirmar');
-        // activarVentanaEmergente(productid);
+        console.log("Comprando el producto: " + productid);
+        activarVentanaEmergente(productid);
     });
 }
 
+let errores = [];
+let numCard = document.getElementById('numCard');
+let valid = document.getElementById('valid');
+let codeCard = document.getElementById('codeCard');
 
-// let numCard = document.getElementById('numCard');
-// let valid = document.getElementById('valid');
-// let codeCard = document.getElementById('codeCard');
-// let errorNC = 0;
-// let errorVD = 0;
-// let errorCC = 0;
+function required(input) {
+    let res = false;
+    let message = input.name + " es un campo obligatorio";
+    if (input.value == "") {
+        input.classList.add('error');
+        console.log(message);
+    } else { input.classList.remove("error"); res = true; }
+    return res;
+}
 
+function validateNumb(input) {
+    let res = false;
+    let message = input.name + " debe contener valores numéricos";
+    if (isNaN(input.value)) {
+        input.classList.add('error');
+        console.log(message);
+    } else { input.classList.remove("error"); res = true; }
+    return res;
+}
 
-// function required(input) {
-//     let res = false;
-//     let message = input.name + " es un campo obligatorio";
-//     if (input.value == "") {
-//         input.classList.add('error');
-//         console.log(message);
-//     } else { input.classList.remove("error"); res = true; }
-//     return res;
-// }
+function validateMax(input, cant) {
+    let res = false;
+    let message = input.name + " debe contener " + cant + " números";
+    if (input.value.length != cant) {
+        input.classList.add('error');
+        console.log(message);
+    } else { input.classList.remove("error"); res = true; }
+    return res;
+}
 
-// function validateNumb(input) {
-//     let res = false;
-//     let message = input.name + " debe contener valores numéricos";
-//     if (isNaN(input.value)) {
-//         input.classList.add('error');
-//         console.log(message);
-//     } else { input.classList.remove("error"); res = true; }
-//     return res;
-// }
-
-// function validateMax(input, cant) {
-//     let res = false;
-//     let message = input.name + " debe contener " + cant + " números";
-//     if (input.value.length != cant) {
-//         input.classList.add('error');
-//         console.log(message);
-//     } else { input.classList.remove("error"); res = true; }
-//     return res;
-// }
-
-// function validateNow(input) {
-//     let res = false;
-//     let date = new Date();
-//     let arrayDate = input.value.split('-');
-//     let anio = parseInt(arrayDate[0]);
-//     let mes = parseInt(arrayDate[1]);
-//     let message = "Lo siento su tarjeta está vencída";
-//     if (anio < date.getFullYear() || (anio === date.getFullYear() && mes <= date.getMonth() + 1)) {
-//         input.classList.add('error');
-//         console.log(message);
-//     } else { input.classList.remove("error"); res = true; }
-//     return res;
-// }
+function validateNow(input) {
+    let res = false;
+    let date = new Date();
+    let arrayDate = input.value.split('-');
+    let anio = parseInt(arrayDate[0]);
+    let mes = parseInt(arrayDate[1]);
+    let message = "Lo siento su tarjeta está vencída";
+    if (anio < date.getFullYear() || (anio === date.getFullYear() && mes <= date.getMonth() + 1)) {
+        input.classList.add('error');
+        console.log(message);
+    } else { input.classList.remove("error"); res = true; }
+    return res;
+}
 
 function validate() {
-    console.log("Dentro de función validate()");
-    // numCard.onblur = function () {
-    //     if (!required(this) || !validateNumb(this) || !validateMax(this, 16)) { errorNC++; } else { errorNC = 0; }
-    // }
-    // valid.onblur = function () {
-    //     if (!required(this) || !validateNow(this)) { errorVD++; } else { errorVD = 0; }
-    // }
+    [numCard, valid, codeCard].forEach((input, i) => {
+        input.onblur = function () {
+            // required(this)?console.log(this.value+"Entro por true"+required(this)):console.log(this.value+"Entro por false"+required(this));
+            // required(this)?errores[i]=0:errores[i]++;
+            switch (i) {
+                case 0:
+                    required(this) ? errores[i] = 0 : errores[i]++;
+                    validateNumb(this) ? errores[i] = 0 : errores[i]++;
+                    validateMax(this, 16) ? errores[i] = 0 : errores[i]++;
+                    break;
+                case 1:
+                    validateNow(this);
+                    required(this) ? errores[i] = 0 : errores[i]++;
+                    break;
+                case 2:
+                    required(this) ? errores[i] = 0 : errores[i]++;
+                    validateNumb(this) ? errores[i] = 0 : errores[i]++;
+                    validateMax(this, 3) ? errores[i] = 0 : errores[i]++;
+                    break;
 
-    // codeCard.onblur = function () {
-    //     if (!required(this) || !validateNumb(this) || !validateMax(this, 3)) { errorCC++; } else { errorCC = 0; }
-    // }
-    // let errores = [errorNC, errorVD, errorCC];
-    // return (errores[0] == 0 && errores[1] == 0 && errores[2] == 0);
+            }
+        }
+    });
 }
 
 function activarVentanaEmergente(productid) {
-    console.log("Estoy activarVentanaEmergente() ", poductid);
+    var overlay = document.getElementById('overlay'),
+        popup = document.getElementById('popup'),
+        btnCerrarPopup = document.getElementById('btn-cerrar-popup'),
+        descripcion = document.querySelector('.popup > h4');
+
+    overlay.classList.add('active');
+    popup.classList.add('active');
+
+    btnCerrarPopup.onclick = () => {
+        overlay.classList.remove('active');
+        popup.classList.remove('active');
+    };
 
 
-    // if (productid != undefined) {
-    //     descripcion.innerHTML = "Completa los datos para confirmar la compra<br>Producto Cod: #" + productid;
-    // }
+    if (productid != undefined) {
+        descripcion.innerHTML = "Completa los datos para confirmar la compra<br>Producto Cod: #" + productid;
+    }
+    console.log("Vemos errores fuera de btnConfirmar");
+    console.log(validate());
+    // errores == 0 ? realizarCompra(productid) : activarVentanaEmergente(productid);
+    let btnConfirmar = document.getElementById('btn-confirmar');
+    btnConfirmar.onclick = (e) => {
+        //console.log("Vemos errores dentro de click btnConfirmar");
+        console.log(errores[0] == 0 && errores[1] == 0 && errores[2] == 0);
+        e.preventDefault();
+        if (errores[0] == 0 && errores[1] == 0 && errores[2] == 0) {
+            realizarCompra(productid);
+            confirm("Su compra se realizó con éxito! Envío a Siempre viva 1234 en 4 días");
+        }
 
-    // overlay.classList.add('active');
-    // popup.classList.add('active');
 
-    // btnCerrarPopup.onclick = () => {
-    //     overlay.classList.remove('active');
-    //     popup.classList.remove('active');
-    // };
+    };
 
-    // btnConfirmar.onclick = (e) => {
-    //     console.log("Vemos errores dentro de click btnConfirmar");
-    //     console.log(validate());
-    //     e.preventDefault();
-    //     if (validate()) {
-    //         realizarCompra(productid);
-    //         confirm("Su compra se realizó con éxito! Envío a Siempre viva 1234 en 4 días");
-    //         overlay.classList.remove('active');
-    //         popup.classList.remove('active');
-    //     } else {
-    //         alert("Complete correctamente los campos requeridos");
-    //     }
-    // };
+
 }
 
 
 function realizarCompra(productid) {
 
-    alert("Estoy en realizarCompra() : " + productid);
+    alert(productid);
     // fetch('/nuevaCompra/' + productid + '/' + 1)
     //     .then(response => response)
     //     .then(data => {
@@ -186,5 +193,4 @@ function realizarCompra(productid) {
     // });
 
 }
-
-console.log(window.location.href.split("/"));
+console.log(window.location.href.split("/")); 
