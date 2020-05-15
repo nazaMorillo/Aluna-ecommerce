@@ -21,7 +21,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'Lucho';
         $user->email = 'Luchoweb15@gmail.com';
         $user->password = bcrypt('l19862020o');
-        $user->avatar = null;
+        $user->address =  "DefaultAddress";
+        $user->avatar = "avatar.png";
         $user->save();
         $user->roles()->attach($role_user);
 
@@ -30,7 +31,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'Lucio';
         $user->email = 'lucio@allmarket.com';
         $user->password = bcrypt('l19862020o');
-        $user->avatar = null;
+        $user->avatar =  "avatar.png";
+        $user->address =  "DefaultAddress";
         $user->esadmin = 1;
         $user->save();
         $user->roles()->attach($role_admin);
@@ -40,7 +42,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'Alexis';
         $user->email = 'alexis@allmarket.com';
         $user->password = bcrypt('12345678');
-        $user->avatar = null;
+        $user->avatar =  "avatar.png";
+        $user->address =  "DefaultAddress";
         $user->esadmin = 1;
         $user->save();
         $user->roles()->attach($role_admin);
@@ -50,7 +53,8 @@ class UserTableSeeder extends Seeder
         $user->name = 'Nazareno';
         $user->email = 'naza@allmarket.com';
         $user->password = bcrypt('12345678');
-        $user->avatar = null;
+        $user->avatar =  "avatar.png";
+        $user->address =  "DefaultAddress";
         $user->esadmin = 1;
         $user->save();
         $user->roles()->attach($role_admin);
