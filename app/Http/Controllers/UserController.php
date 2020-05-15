@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function searchProduct(Request $req){
         $texto = $req['texto'];
-        $busqueda = Product::where('name','LIKE','%'.$texto.'%')->get();
+        $busqueda = Product::where('name','LIKE','%'.$texto.'%')->skip(0)->take(8)->get();
         return $busqueda;
     }
 
@@ -78,5 +78,30 @@ class UserController extends Controller
 
     public function viewPerfil(){
         return view('pages.perfil');
+    }
+
+    public function updateInfo(Request $req){
+        $user = User::find(auth()->user()->id);
+        if(password_verify($req["userpassword"], $user->password)){
+            if(strlen($req["username"])>0){
+                $user->name = $req["username"];
+            }
+            if(strlen($req["usersecondname"])>0){
+                $user->surname = $req["usersecondname"];
+            }
+            if(isset($req["userimage"])){
+                $imagen = public_path()."\\storage\\".$user->avatar;
+                if (@getimagesize($imagen)) {
+                    unlink($imagen);
+                    }
+                $ruta = request()->file('userimage')->store('public');
+                $avatar = explode("/",$ruta)[1];
+                $user->avatar = $avatar;   
+            }
+            $user->save();
+            return redirect("perfil");
+        }else{
+            return redirect("perfil");
+        }
     }
 }

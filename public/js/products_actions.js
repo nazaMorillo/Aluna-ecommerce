@@ -26,10 +26,23 @@ function agregarCarrito(productid) {
     });
 }
 
+<<<<<<< HEAD
 function eliminarCarrito(productid, divprodid, precioProd) {
     $(document).ready(function () {
         console.log(productid);
+=======
+function eliminarCarrito(productid, divprodid,precioProd){
+    $(document).ready(function(){
+        console.log("usuario "+productid);
+>>>>>>> alexis_merge
         console.log(divprodid);
+        console.log(precioProd);
+        if(precioProd==0){
+            var cantidad =  0;
+        }else{
+            var cantidad = document.querySelector("#"+divprodid).querySelector(".cantidad").getAttribute("value");
+        }
+        console.log(cantidad);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -46,12 +59,13 @@ function eliminarCarrito(productid, divprodid, precioProd) {
                 console.log("error!!!!");
             }
         });
-        $('#' + divprodid).hide();
-        var resultado = document.getElementById("total").innerHTML - precioProd;
+        $('#'+divprodid).hide();
+        var resultado = (parseFloat(document.getElementById("total").innerHTML) - parseFloat((precioProd*parseFloat(cantidad)))).toFixed(2);
         console.log(resultado);
-        document.getElementById("total").innerHTML = resultado.toFixed(2);
-        document.getElementById("cantprodtop").setAttribute("value", parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
+        document.getElementById("total").innerHTML = resultado;
+        document.getElementById("total").setAttribute('value', resultado);
         document.getElementById("cantprodtop").innerHTML = parseInt(document.getElementById("cantprodtop").innerHTML) - 1;
+        document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
     });
 }
 
