@@ -70,7 +70,7 @@
             <!-- solo aparece si el usuario está logeado -->
             <li class="nav-item">
                 <a class="nav-link" href="/perfil" style="display: flex; padding:0px">
-                    <img src="/storage/{{Auth::user()->avatar}}"  style="object-fit: cover;" width="42px"  class="rounded-circle border border-primary" alt="avatar">
+                <div class="rounded-circle" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center"></div>
                     <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
                 </a>
             </li>

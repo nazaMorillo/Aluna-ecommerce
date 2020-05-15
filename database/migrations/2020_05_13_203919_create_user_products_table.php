@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartsTable extends Migration
+class CreateUserProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,14 @@ class CreateCartsTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::dropIfExists('carts');
+    {   
+        Schema::dropIfExists('user_products');
         
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('user_products', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            // $table->integer('user_id')->unsigned();
-            // $table->integer('product_id')->unsigned();
 
             $table->foreign('user_id')
                     ->references('id')
@@ -32,6 +31,7 @@ class CreateCartsTable extends Migration
                     ->onDelete('cascade');
 
             $table->timestamps();
+
         });
     }
 
@@ -42,9 +42,6 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-            Schema::disableForeignKeyConstraints();
-            Schema::drop("carts"); 
-            Schema::enableForeignKeyConstraints();
-               
+        Schema::dropIfExists('user_products');
     }
 }
