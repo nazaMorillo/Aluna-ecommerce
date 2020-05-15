@@ -84,7 +84,7 @@
         </div>
         <div class="col-sm-12 mt-3 bg-light">
                 <a class="btn bg-dark disabled text-white col-10 mt-2"><h2>Total: <span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
-                <a class='btn btn-success col-1 text-white mt-2 comprar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="comprarCarrito()" >Comprar</a>
+                <a class='btn btn-success col-1 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >Comprar</a>
             </div>
             @include("includes.modal")
     @endauth
