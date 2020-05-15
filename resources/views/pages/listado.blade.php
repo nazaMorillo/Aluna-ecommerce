@@ -239,7 +239,7 @@
             </div>
                     @endif
         @endforeach
-        <div class="mx-auto">{{$productos->links()}}</div>
+        <div class="col-12">{{$productos->links()}}</div>
         </div>
         @endguest
     </div>
