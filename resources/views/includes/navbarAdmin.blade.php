@@ -1,25 +1,10 @@
 <nav class="navbar bg-white shadow-sm">
     
-
-   
-
-   
-
-        <ul class="nav nav-pills">
-        
-            
-        
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="event.preventDefault();
+    <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             Cerrar Session
-                    </a>
-                </li>
-
-        </ul>
+    </a>
         
-    
 </nav>
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

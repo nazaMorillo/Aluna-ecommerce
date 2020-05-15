@@ -284,7 +284,7 @@
     $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
     $('#hidden_id').val(html.data.id);
     $('.modal-title').text("Editar registro");
-    $('#action_button').val("Edit");
+    $('#action_button').val("Editar");
     $('#action').val("Edit");
     $('#formModal').modal('show');
     }
