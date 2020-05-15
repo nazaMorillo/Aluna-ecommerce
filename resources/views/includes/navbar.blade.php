@@ -32,22 +32,23 @@
             @auth
                 
             
-                @if(auth()->user()->esadmin == 1 )
+                @if (auth()->user()->esadmin == 1)
+                    
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">Gestion</a>
-                            </li>
+                                <a class="nav-link" href="/ajax-crud">Gestion</a>
+                            </li> 
                 
-                @else
+                @else 
 
 
-                            <li class="nav-item">
+                             <li class="nav-item"> 
                                 <a class="nav-link" href="/ayuda">Ayuda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contacto">Contacto</a>
                             </li>
 
-                @endif
+              @endif
 
             @endauth
 

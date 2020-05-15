@@ -23,7 +23,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/logout', function () {
     return view('home');
@@ -96,7 +96,7 @@ Route::get('/contacto', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->middleware('role:user');
+Route::get('/home', 'HomeController@index')->middleware('auth','role:user,admin');
 
 
 
@@ -117,4 +117,8 @@ Route::get('/home', 'HomeController@index')->middleware('role:user');
     else
         return redirect('/');
 });*/
-Route::view('/admin', 'pages.admin');
+Route::resource('ajax-crud', 'AjaxCrudController')->middleware('auth', 'role:admin');
+
+Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.update');
+
+Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');

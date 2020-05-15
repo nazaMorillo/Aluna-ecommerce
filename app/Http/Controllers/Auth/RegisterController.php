@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -77,21 +77,21 @@ class RegisterController extends Controller
 
         ]);
 
-        $domain = explode('@', $data['email']);
+        // $domain = explode('@', $data['email']);
 
-        $nameDomain = explode('.', $domain[1]);
+        // $nameDomain = explode('.', $domain[1]);
 
-        if( $nameDomain[0] == 'allmarket') {
+        // if( $nameDomain[0] == 'allmarket') {
 
-            $user->roles()->attach(Role::where('name', 'admin')->first());
+        //     $user->roles()->attach(Role::where('name', 'admin')->first());
 
-        }
+        // }
 
-        else {
+        // else {
         
-            $user->roles()->attach(Role::where('name', 'user')->first());
+        $user->roles()->attach(Role::where('name', 'user')->first());
 
-        }
+        // }
 
 
         return $user;

@@ -18,11 +18,11 @@ class CheckRole
      
     public function handle($request, Closure $next, $role)
     {
-        if(! $request->user()->hasRole($role)) {
-            return redirect('/admin');
-        }
-           return $next($request);
-    }
+         if(! $request->user()->hasRole($role)) {
+             return redirect('/');
+         }
+            return $next($request);   
+     } 
 
 
 

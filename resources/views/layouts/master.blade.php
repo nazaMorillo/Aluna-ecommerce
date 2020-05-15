@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Allmarket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fontawesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    {{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  --}}
+  {{--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  --}}
+       </head>
     <title>
         @yield("title")
     </title>
@@ -31,6 +35,8 @@
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="/js/kit-fontawesome.js"></script>
     <script src="/js/main.js"></script>
+    
     @yield("scripts")
+    
 </body>
 </html>

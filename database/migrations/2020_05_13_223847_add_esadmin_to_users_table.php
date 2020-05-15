@@ -14,7 +14,7 @@ class AddEsadminToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('esadmin');
+            $table->integer('esadmin')->default(0);
         });
     }
 
