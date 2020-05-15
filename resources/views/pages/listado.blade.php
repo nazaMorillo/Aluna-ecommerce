@@ -96,7 +96,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button" onclick="agregarCarrito({{$producto->id}})">Agregado al carrito</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
