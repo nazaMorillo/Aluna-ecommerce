@@ -131,10 +131,19 @@ function validate() {
                     validateNumb(this) ? errores[i] = 0 : errores[i]++;
                     validateMax(this, 3) ? errores[i] = 0 : errores[i]++;
                     break;
-
             }
         }
     });
+
+    btnCerrarPopup.onclick = function () {
+        errores = [];
+        [numCard, valid, codeCard].forEach((input, i) => {
+            input.inputfocused.value = "";
+
+        });
+    }
+
+       
 }
 
 function activarVentanaEmergente(productid) {
@@ -167,7 +176,6 @@ function activarVentanaEmergente(productid) {
             realizarCompra(productid);
             confirm("Su compra se realizó con éxito! Envío a Siempre viva 1234 en 4 días");
         }
-
 
     };
 
