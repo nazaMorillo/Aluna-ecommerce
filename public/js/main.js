@@ -145,20 +145,7 @@ $(document).ready(function () {
 		var texto = document.querySelector("#search").value;
 		window.location = "/listado/" + texto;
 	});
-	// 	$.ajax({
-	// 		url:'/busqueda',
-	// 		type: "GET",
-	// 		data:{texto},
-	// 		success: function(response){
-	// 			console.log(response);
-	// 			console.log('paso la prueba');
-	// 		},
-	// 		error: function(response){
-	// 			console.log(response);
-	// 			console.log('error');
-	// 		}
-	// 	})*/
-	// })
+
 
 	let selectState = document.getElementById('state');
 	// let password_confirm = document.getElementById('password-confirm');
@@ -239,10 +226,10 @@ $(document).ready(function () {
 					fieldAddress.disabled = false;
 				}
 			})
-		.catch(error => {
-			console.log("Se encontro el siguiente error: " + error);
-			//select.innerHTML = "<option value=''>Sin provincias</option>";
-		})
+			.catch(error => {
+				console.log("Se encontro el siguiente error: " + error);
+				//select.innerHTML = "<option value=''>Sin provincias</option>";
+			})
 	}
 	actualizarPaisesProvinciasLocalidades();
 });

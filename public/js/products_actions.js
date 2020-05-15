@@ -1,40 +1,34 @@
-function agregarCarrito(productid) {
-    $(document).ready(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/agregarProducto',
-            type: 'POST',
-            data: { productid },
-            success: function (response) {
+function agregarCarrito(productid){
+    $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarProducto',
+                type:'POST',
+                data:{productid},
+                success: function(response){
                 console.log("productoAgregado");
             }
         });
-        if (window.location.href.split("/")[3] == "listado") {
-            document.getElementById(productid).removeAttribute("class");
-            document.getElementById(productid).setAttribute("class", "btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-            document.getElementById(productid).innerHTML = "Agregado al carrito";
-        } else if (window.location.href.split("/")[3] == "productos") {
-            document.getElementById(productid).removeAttribute("class");
-            document.getElementById(productid).setAttribute("class", "btn btn-lg btn-secondary col-12 col-md-3");
-            document.getElementById(productid).innerHTML = "Agregado al carrito";
-        }
-
+            if(window.location.href.split("/")[3] == "listado"){
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+            }else if(window.location.href.split("/")[3] == "productos"){
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-lg btn-secondary col-12 col-md-3");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+            }
+           
     });
 }
 
-<<<<<<< HEAD
-function eliminarCarrito(productid, divprodid, precioProd) {
-    $(document).ready(function () {
-        console.log(productid);
-=======
 function eliminarCarrito(productid, divprodid,precioProd){
     $(document).ready(function(){
         console.log("usuario "+productid);
->>>>>>> alexis_merge
         console.log(divprodid);
         console.log(precioProd);
         if(precioProd==0){
@@ -66,6 +60,13 @@ function eliminarCarrito(productid, divprodid,precioProd){
         document.getElementById("total").setAttribute('value', resultado);
         document.getElementById("cantprodtop").innerHTML = parseInt(document.getElementById("cantprodtop").innerHTML) - 1;
         document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
+    });
+}
+
+function comprarCarrito(){
+    $(document).ready(function(){
+        console.log("Comprando el carrito");
+        activarVentanaEmergente("Carrito!!!");
     });
 }
 
