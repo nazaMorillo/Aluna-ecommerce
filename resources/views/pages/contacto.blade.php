@@ -14,7 +14,7 @@
 
                 <div class="card-body">
                     <div class="col-md-8 mx-auto">
-                        <form class="text-left mb-3">
+                        <form class="text-left mb-3" id="contacto">
                             <div class="form-group">
                                 <label for="exampleInputName">Nombre:</label>
                                 <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
@@ -190,8 +190,10 @@ function ValidateEmail(mail){
     return (false);
     }
         $(document).ready(function(){
-            elementos = document.forms[2].elements;
-            console.log();
+            console.log(document.forms);
+            elementos = document.getElementById("contacto").elements;
+            console.log(elementos);
+            console.log("Hola");
             for(var i = 0; i < elementos.length -1; i++){
                 elementos[i].addEventListener("blur",function(){
                     console.log(this);

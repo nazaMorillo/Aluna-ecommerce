@@ -57,8 +57,9 @@ function eliminarCarrito(productid, divprodid,precioProd){
         var resultado = (parseFloat(document.getElementById("total").innerHTML) - parseFloat((precioProd*parseFloat(cantidad)))).toFixed(2);
         console.log(resultado);
         document.getElementById("total").innerHTML = resultado;
-        document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
+        document.getElementById("total").setAttribute('value', resultado);
         document.getElementById("cantprodtop").innerHTML = parseInt(document.getElementById("cantprodtop").innerHTML) - 1;
+        document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
     });
 }
 
@@ -69,6 +70,12 @@ function comprar(productid){
     });
 }
 
+function comprarCarrito(){
+    $(document).ready(function(){
+        console.log("Comprando el carrito");
+        activarVentanaEmergente("Carrito!!!");
+    });
+}
 
 function activarVentanaEmergente(productid) {
     var overlay = document.getElementById('overlay'),

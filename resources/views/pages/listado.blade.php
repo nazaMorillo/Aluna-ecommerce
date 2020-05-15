@@ -45,7 +45,7 @@
                         <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
                         <!--Función Comprar-->                       
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
 
                         <!--Fin Función Comprar-->
@@ -68,7 +68,7 @@
                         <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
                         <!--Función Comprar-->                       
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
 
                         <!--Fin Función Comprar-->
@@ -90,7 +90,7 @@
                         <p class="card-text"> {{$producto->name}}</p>
                         <!--Función Comprar-->                       
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>--> 
 
 
                         <!--Fin Función Comprar-->
@@ -112,7 +112,7 @@
                         <p class="card-text"> {{$producto->name}}</p>
                         <!--Función Comprar-->                       
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
 
                         <!--Fin Función Comprar-->
@@ -152,7 +152,7 @@
                         <p class="card-text"> {{$producto->name}}</p>
                         <!--Función Comprar-->                       
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
 
                         <!--Fin Función Comprar-->
@@ -199,7 +199,7 @@
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" href="/login">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" href="/login">Comprar</a>-->
 
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
@@ -224,7 +224,7 @@
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
-                        <a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" href="/login">Comprar</a>
+                        <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" href="/login">Comprar</a>-->
 
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
