@@ -11,6 +11,8 @@ function agregarCarrito(productid){
                 data:{productid},
                 success: function(response){
                 console.log("productoAgregado");
+            },error: function (e) {
+                console.log(e);
             }
         });
             if(window.location.href.split("/")[3] == "listado"){

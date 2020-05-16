@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Cart;
+use App\Role;
+use App\User;
+use App\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Product;
-use App\Cart;
-use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -18,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-
+ 
     public $listaProductos=[];
     protected $fillable = [
         'surname','name', 'email', 'password', 'avatar', 'address'
@@ -54,4 +56,44 @@ class User extends Authenticatable
         // $vac = compact("producto","nuevoStock");
         return ($producto);  
     }
+
+    public function roles() {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function authorizeRoles($roles) {
+        if(is_array($roles)) {
+            return $this->hasAnyRole($roles) || abort(401, 'No autorizado');
+        }
+
+        return $this->hasRole($roles) || abort(401, 'No Autorizado');
+
+    }
+
+    public function hasAnyRole($roles) {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+   public function hasRole($role) {
+
+        // $roles_array = explore("|", $roles);
+
+        // if($this->roles()->whereIn('name', $roles_array)->first()) {
+        //     return true;
+        // }
+
+        // return false;  Para multiples usuarios  
+
+       return null !== $this->roles()->where('name', $role)->first();
+    } 
+
+// function hasRoles(array $roles){
+//     foreach($roles as $role){
+//       if($this->role === $role){
+//           return true;
+//       }
+//     }
+//     return false;
+  
+
 }

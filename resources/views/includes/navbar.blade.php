@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
     padding-bottom: 9px;
     padding-top: 9px;
@@ -23,14 +24,46 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/listado">Catalogo</a>
             </li>
+            
+            
+            
+            
+              {{--  {{ dd(auth()->user()->esadmin) }}    --}}
+            @auth
+                
+            
+                @if (auth()->user()->esadmin == 1)
+                    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ajax-crud">Gestion</a>
+                            </li> 
+                
+                @else 
 
-            <li class="nav-item">
-                <a class="nav-link" href="/ayuda">Ayuda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contacto">Contacto</a>
-            </li>
 
+                             <li class="nav-item"> 
+                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contacto">Contacto</a>
+                            </li>
+
+              @endif
+
+            @endauth
+
+            @guest
+                
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contacto">Contacto</a>
+                            </li> 
+
+            @endguest
+        
+            
                         @if (Route::has('login'))
             <!-- <div class="top-right links"> -->
             @auth

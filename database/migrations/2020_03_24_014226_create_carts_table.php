@@ -42,12 +42,9 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        // Schema::table("carts",function(Blueprint $table) {
-        //     $table->dropForeign('carts_users_id_foreign');
-        //     $table->dropForeign('carts_products_id_foreign');
-            
-        //   });
-        Schema::dropIfExists('carts');
-        
+            Schema::disableForeignKeyConstraints();
+            Schema::drop("carts"); 
+            Schema::enableForeignKeyConstraints();
+               
     }
 }
