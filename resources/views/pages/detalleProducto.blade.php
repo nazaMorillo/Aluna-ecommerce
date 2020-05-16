@@ -50,7 +50,10 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Comprar</a>
+
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+
+
                     <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -72,7 +75,7 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Comprar</a>
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
                     <a id="{{$producto->id}}" class="btn btn-lg btn-secondary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Agregado al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -94,7 +97,7 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Comprar</a>
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprarCarrito()">Comprar</a>
                     <a id="{{$producto->id}}" class="btn btn-lg btn-secondary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Agregado al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -116,7 +119,9 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Comprar</a>
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprarCarrito()">Comprar</a>
+
+
                     <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -167,7 +172,8 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Comprar</a>
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+
                     <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Agregar al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -189,7 +195,9 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Comprar</a>
+                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+                   
+
                     <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Agregar al carrito</a>
                     <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
                 </div>
@@ -197,8 +205,9 @@
         </div>
     </div>
     @endif
+  
 @endguest
-
+@include("includes.modal") 
 @endsection
 
 @section("scripts")

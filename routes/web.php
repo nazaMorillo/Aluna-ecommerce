@@ -17,13 +17,18 @@
 //     return view('welcome');
 // });
 
-
-
-
+use App\Country;
+use App\State;
+use App\City;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/nuevaCompra/{id}/{cant}', function ($id, $cant = 1){
+    dd($id, $cant);
+   return "Respuesta del endPoint";
+});
 
 Route::get('/logout', function () {
     return view('home');
@@ -122,3 +127,4 @@ Route::resource('ajax-crud', 'AjaxCrudController')->middleware('auth', 'role:adm
 Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.update');
 
 Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');
+Route::post('/actualizarPerfil', 'UserController@updateInfo');

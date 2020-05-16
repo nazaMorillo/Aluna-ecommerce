@@ -3,6 +3,7 @@
 <head>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Allmarket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/app.css">
@@ -32,7 +33,7 @@
     <script src="/js/jquery-production-3_4_1.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <!-- <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script> -->
     <script src="/js/kit-fontawesome.js"></script>
     <script src="/js/main.js"></script>
     

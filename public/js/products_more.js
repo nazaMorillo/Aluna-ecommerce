@@ -34,7 +34,8 @@ for(var i = 0; i<sumas.length; i++){
         		boton.innerHTML = parseInt(boton.innerHTML) + 1;
         		boton.setAttribute("value",parseInt(boton.innerHTML));
         		precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
-        		document.getElementById("total").innerHTML = (Math.round10((parseFloat(document.getElementById("total").getAttribute("value")) + (parseFloat(precioFinal.innerHTML) - boton.getAttribute("price"))), -10)).toFixed(2);
+        		document.getElementById("total").setAttribute("value",(Math.round10((parseFloat(document.getElementById("total").getAttribute("value")) + (parseFloat(boton.getAttribute("price")))), -10)).toFixed(2));
+        		document.getElementById("total").innerHTML = (parseFloat(document.getElementById("total").getAttribute("value"))).toFixed(2);
         	}	
         });
     }
@@ -47,14 +48,10 @@ for(var i = 0; i<restas.length; i++){
         	boton.setAttribute("value",parseInt(boton.innerHTML));
         	if(!(parseInt(boton.innerHTML) < 1)){
         		let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
-        		precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
-        		document.getElementById("total").innerHTML = (Math.round10(parseFloat(parseFloat(document.getElementById("total").innerHTML)).toFixed(2) - (boton.getAttribute("price")), -10)).toFixed(2);
-        	}/*else if(parseInt(boton.innerHTML) == 1){
-        		console.log("es igual a uno");
-        		let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
-        		precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
-        		document.getElementById("total").innerHTML = document.getElementById("total").getAttribute("precini");
-        		}*/
+        		precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);  		
+        		document.getElementById("total").setAttribute("value",(Math.round10((parseFloat(document.getElementById("total").getAttribute("value")) - (parseFloat(boton.getAttribute("price")))), -10)).toFixed(2));   		
+        		document.getElementById("total").innerHTML = (parseFloat(document.getElementById("total").getAttribute("value"))).toFixed(2);
+        		}
     	    }
 
         });   
