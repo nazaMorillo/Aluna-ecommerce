@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputTelephone">Telefono:</label>
-                                <input type="telephone" class="form-control" id="exampleInputTelephone">
+                                <input type="number" class="form-control" id="exampleInputTelephone">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputAddress">Dirección:</label>
@@ -194,42 +194,116 @@ function ValidateEmail(mail){
             elementos = document.getElementById("contacto").elements;
             console.log(elementos);
             console.log("Hola");
+            var errores = 0;
             for(var i = 0; i < elementos.length -1; i++){
                 elementos[i].addEventListener("blur",function(){
-                    console.log(this);
                     if(this.id == "exampleInputName"){
-                        if(this.value.length < 4){
-                        this.style.borderColor = "red";
+                        if(this.value.length < 4){                        
+                        if(!this.parentNode.querySelector("span")){
+                            this.style.borderColor = "red";
+                            let spanError = document.createElement("span");
+                            spanError.setAttribute("class","text-danger");
+                            spanError.append(document.createTextNode("Al menos 4"));
+                            this.parentNode.append(spanError);
+                            errores += 1;
+                            }
+                            console.log(errores);
                         }else{
-                        this.style.borderColor = "";
+                            if(this.parentNode.querySelector("span")){
+                                this.style.borderColor = "";
+                                this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                                errores -= 1;
+                            }
+                            console.log(errores);
                         }
                     }else if(this.id == "exampleInputAddress"){
-                        if(this.value.length < 6){
-                        this.style.borderColor = "red";
-                        }else{
-                        this.style.borderColor = "";
+                        if(this.value.length < 6){                        
+                        if(!this.parentNode.querySelector("span")){
+                            this.style.borderColor = "red";
+                            let spanError = document.createElement("span");
+                            spanError.setAttribute("class","text-danger");
+                            spanError.append(document.createTextNode("Al menos 6"));
+                            this.parentNode.append(spanError);
+                            errores += 1;                                
+                            }
+                            console.log(errores);
+                        }else{                            
+                            if(this.parentNode.querySelector("span")){
+                                this.style.borderColor = "";
+                                this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                                errores -= 1;
+                            }
+                            console.log(errores);
                         }
                     }else if(this.id == "exampleInputTelephone"){
-                        if(this.value.length < 7){
-                        this.style.borderColor = "red";
-                        }else{
-                        this.style.borderColor = "";
+                        if(this.value.length < 7){                        
+                        if(!this.parentNode.querySelector("span")){
+                            this.style.borderColor = "red";
+                            let spanError = document.createElement("span");
+                            spanError.setAttribute("class","text-danger");
+                            spanError.append(document.createTextNode("Teléfono no válido"));    
+                            this.parentNode.append(spanError);
+                            errores += 1; 
+                            }
+                            console.log(errores);                   
+                        }else{                            
+                            if(this.parentNode.querySelector("span")){
+                                this.style.borderColor = "";
+                                this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                                errores -= 1;
+                            }
+                            console.log(errores);
                         }
                     }else if(this.id == "exampleFormControlTextarea1"){
-                        if(this.value.length < 20){
-                        this.style.borderColor = "red";
-                        }else{
-                        this.style.borderColor = "";
+                        if(this.value.length < 20){                        
+                        if(!this.parentNode.querySelector("span")){
+                            this.style.borderColor = "red";
+                            let spanError = document.createElement("span");
+                            spanError.setAttribute("class","text-danger");
+                            spanError.append(document.createTextNode("Al menos 20"));     
+                            this.parentNode.append(spanError);
+                            errores += 1; 
+                            }
+                            console.log(errores);        
+                        }else{                            
+                            if(this.parentNode.querySelector("span")){
+                                this.style.borderColor = "";
+                                this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                                errores -= 1;
+                            }
+                            console.log(errores);
                         }
                     }else if(this.id == "exampleInputEmail1"){
-                        if(!ValidateEmail(this)){
-                        this.style.borderColor = "red";
-                        }else{
-                        this.style.borderColor = "";
+                        if(!ValidateEmail(this)){                        
+                        if(!this.parentNode.querySelector("span")){
+                            this.style.borderColor = "red";
+                            let spanError = document.createElement("span");
+                            spanError.setAttribute("class","text-danger");
+                            spanError.append(document.createTextNode("Email no válido"));    
+                            this.parentNode.append(spanError);
+                            errores += 1;  
+                            }
+                            console.log(errores);                      
+                        }else{                            
+                            if(this.parentNode.querySelector("span")){
+                                this.style.borderColor = "";
+                                this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                                errores -= 1;
+                            }
+                            console.log(errores);
                         }
                     }
                 });
             }
+            elementos[elementos.length-1].addEventListener("click", function(e){
+                if(errores > 0){
+                    e.preventDefault();
+                    console.log("Hay errores en tus datos");
+                }else{
+                    e.preventDefault();
+                    console.log("Información correcta");
+                }            
+            })
         })
     </script>
 @endsection
