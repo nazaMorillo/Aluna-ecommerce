@@ -3,7 +3,7 @@
     padding-bottom: 9px;
     padding-top: 9px;
 ">
-    <a class="navbar-brand" href="/">A-M</a>
+    <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
         <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
         @auth
