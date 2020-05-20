@@ -30,10 +30,12 @@
     </main>
 
     @include("includes.footer") 
+   
 
-    <script src="/js/jquery-production-3_4_1.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- <script src="/js/jquery-production-3_4_1.js"></script> -->
+    <!-- <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script> -->
     <!-- <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script> -->
     <script src="/js/kit-fontawesome.js"></script>
     <script src="/js/main.js"></script>

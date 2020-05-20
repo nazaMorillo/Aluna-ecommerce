@@ -36,6 +36,9 @@
                     
                             <li class="nav-item">
                                 <a class="nav-link" href="/ajax-crud">Gestion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gestion">Gestion2</a>
                             </li> 
                 
                 @else 

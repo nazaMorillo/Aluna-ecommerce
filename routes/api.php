@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Country;
 use App\State;
 use App\City;
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,12 @@ Route::get('/nuevaCompra/{id}/{cant}', function ($id, $cant = 1){
         //$vac = compact('id', 'cant');
     return "Respuesta del endPoint";
 });
+
+Route::get('products', function(){
+    return datatables()
+    ->eloquent(Product::query())
+    ->toJson();
+
+});
+
+//Route::get('/products', 'AjaxCrudController@getProducts')->middleware('auth','rol:user,admin');

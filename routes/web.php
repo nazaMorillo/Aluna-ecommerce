@@ -39,7 +39,6 @@ Route::get('/productos/{id}', 'ProductController@showProduct');
 
 
 
-
 // Route::get('/producto/{id}', function ($id) {
 //     $vac = compact('id');
 //     return view('pages.detalleProducto', $vac);
@@ -51,7 +50,10 @@ Route::get('/listado', 'ProductController@show' );
 
 Route::get('/listado/{texto}', 'UserController@searchProductPage' );
 
-
+Route::get('/gestion', 'AjaxCrudController@getProducts')->middleware('auth','rol:user,admin');
+// Route::get('/gestion', function(){
+//     return view('pages.gestion');
+// })->middleware('auth','rol:user,admin');
 
 
 
@@ -96,16 +98,9 @@ Route::get('/contacto', function () {
 //     return view('pages.registro');
 // });
 
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->middleware('auth','role:user,admin');
-
-
-
-
 
 //Route::resource('ajaxproducts','ProductAjaxController');
 

@@ -30,6 +30,12 @@ class AjaxCrudController extends Controller
         return view('ajax_index');
     }
 
+    public function getProducts()
+    {
+        $products = Product::all();    
+        return view('pages.gestion', compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
