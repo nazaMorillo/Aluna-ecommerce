@@ -17,6 +17,8 @@
 //     return view('welcome');
 // });
 
+use App\User;
+//use App\Product;
 use App\Country;
 use App\State;
 use App\City;
@@ -128,3 +130,11 @@ Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.up
 
 Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');
 Route::post('/actualizarPerfil', 'UserController@updateInfo');
+
+Route::get('/cantCarrito', function(){
+    //$vac = $user->products()-get();
+    $user = User::find(auth()->user()->id);
+    $productos = $user->products()->orderBy('pivot_id','desc')->get();
+    $vac = compact('productos');
+    return count($vac['productos']);
+});

@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+console.log("Hola ");
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+	$.ajax({
+		url: "/cantCarrito",
+		type: "GET",
+		success: function (response) {												
+			console.log(parseInt(response));
+			document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+			document.getElementById('cantCarrito').innerHTML = parseInt(response);
+		},
+		error: function (e) {
+			console.log(e);
+		}
+	});			
+
+
 	var url = window.location;
 
 	if (url.href.split("/").length > 4) {
