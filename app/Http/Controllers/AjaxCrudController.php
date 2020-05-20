@@ -20,8 +20,8 @@ class AjaxCrudController extends Controller
             return datatables()->of(Product::latest()->get())
                 ->addColumn('action', function($data){
                     $btnsAction = '
-                    <div class="d-flex flex-column justify-content-between">
-                    <button type="button" name="edit" id="'.$data->id.'" class="m-1 edit btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    <div width="100%" class="d-flex flex-column justify-content-between">
+                    <button type="button" name="edit" id="'.$data->id.'" class="m-1 edit btn btn-primary btn-sm "><i class="fas fa-edit"></i></button>
                     <button type="button" name="delete" id="'.$data->id.'" class="m-1 delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
                     </button>
                     </div>';

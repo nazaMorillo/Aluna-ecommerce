@@ -29,18 +29,15 @@
             
             
               {{--  {{ dd(auth()->user()->esadmin) }}    --}}
-            @auth
-                
+            @auth                
             
-                @if (auth()->user()->esadmin == 1)
-                    
-                            <li class="nav-item">
+                @if (auth()->user()->esadmin == 1)                    
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="/ajax-crud">Gestion</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/gestion">Gestion2</a>
-                            </li> 
-                
+                                <a class="nav-link" href="/gestion">Gestion</a>
+                            </li>                
                 @else 
 
 

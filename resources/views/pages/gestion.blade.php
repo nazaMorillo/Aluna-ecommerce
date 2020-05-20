@@ -4,13 +4,12 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/r-2.2.5/datatables.min.css"/>
+
 <div class="container">
-
-
-
-    <div style="display: flex; justify-content:space-between; flex-wrap:wrap; margin: 10px 0px;">
-        <h1 class="col-12 col-md-9">Gestión de productos</h1>
-        <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm col-12 col-md-3"><i class="fa fa-plus" aria-hidden="true"></i> Producto</button>
+    <div class=" pt-2" style="display: flex; justify-content:space-between; flex-wrap:wrap; margin: 10px 0px;">
+        <h3 align="center" class="col-12 col-md-9">Gestión de productos</h3>
+        <button type="button" name="create_record" id="create_record" class="btn btn-success btn-lg col-12 col-md-3"><i class="fa fa-plus" aria-hidden="true"></i> Producto</button>
     </div>
     <table class="table table-striped table-bordered"  style="width:100%" id="user_table">
         <thead>
@@ -40,6 +39,7 @@ $.ajaxSetup({
 $(document).ready(function() {
     $('#user_table').DataTable({
         "serverSide": true,
+        responsive: true,
         "ajax" : "{{ route('ajax-crud.index') }}",
         "columns": [
             {data: 'image', name: 'image', class: 'img-thumbnail',
