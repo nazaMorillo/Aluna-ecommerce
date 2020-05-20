@@ -31,7 +31,7 @@ function agregarCarrito(productid){
     });
 }
 
-function eliminarCarrito(productid, divprodid,precioProd){
+function eliminarCarrito(productid, divprodid,precioProd,hrprod){
     $(document).ready(function(){
         console.log("usuario "+productid);
         console.log(divprodid);
@@ -59,6 +59,7 @@ function eliminarCarrito(productid, divprodid,precioProd){
             }
         });
         $('#'+divprodid).hide();
+        $('#'+hrprod).hide();
         let cantCarrito = document.getElementById('cantCarrito');
         cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) - 1);
         cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));  
