@@ -57,7 +57,7 @@ Route::get('/gestion', 'AjaxCrudController@getProducts')->middleware('auth','rol
 
 
 
-/*Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
+/*Route::resource('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
 
 
 

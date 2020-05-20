@@ -18,14 +18,17 @@ class AjaxCrudController extends Controller
         if(request()->ajax())
         {
             return datatables()->of(Product::latest()->get())
-                    ->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Editar</button>';
-                        $button .= '&nbsp;&nbsp;';
-                        $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Eliminar</button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                ->addColumn('action', function($data){
+                    $btnsAction = '
+                    <div class="d-flex flex-column justify-content-between">
+                    <button type="button" name="edit" id="'.$data->id.'" class="m-1 edit btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                    <button type="button" name="delete" id="'.$data->id.'" class="m-1 delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
+                    </button>
+                    </div>';
+                    return $btnsAction;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
         return view('ajax_index');
     }
@@ -89,7 +92,7 @@ class AjaxCrudController extends Controller
 
         Product::create($form_data);
 
-        return response()->json(['success' => 'Los datos de guardaron Exitosamente.']);
+        return response()->json(['success' => 'Los datos se guardaron Exitosamente!']);
     }
 
     /**
@@ -179,7 +182,7 @@ class AjaxCrudController extends Controller
         );
         Product::whereId($request->hidden_id)->update($form_data);
 
-        return response()->json(['success' => 'Datos actualizados correctamente']);
+        return response()->json(['success' => 'Los datos de actualizaron correctamente!']);
     }
 
     /**
