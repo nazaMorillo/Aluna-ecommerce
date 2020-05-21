@@ -94,14 +94,14 @@ h1, h2, h3, h4 {
 .copy {
     padding: 10px;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 11x;
     color: white;
 } 
 
 .brands a {
     color: #fafafa;
     padding: 7px ;
-    font-size: 2rem;
+    font-size: 1.3rem;
     border: none;
 }
 

@@ -160,23 +160,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="card-header">ó</div>
-            <div class="card d-flex justify-content-center">              
-                <div class="btn text-center d-flex justify-content-center bg-dark text-white mb-2">
-                    <i class="fab fa-facebook"></i><a href="#" class="nav-link text-white">INGRESA CON
-                        FACEBOOK</a>
-                </div>
-                <div class="btn text-center d-flex justify-content-center bg-dark btn-outline-dark text-white mb-2">
-                    <i class="fab fa-twitter"></i><a href="#" class="nav-link text-white">INGRESA CON TWITTER</a>
-                </div>
-                <div class="btn text-center d-flex justify-content-center text-white bg-dark mb-2">
-                    <i class="fab fa-google"></i><a href="#" class="nav-link text-white">INGRESA CON GOOGLE</a>
-                </div>
-
-            </div>
-        </div>
+    @include("includes.logueoRedes")    
     </div>
 </div>
 @endsection
