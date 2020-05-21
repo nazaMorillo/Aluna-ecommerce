@@ -9,7 +9,7 @@
         @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
         <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
-        <div class="rounded-circle" style="background-color:rgba(40, 167, 69, .9);width:18px;height:18px;text-align:center;position:relative;left:11px;top:-34px"><span class="text-white" style="position:relative;top:-3px;width:18px;height:18px text-align:center" id="cantCarrito"></span></div>
+        <div class="rounded-circle" style="padding:0px; margin:0px; background-color:rgba(40, 167, 69, 1); border:solid 1px white ;width:20px;height:20px;text-align:center;position:relative;left:11px;top:-34px"><span class="text-white" style="font-weight: bold;position:relative;top:-5px;width:18px;height:18px text-align:center" id="cantCarrito"></span></div>
         </a>
         @endauth
         @guest

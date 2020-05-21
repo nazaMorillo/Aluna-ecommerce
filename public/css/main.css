@@ -78,7 +78,7 @@ body {
 
 .navbar-brand {
     margin-right: 0.7rem;
-    padding-top: .9rem;
+    padding-top: 0.4rem;
     font-size: 1rem;
 }
 h1, h2, h3, h4 {
@@ -314,11 +314,9 @@ table.dataTable thead .sorting:after {
 }
 
 @media (max-width: 550px) {
-    /* section{
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    } */
-   
+    .navbar-brand {
+        padding-top: 0.9rem;
+    }   
       body{
          padding-top: 2rem;
       }
