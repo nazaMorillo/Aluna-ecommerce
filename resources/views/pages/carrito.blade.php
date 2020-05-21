@@ -27,7 +27,7 @@
             @if($producto->stock == 0)
            <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
                 <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top " src="/storage/product/{{$producto->image}}" alt="" style="max-width:450px"></a>
-                <div class="card-body col-st-5" style="">
+                <div class="card-body col-st-5">
                     <!-- <div  class=" col-12"> -->
                         <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
                         <p class="card-text col-12">{{$producto->name}}</p>
@@ -42,7 +42,7 @@
             @elseif($producto->stock == 1)
            <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
                 <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top " src="/storage/product/{{$producto->image}}" alt="" style="max-width:450px"></a>
-                <div class="card-body col-st-5" style="">
+                <div class="card-body col-st-5">
                     <!-- <div  class=" col-12"> -->
                         <h3 class=" col-12">$ {{$producto->price}}</h3>
                         <p class="card-text col-12">{{$producto->name}} (Último disponible!)</p>
@@ -62,7 +62,7 @@
             @else  
            <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
                 <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top " src="/storage/product/{{$producto->image}}" alt="" style="max-width:450px"></a>
-                <div class="card-body col-st-5" style="">
+                <div class="card-body col-st-5">
                     <!-- <div  class=" col-12"> -->
                         <h3 class="col-12">$ {{$producto->price}}</h3>
                         <p class="card-text col-12">{{$producto->name}}</p>

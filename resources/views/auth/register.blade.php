@@ -83,9 +83,12 @@
                         <div class="form-group row">
                             <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Photo') }}</label>
 
-                            <div class="col-md-6">
-                                <img src="/storage/pics/avatar.png" class="img-fluid img-thumbnail" alt="avatar">
-                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" autofocus>
+                            <div class="col-6" style="display: flex; flex-wrap:wrap; justify-content: center;">
+
+                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/avatar.png')"></div>
+
+                                <!-- <img id="previewImage" src="/storage/pics/avatar.png" class="rounded-circle" alt="avatar"> -->
+                                <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" autofocus>
 
                                 @error('avatar')
                                 <span class="invalid-feedback" role="alert">
@@ -99,9 +102,9 @@
                             <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
 
                             <div class="col-md-6">
-                            
+
                                 <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" required autocomplete="state" autofocus>
-                                    <option value="" selected="selected" disabled >Selecciona una provincia</option>
+                                    <option value="" selected="selected" disabled>Selecciona una provincia</option>
                                 </select>
 
                                 <!-- <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state" autofocus> -->
@@ -118,9 +121,9 @@
                             <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
-                            
+
                                 <select name="city" id="city" class="form-control @error('city') is-invalid @enderror">
-                                    <option value="" selected="selected" disabled >Selecciona localidad</option>
+                                    <option value="" selected="selected" disabled>Selecciona localidad</option>
                                 </select>
 
                                 @error('city')
@@ -157,22 +160,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">ó</div>
-                <div class="btn text-center bg-dark text-white mb-2">
-                    <i class="fab fa-facebook float-left"></i><a href="#" class="nav-link text-white">INGRESA CON
-                        FACEBOOK</a>
-                </div>
-                <div class="btn text-center bg-dark btn-outline-dark text-white mb-2">
-                    <i class="fab fa-twitter float-left"></i><a href="#" class="nav-link text-white">INGRESA CON TWITTER</a>
-                </div>
-                <div class="btn text-center text-white bg-dark mb-2">
-                    <i class="fab fa-google float-left"></i><a href="#" class="nav-link text-white">INGRESA CON GOOGLE</a>
-                </div>
-
-            </div>
-        </div>
+    @include("includes.logueoRedes")    
     </div>
-    @endsection
+</div>
+@endsection
+@section("scripts")
+<script src="/js/perfil.js"></script>
+@endsection

@@ -77,10 +77,10 @@ body {
 
 
 .navbar-brand {
-    margin-right: 1rem;
+    margin-right: 0.7rem;
+    padding-top: 0.4rem;
     font-size: 1rem;
 }
-
 h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -94,14 +94,14 @@ h1, h2, h3, h4 {
 .copy {
     padding: 10px;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 11x;
     color: white;
 } 
 
 .brands a {
     color: #fafafa;
     padding: 7px ;
-    font-size: 2rem;
+    font-size: 1.3rem;
     border: none;
 }
 
@@ -293,6 +293,19 @@ footer .row {
     /* border-color :red!important; */
 }
 
+/* table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: block;
+    font-family: 'Glyphicons Halflings';
+    opacity: 0.5;
+}
+table.dataTable thead .sorting:after {
+    opacity: 0.2;
+    content: "\e150";
+} */
+
 /*MEDIA QUERY PARA DIFERENTES RESOUCIONES*/
 @media (max-width: 320px){
     .overlay {
@@ -301,11 +314,9 @@ footer .row {
 }
 
 @media (max-width: 550px) {
-    /* section{
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    } */
-   
+    .navbar-brand {
+        padding-top: 0.9rem;
+    }   
       body{
          padding-top: 2rem;
       }

@@ -38,28 +38,19 @@ Route::get('/logout', function () {
 
 Route::get('/productos/{id}', 'ProductController@showProduct');
 
-
-
-
-
 // Route::get('/producto/{id}', function ($id) {
 //     $vac = compact('id');
 //     return view('pages.detalleProducto', $vac);
 // });
 
-
-
 Route::get('/listado', 'ProductController@show' );
 
 Route::get('/listado/{texto}', 'UserController@searchProductPage' );
 
+Route::get('/gestion', 'AjaxCrudController@getProducts')->middleware('auth','rol:user,admin');
 
 
-
-
-/*Route::get('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
-
-
+/*Route::resource('/carrito/{id}/{idProducto}', 'UserController@addToCart' );*/
 
 
 Route::post('/agregarProducto', 'UserController@addToCart');
@@ -72,15 +63,9 @@ Route::get('/carrito', 'UserController@viewCart');
 
 Route::get('/perfil', 'UserController@viewPerfil');
 
-
-
-
 // Route::get('/login', function () {
 //     return view('pages.login');
 // });
-
-
-
 
 Route::get('/ayuda', function () {
     return view('pages.ayuda');
@@ -91,23 +76,13 @@ Route::get('/contacto', function () {
 });
 
 
-
-
-
 // Route::get('/registro', function () {
 //     return view('pages.registro');
 // });
 
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->middleware('auth','role:user,admin');
-
-
-
-
 
 //Route::resource('ajaxproducts','ProductAjaxController');
 
@@ -124,6 +99,7 @@ Route::get('/home', 'HomeController@index')->middleware('auth','role:user,admin'
     else
         return redirect('/');
 });*/
+
 Route::resource('ajax-crud', 'AjaxCrudController')->middleware('auth', 'role:admin');
 
 Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.update');

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\User;
 
-class CheckRole
+class AuthRole
 {
     /**
      * Handle an incoming request.
@@ -14,18 +14,12 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-
-     
     public function handle($request, Closure $next, $role)
     {
-         if(! $request->user()->hasRole($role)) {
-             return redirect('/');
-         }
-        //  echo "Soy un administrador<br>";
-            return $next($request);   
-     } 
-
-
-
-    
+        if(! $request->user()->hasRole($role)) {
+            return redirect('/');
+        }
+        //echo "<br><br><br>Soy un administrador!<br>";
+        return $next($request);
+    }
 }

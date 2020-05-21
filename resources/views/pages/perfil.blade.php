@@ -30,7 +30,7 @@
                                 <input value="{{Auth::user()->surname}}" name="usersecondname" type="text" class="form-control col-12" placeholder="Ingresá tu apellido" aria-describedby="emailHelp">
                                 <span class="messagerror"></span>                            </div>
                             <div class="form-group column d-flex flex-column">
-                                <input value="{{Auth::user()->email}}" name="useremail" type="email" class="form-control col-12 disabled" id="exampleInputEmail1" placeholder="Ingresa tu correo" aria-describedby="emailHelp">
+                                <input value="{{Auth::user()->email}}" name="useremail" type="email" class="form-control col-12 disabled" id="exampleInputEmail1" placeholder="Ingresa tu correo" aria-describedby="emailHelp" disabled>
                                 <span class="messagerror"></span>                            </div>
                             <div class="form-group column">
                                 <input name="userpassword" type="password" class="form-control col-12" id="passwordToAuth" placeholder="Ingresa tu contraseña">
