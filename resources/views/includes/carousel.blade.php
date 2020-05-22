@@ -11,7 +11,7 @@
                 <div class="carousel-caption text-left">
                     <h2>All Market</h2>
                     <p>Es el comercio electronico en donde todos quieren comprar.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p>
+                    <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p> -->
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                 <div class="carousel-caption">
                     <h2>Orden por categorías</h2>
                     <p>All Market tiene una forma simple de ordenar tus productos por categorías.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p>
+                    <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p> -->
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 <div class="carousel-caption text-right">
                     <h2>Fácil para registrarse y para usar</h2>
                     <p>No querrás otro comercio electronico luego de porbar el nuestro.</p>
-                    <p><a class="btn btn-lg btn-primary" href="section/registro.php" role="button">Registrarme ahora</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="/register" role="button">Registrarme ahora</a></p>
                 </div>
             </div>
         </div>

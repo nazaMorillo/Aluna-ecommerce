@@ -10,25 +10,29 @@ function agregarCarrito(productid){
                 type:'POST',
                 data:{productid},
                 success: function(response){
-                console.log("productoAgregado");
+                    let cantCarrito = document.getElementById('cantCarrito');
+                    cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) + 1);
+                    cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));    
+                    console.log("productoAgregado");
+                    document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
             },error: function (e) {
                 console.log(e);
             }
         });
-            if(window.location.href.split("/")[3] == "listado"){
-                document.getElementById(productid).removeAttribute("class");
-                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-                document.getElementById(productid).innerHTML = "Agregado al carrito";
-            }else if(window.location.href.split("/")[3] == "productos"){
+            if(window.location.href.split("/")[3] == "productos"){
                 document.getElementById(productid).removeAttribute("class");
                 document.getElementById(productid).setAttribute("class","btn btn-lg btn-secondary col-12 col-md-3");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";                
+            }else{
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
                 document.getElementById(productid).innerHTML = "Agregado al carrito";
             }
            
     });
 }
 
-function eliminarCarrito(productid, divprodid,precioProd){
+function eliminarCarrito(productid, divprodid,precioProd,hrprod){
     $(document).ready(function(){
         console.log("usuario "+productid);
         console.log(divprodid);
@@ -56,6 +60,10 @@ function eliminarCarrito(productid, divprodid,precioProd){
             }
         });
         $('#'+divprodid).hide();
+        $('#'+hrprod).hide();
+        let cantCarrito = document.getElementById('cantCarrito');
+        cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) - 1);
+        cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));  
         var resultado = (parseFloat(document.getElementById("total").innerHTML) - parseFloat((precioProd*parseFloat(cantidad)))).toFixed(2);
         console.log(resultado);
         document.getElementById("total").innerHTML = resultado;
