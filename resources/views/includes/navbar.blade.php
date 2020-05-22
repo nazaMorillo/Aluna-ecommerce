@@ -3,11 +3,14 @@
     padding-bottom: 9px;
     padding-top: 9px;
 ">
-    <a class="navbar-brand" href="/">A-M</a>
+    <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
         <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
         @auth
-        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito"><img width="30px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
+        <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
+        <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
+        <div class="rounded-circle" style="padding:0px; margin:0px; background-color:rgba(40, 167, 69, 1); border:solid 1px white ;width:20px;height:20px;text-align:center;position:relative;left:11px;top:-34px"><span class="text-white" style="font-weight: bold;position:relative;top:-5px;width:18px;height:18px text-align:center" id="cantCarrito"></span></div>
+        </a>
         @endauth
         @guest
         <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="35px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
@@ -29,15 +32,15 @@
             
             
               {{--  {{ dd(auth()->user()->esadmin) }}    --}}
-            @auth
-                
+            @auth                
             
-                @if (auth()->user()->esadmin == 1)
-                    
-                            <li class="nav-item">
+                @if (auth()->user()->esadmin == 1)                    
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="/ajax-crud">Gestion</a>
-                            </li> 
-                
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gestion">Gestion</a>
+                            </li>                
                 @else 
 
 

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Country;
 use App\State;
 use App\City;
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,27 @@ Route::get('/nuevaCompra/{id}/{cant}', function ($id, $cant = 1){
         //$vac = compact('id', 'cant');
     return "Respuesta del endPoint";
 });
+
+// Route::get('products', function(){
+//     return datatables()
+//     ->eloquent(Product::query())
+//     ->toJson();
+
+// });
+
+Route::get('products', function(){
+    return datatables()->of(Product::latest()->get())
+                    ->addColumn('action', function($data){
+                        $btnsAction = '
+                        <div class="d-flex flex-column justify-content-between">
+                        <button type="button" name="edit" id="'.$data->id.'" class="m-1 edit btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        <button type="button" name="delete" id="'.$data->id.'" class="m-1 delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i>
+                        </button>
+                        </div>';
+                        return $btnsAction;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+});
+
+//Route::get('/products', 'AjaxCrudController@getProducts')->middleware('auth','rol:user,admin');
