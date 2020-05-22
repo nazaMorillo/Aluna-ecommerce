@@ -2392,8 +2392,7 @@
                 "interoperability",
                 "standards"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -2408,10 +2407,7 @@
                     "type": "tidelift"
                 }
             ],
-=======
->>>>>>> origin/allmarket_naza_ubication
-=======
->>>>>>> allmarket_naza_ubication
+
             "time": "2020-05-09T18:37:03+00:00"
         },
         {
