@@ -19,13 +19,13 @@ function agregarCarrito(productid){
                 console.log(e);
             }
         });
-            if(window.location.href.split("/")[3] == "listado"){
-                document.getElementById(productid).removeAttribute("class");
-                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-                document.getElementById(productid).innerHTML = "Agregado al carrito";
-            }else if(window.location.href.split("/")[3] == "productos"){
+            if(window.location.href.split("/")[3] == "productos"){
                 document.getElementById(productid).removeAttribute("class");
                 document.getElementById(productid).setAttribute("class","btn btn-lg btn-secondary col-12 col-md-3");
+                document.getElementById(productid).innerHTML = "Agregado al carrito";                
+            }else{
+                document.getElementById(productid).removeAttribute("class");
+                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
                 document.getElementById(productid).innerHTML = "Agregado al carrito";
             }
            
