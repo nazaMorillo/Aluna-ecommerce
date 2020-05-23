@@ -165,6 +165,21 @@ footer .row {
     color:blue;
 }
 
+.imagen{
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 300px;
+    transition: .3s ease all;
+}
+
+.imagen:hover{
+    filter: contrast(200%);
+}
+.imagen__ajustada {
+    width: 300px;
+    object-fit: cover;
+}
 
 
 /* Estilos para el modal de compra */
