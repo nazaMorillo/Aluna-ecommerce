@@ -1,6 +1,6 @@
 *{
     /* Sirve para ver los bordes de todos los contenedores */
-    box-shadow: red 0px 0px 1px;
+    /* box-shadow: red 0px 0px 1px; */
 }
 
 input[type=number]::-webkit-inner-spin-button, 
