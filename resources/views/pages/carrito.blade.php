@@ -85,9 +85,9 @@
             <hr id="hr{{$producto->id}}">
             @endif
             @endforeach
-            <div class="col-sm-12 mt-3 bg-light" id="finalizarCompra">
+            <div class="col-12 mt-3 bg-light" id="finalizarCompra">
                 <a class="btn bg-dark disabled text-white col-8 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
-                <a class='btn btn-lg btn-success col-3 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >FINALIZAR COMPRA</a>
+                <a class='col-12 btn btn-lg btn-success col-3 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >FINALIZAR COMPRA</a>
             </div>
             @endif
         </div>
