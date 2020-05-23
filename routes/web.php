@@ -116,3 +116,4 @@ Route::get('/cantCarrito', function(){
 });
 
 Route::post('/agregarCarritoLoguin', 'UserController@agregarDeslogueado');
+Route::post('/agregarSiNoCart', 'UserController@agregarSiNoCart');

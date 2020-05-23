@@ -31,8 +31,8 @@
 @auth
 <?php session_start(); ?>
     @if(isset($_SESSION['Producto']))
-        <script>console.log("seee");
-            function agregarCarritoGuess(productid){
+    <script>console.log("versiesta..");
+function agregarCarritoGuess(productid){
                 $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49,9 +49,87 @@
             }
         });
     };
-    agregarCarritoGuess(<?php echo $_SESSION['Producto'] ?>);
+function verSiEstaCart(productid){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+    $.ajax({
+        url:'/agregarSiNoCart',
+        type:'POST',
+        data:{productid},
+        success: function(response){  
+            console.log(response);
+            if(response == 'true'){
+                agregarCarritoGuess(productid);
+                    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }else{
+                console.log("Ya está en el carrito");
+                $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+};
+    verSiEstaCart(<?php echo $_SESSION['Producto'] ?>);
         </script>
+    @else
+    <script>
+    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+    </script>
     @endif
     <?php session_destroy(); ?>
+    
 @endauth
 @endsection

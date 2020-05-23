@@ -111,4 +111,31 @@ class UserController extends Controller
         $_SESSION['Producto'] = $id;
         return $_SESSION['Producto'];
     }
+
+    public function agregarSiNoCart(Request $req){
+        $bandera = true;
+        $id = $req['productid'];
+        $user = User::find(auth()->user()->id);
+        $productosAgregados = $user->products;
+        foreach($productosAgregados as $producto){
+            if($producto->id == $id){
+                $bandera = false;
+            }
+        }
+        $response = $bandera ? 'true' : 'false';
+        /*$muestra = [];
+        $bandera = false;
+        $user = User::find(auth()->user()->id);
+        $productosAgregados = $user->products;
+        foreach($productosAgregados as $producto){
+            $muestra[] += $producto->id;
+            if($producto->id == $id){
+                $muestra += $producto->id;
+                $bandera = true;
+            }
+        }
+        $response = $bandera ? 'true' : 'false';
+        $muestra[] += $id;*/
+        return $response;
+    }
 }

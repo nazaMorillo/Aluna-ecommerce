@@ -248,6 +248,113 @@
 
 @endsection
 
+@section("agregarCarritoGuess")
+@auth
+<?php session_start(); ?>
+    @if(isset($_SESSION['Producto']))
+    <script>console.log("versiesta..");
+function agregarCarritoGuess(productid){
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarProducto',
+                type:'POST',
+                data:{productid},
+                success: function(response){  
+                    console.log("productoAgregado");
+            },error: function (e) {
+                console.log(e);
+            }
+        });
+    };
+function verSiEstaCart(productid){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+    $.ajax({
+        url:'/agregarSiNoCart',
+        type:'POST',
+        data:{productid},
+        success: function(response){  
+            console.log(response);
+            if(response == 'true'){
+                agregarCarritoGuess(productid);
+                    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }else{
+                console.log("Ya está en el carrito");
+                $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+};
+    verSiEstaCart(<?php echo $_SESSION['Producto'] ?>);
+        </script>
+    @else
+    <script>
+    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+    </script>
+    @endif
+    <?php session_destroy(); ?>
+    
+@endauth
+@endsection
+
 @section("scripts")
     <script>
         function agregarDesdeLoguin(id){
