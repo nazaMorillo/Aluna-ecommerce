@@ -206,7 +206,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" href="/login">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">Agregar al carrito</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -231,7 +231,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" href="/login">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">Agregar al carrito</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -249,5 +249,27 @@
 @endsection
 
 @section("scripts")
+    <script>
+        function agregarDesdeLoguin(id){
+            console.log("El id es: "+id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarCarritoLoguin',
+                type:'POST',
+                data:{id},
+                success: function(response){
+                    console.log(response);
+                    location.href = "/login";
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+        }
+    </script>
     <script src="/js/products_actions.js"></script>
 @endsection

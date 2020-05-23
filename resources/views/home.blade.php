@@ -26,3 +26,32 @@
         </div><!-- /.row -->
     </div>
 @endsection
+
+@section("agregarCarritoGuess")
+@auth
+<?php session_start(); ?>
+    @if(isset($_SESSION['Producto']))
+        <script>console.log("seee");
+            function agregarCarritoGuess(productid){
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarProducto',
+                type:'POST',
+                data:{productid},
+                success: function(response){  
+                    console.log("productoAgregado");
+            },error: function (e) {
+                console.log(e);
+            }
+        });
+    };
+    agregarCarritoGuess(<?php echo $_SESSION['Producto'] ?>);
+        </script>
+    @endif
+    <?php session_destroy(); ?>
+@endauth
+@endsection
