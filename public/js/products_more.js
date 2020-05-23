@@ -1,4 +1,5 @@
 window.onload = function(){
+document.getElementById("total").innerHTML = (parseFloat(document.getElementById("total").getAttribute("precini"))).toFixed(2);
 var cantidades = document.querySelectorAll(".cantidad");
 var sumas = document.querySelectorAll(".sumar");
 var restas = document.querySelectorAll(".restar");
