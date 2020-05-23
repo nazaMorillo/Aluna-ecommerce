@@ -115,3 +115,5 @@ Route::get('/cantCarrito', function(){
     $vac = compact('productos');
     return count($vac['productos']);
 });
+
+Route::post('/agregarCarritoLoguin', 'UserController@agregarDeslogueado');
