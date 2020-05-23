@@ -5,12 +5,11 @@
     @auth
     <?php $totalCarrito = 0;?>
         <div class="container marketing">
-            <!-- START THE FEATURETTES -->        
+            <!-- START THE FEATURETTES -->
+        <h3 class="mt-2" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
+        <hr>
 
-                <h3 class="mt-2" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
-<hr>
-
-           <div class="container marketing text-center">
+        <div class="container marketing text-center">
             <!-- START THE FEATURETTES -->      
             @foreach($productos as $producto)
             <?php
@@ -19,8 +18,12 @@
             } 
             ?>
             @endforeach
-            @if(count($productos) == 0)
-            <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
+            @if(count($productos) <= 0)
+            
+            <div id="mensaje">
+                <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
+            </div>
+
             @else
             @foreach($productos as $producto)
             @if($producto->stock == 0)
@@ -30,21 +33,20 @@
                     <!-- <div  class=" col-12"> -->
                         <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
                         <p class="card-text col-12">{{$producto->name}}</p>
-                    <!-- </div> -->
-                    
+                    <!-- </div> -->                    
                     <a class='btn col-12 col-md-12 text-white mt-2 comprar bg-black disabled' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}">Sin unidades</a>
                     <a class='btn btn-danger col-12 col-md-12 text-white mt-2 eliminar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',0,'hr{{$producto->id}}')">Eliminar</a>
                 </div>
+            </div>
 
-            </div>     
             <hr id="hr{{$producto->id}}">       
             @elseif($producto->stock == 1)
            <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
                 <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top " src="/storage/product/{{$producto->image}}" alt="" style="max-width:450px"></a>
                 <div class="card-body col-st-5">
                     <!-- <div  class=" col-12"> -->
-                        <h3 class=" col-12">$ {{$producto->price}}</h3>
-                        <p class="card-text col-12">{{$producto->name}} (Último disponible!)</p>
+                    <h3 class=" col-12">$ {{$producto->price}}</h3>
+                    <p class="card-text col-12">{{$producto->name}} (Último disponible!)</p>
                     <!-- </div> -->
 
                     <div class="col-12 text-center" style="display: flex; justify-content: flex-end;">
@@ -83,16 +85,14 @@
             <hr id="hr{{$producto->id}}">
             @endif
             @endforeach
-            @endif
-        </div>
-        </div>
-
-        
-        <div class="col-sm-12 mt-3 bg-light">
+            <div class="col-sm-12 mt-3 bg-light" id="finalizarCompra">
                 <a class="btn bg-dark disabled text-white col-8 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
                 <a class='btn btn-lg btn-success col-3 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >FINALIZAR COMPRA</a>
             </div>
-            @include("includes.modal")
+            @endif
+        </div>
+        </div>           
+    @include("includes.modal")
     @endauth
     @guest
         <h1>Debes loguearte para utilizar el carrito</h1>
