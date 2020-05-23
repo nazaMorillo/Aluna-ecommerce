@@ -60,6 +60,7 @@ Route::post('/eliminarProducto', 'UserController@dropToCart');
 Route::get('/buscarProducto', 'UserController@searchProduct');
 
 Route::get('/carrito', 'UserController@viewCart');
+Route::get('/carrito2', 'UserController@viewCart');
 
 Route::get('/perfil', 'UserController@viewPerfil');
 

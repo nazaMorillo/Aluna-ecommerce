@@ -2,7 +2,6 @@
 
 @section("content")
 
-
     @auth
     <?php $totalCarrito = 0;?>
         <div class="container marketing">
@@ -87,9 +86,11 @@
             @endif
         </div>
         </div>
+
+        
         <div class="col-sm-12 mt-3 bg-light">
-                <a class="btn bg-dark disabled text-white col-10 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}"></span></h2></a>
-                <a class='btn btn-success col-1 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >Comprar</a>
+                <a class="btn bg-dark disabled text-white col-8 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
+                <a class='btn btn-lg btn-success col-3 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >FINALIZAR COMPRA</a>
             </div>
             @include("includes.modal")
     @endauth
