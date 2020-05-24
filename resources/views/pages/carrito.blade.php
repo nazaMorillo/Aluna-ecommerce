@@ -9,97 +9,72 @@
         <h3 class="mt-2" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
         <hr>
 
-        <div class="container marketing text-center">
-            <!-- START THE FEATURETTES -->      
-            @foreach($productos as $producto)
-            <?php
-            if($producto->stock > 0){
-                $totalCarrito +=  $producto->price;
-            } 
-            ?>
-            @endforeach
-            @if(count($productos) <= 0)
-            
-            <div id="mensaje">
-                <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
-            </div>
-
-            @else
-            @foreach($productos as $producto)
-            @if($producto->stock == 0)
-           <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
-                <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top  imagen imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
-                <div class="card-body col-st-5">
-                    <!-- <div  class=" col-12"> -->
-                        <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
-                        <p class="card-text col-12">{{$producto->name}}</p>
-                    <!-- </div> -->                    
-                    <a class='btn col-12 col-md-12 text-white mt-2 comprar bg-black disabled' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}">Sin unidades</a>
-                    <a class='btn btn-danger col-12 col-md-12 text-white mt-2 eliminar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',0,'hr{{$producto->id}}')">Eliminar</a>
+            <div class="container marketing text-center">
+                <!-- START THE FEATURETTES -->      
+                @foreach($productos as $producto)
+                <?php
+                if($producto->stock > 0){
+                    $totalCarrito +=  $producto->price;
+                } 
+                ?>
+                @endforeach
+                @if(count($productos) == 0)            
+                <div id="mensaje">
+                    <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
                 </div>
-            </div>
-
-            <hr id="hr{{$producto->id}}">       
-            @elseif($producto->stock == 1)
-           <div id="Producto{{$producto->id}}" class="col-12 producto" style="display: flex; flex-wrap: wrap; padding: 10px 0px;">
-                <a class="col-st-7" href="/productos/{{$producto->id}}"><img class="card-img-top imagen imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
-                <div class="card-body col-st-5">
-                    <!-- <div  class=" col-12"> -->
-                    <h3 class=" col-12">$ {{$producto->price}}</h3>
-                    <p class="card-text col-12">{{$producto->name}} (Último disponible!)</p>
-                    <!-- </div> -->
-
-                    <div class="col-12 text-center" style="display: flex; justify-content: flex-end;">
-                    <div class="col-2"><button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button></div>
-                    <div class="col-3"></div>
-                        <button type="button" class="btn btn-light disabled col">Total: $<span id="totPrecCant">{{$producto->price}}</span></button>
-                    </div>
-                    <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="comprar({{$producto->id}})" >Comprar</a>-->
-                    <a class='btn btn-danger col-12 col-md-12 text-white mt-2 eliminar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')">Eliminar</a>
-                </div>
-
-            </div>      
-            <hr id="hr{{$producto->id}}">      
-            @else  
-           <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
-                <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
-                <div class="card-body col-md-8" style="display: flex; flex-wrap: wrap; justify-content: center">
-                    <!-- <div  class=" col-12"> -->
+                @else
+                @foreach($productos as $producto)
+                <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+                        <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
+                        <div class="card-body col-md-8" style="display: flex; flex-wrap: wrap; justify-content: center">
+                        @if($producto->stock == 0)
+                        <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>                        
+                        @else
                         <h3 class="col-12">$ {{$producto->price}}</h3>
-                        <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}</strong></h5>
+                        @endif
+                        @if($producto->stock == 0)
+                        <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+                        @else
+                            @if($producto->stock == 1)
+                            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+                            @else
+                            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong></h5><span style="color: green;"><b>{{$producto->stock}} disponibles</b></span>
+                            @endif
+                        @endif
                         <p class="card-text col-12">{{$producto->description}}</p>
-                    <!-- </div> -->
-
-                    <div class="col-12 col-md-8 text-center" style="display: flex; justify-content: flex-end; align-items: center;">
-                        <div class="col-2">
-                            <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button>
+                        <div class="col-12 col-md-8 text-center" style="display: flex; justify-content: flex-end; align-items: center;">
+                            <div class="col-2">
+                                <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button>
+                            </div>
+                            <div class="col-3 text-center">
+                                <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
+                                <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
+                            </div>
+                            <h4 type="button" class="btn btn-light disabled">
+                                Total: $<span id="totPrecCant">{{$producto->price}}</span>
+                            </h4>
                         </div>
-                        <div class="col-3 text-center">
-                            <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
-                            <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
-                        </div>
-                        <h4 type="button" class="btn btn-light disabled">
-                            Total: $<span id="totPrecCant">{{$producto->price}}</span>
-                        </h4>
-                    </div>
-                    <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="comprar({{$producto->id}})" >Comprar</a>-->
-                    <a class='btn btn-danger col-12 col-md-3 text-white mt-2 eliminar' style="display: flex; justify-content: center; align-items:center; align-self: flex-start; margin-left: auto;" <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')"><i class="far fa-trash-alt"></i></a>
+                        <a class='btn btn-danger col-12 col-md-3 text-white mt-2 eliminar' style="display: flex; justify-content: center; align-items:center; align-self: flex-start; margin-left: auto;" <?="id=".$producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')"><i class="far fa-trash-alt"></i></a>
+                    </div>                
                 </div>
-                
+                <hr id="hr{{$producto->id}}">            
+                @endforeach
+                @endif
+                <div class="col-12 col-md-12 mt-3 bg-light btn-lg disabled" id="finalizarCompra">
+                    <a class="col-12 col-md-5 mt-3 btn btn-outline-info btn-lg disabled">
+                    Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span>
+                    </a>
+                    @if(count($productos) == 0)
+                    <a class="col-12 col-md-5 mt-3 btn  btn-success btn-lg text-white comprar disabled" id="btnComprarCarrito" onclick="comprarCarrito()" >
+                    SIN PRODUCTOS
+                    </a>
+                    @else
+                    <a class="col-12 col-md-5 mt-3 btn  btn-success btn-lg text-white comprar " id="btnComprarCarrito" onclick="comprarCarrito()" >
+                        FINALIZAR COMPRA
+                    </a>
+                    @endif
+                </div>                        
             </div>
-            <hr id="hr{{$producto->id}}">
-            @endif
-            @endforeach
-            <div class="col-12 col-md-12 mt-3 bg-light btn-lg" id="finalizarCompra">
-                <a class="col-12 col-md-5 mt-3 btn btn-outline-info btn-lg disabled">
-                Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span>
-                </a>
-                <a class="col-12 col-md-5 mt-3 btn  btn-success btn-lg text-white comprar" id="btnComprarCarrito" onclick="comprarCarrito()" >
-                    FINALIZAR COMPRA
-                </a>
-            </div>
-            @endif
-        </div>
         </div>           
     @include("includes.modal")
     @endauth
