@@ -1,7 +1,14 @@
 window.onload = function(){
-var cantidades = document.querySelectorAll(".cantidad");
-var sumas = document.querySelectorAll(".sumar");
-var restas = document.querySelectorAll(".restar");
+let total = document.getElementById("total");
+total.innerHTML = (parseFloat(document.getElementById("total").getAttribute("precini"))).toFixed(2);
+let cantidades = document.querySelectorAll(".cantidad");
+let sumas = document.querySelectorAll(".sumar");
+let restas = document.querySelectorAll(".restar");
+
+function isEmptyProductForBuy(){  
+  return total.value <=0; 
+}
+
 
 function decimalAdjust(type, value, exp) {
     // Si el exp no está definido o es cero...
@@ -50,7 +57,7 @@ for(var i = 0; i<restas.length; i++){
         		let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
         		precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);  		
         		document.getElementById("total").setAttribute("value",(Math.round10((parseFloat(document.getElementById("total").getAttribute("value")) - (parseFloat(boton.getAttribute("price")))), -10)).toFixed(2));   		
-        		document.getElementById("total").innerHTML = (parseFloat(document.getElementById("total").getAttribute("value"))).toFixed(2);
+            document.getElementById("total").innerHTML = (parseFloat(document.getElementById("total").getAttribute("value"))).toFixed(2);
         		}
     	    }
 

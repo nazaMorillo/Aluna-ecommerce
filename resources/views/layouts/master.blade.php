@@ -41,6 +41,9 @@
     <script src="/js/bootstrap.min.js"></script> -->
     <!-- <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    @yield("agregarCarritoGuess")
+    
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.10.21/r-2.2.5/datatables.min.js"></script>

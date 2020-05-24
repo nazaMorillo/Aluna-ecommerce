@@ -104,4 +104,11 @@ class UserController extends Controller
             return redirect("perfil");
         }
     }
+
+    public function agregarDeslogueado(Request $req){
+        $id = $req['id'];
+        session_start();
+        $_SESSION['Producto'] = $id;
+        return $_SESSION['Producto'];
+    }
 }

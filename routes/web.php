@@ -60,6 +60,7 @@ Route::post('/eliminarProducto', 'UserController@dropToCart');
 Route::get('/buscarProducto', 'UserController@searchProduct');
 
 Route::get('/carrito', 'UserController@viewCart');
+Route::get('/carrito2', 'UserController@viewCart');
 
 Route::get('/perfil', 'UserController@viewPerfil');
 
@@ -114,3 +115,5 @@ Route::get('/cantCarrito', function(){
     $vac = compact('productos');
     return count($vac['productos']);
 });
+
+Route::post('/agregarCarritoLoguin', 'UserController@agregarDeslogueado');
