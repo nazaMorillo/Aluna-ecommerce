@@ -85,6 +85,23 @@ function eliminarCarrito(productid, divprodid, precioProd, hrprod) {
     });
 }
 
+function eliminarTodoCarrito() {
+    $(document).ready(function () {
+        fetch('/vaciarCarrito')
+        .then(response => {
+            return response;
+            
+        })
+        .then(data=>{
+            console.log("Todo está bien");
+            document.location.reload();
+        })
+        .catch(error =>{
+            console.log("No se vació el carrito. Se encontro el siguiente error: " + error);
+        });
+    });
+}
+
 
 function comprarCarrito() {
     $(document).ready(function () {

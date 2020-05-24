@@ -57,6 +57,8 @@ Route::post('/agregarProducto', 'UserController@addToCart');
 
 Route::post('/eliminarProducto', 'UserController@dropToCart');
 
+Route::get('/vaciarCarrito', 'UserController@dropAllCart');
+
 Route::get('/buscarProducto', 'UserController@searchProduct');
 
 Route::get('/carrito', 'UserController@viewCart');
