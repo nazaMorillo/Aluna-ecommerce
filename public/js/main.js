@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var url = window.location;
-
-	if (url.href.split("/").length > 4) {
+	
+	if (url.href.split("/").length > 4 && url.href.split("/").length < 6) {
 		document.querySelector("#search").value = url.href.split("/")[4];
 	}
 
@@ -52,6 +52,7 @@ $(document).ready(function () {
 					type: "GET",
 					data: { texto },
 					success: function (response) {
+						console.log(response);
 						var resbusqueda = [];
 
 						for (elemento in response) {
@@ -120,6 +121,134 @@ $(document).ready(function () {
 
 	});
 
+	function crearFormBusqueda(){
+
+		var divFormBusqueda = document.createElement('div');
+		divFormBusqueda.setAttribute('id','busquedaAvanzadaDiv');
+		divFormBusqueda.setAttribute('style','height:0px;z-index:2;position:relative');
+
+		var formAvanzado = document.createElement('form');
+		formAvanzado.setAttribute('style','background-color:white');
+		formAvanzado.setAttribute('id','formBusquedaAvanzada');
+		//formAvanzado.setAttribute('type','POST');
+		//formAvanzado.setAttribute('action','/buscarAvanzadamente');
+
+		var labelMarcaForm = document.createElement('label');
+		labelMarcaForm.append("Marca: ");
+		var marcaFormAvanzado = document.createElement('select');
+		marcaFormAvanzado.setAttribute('id','marcaFormAvanzado');
+		marcaFormAvanzado.setAttribute('name','marcaFormAvanzado');
+		labelMarcaForm.append(marcaFormAvanzado);
+		labelMarcaForm.setAttribute('class','m-2');
+
+		var labelCategoriaForm = document.createElement('label');
+		labelCategoriaForm.append("Categoría: ");
+		var categoriaFormAvanzado = document.createElement('select');
+		categoriaFormAvanzado.setAttribute('id','categoriaFormAvanzado');
+		categoriaFormAvanzado.setAttribute('name','categoriaFormAvanzado');
+		labelCategoriaForm.append(categoriaFormAvanzado);
+		labelCategoriaForm.setAttribute('class','m-2');
+
+		var btnsubmit = document.createElement('button');
+		btnsubmit.append(document.createTextNode('Buscar'));
+		btnsubmit.setAttribute('type','submit');
+		btnsubmit.setAttribute('id','submitFormAvanzado');
+		btnsubmit.setAttribute('class','btn btn-primary m-2');
+
+		formAvanzado.append(labelCategoriaForm);
+		formAvanzado.append(labelMarcaForm);
+		formAvanzado.append(btnsubmit);
+
+		formAvanzado.style.borderStyle = "solid";
+		formAvanzado.style.borderColor = "rgb(33, 37, 41)";
+
+		$.ajaxSetup({
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		$.ajax({
+			url: "/obtenerMarcasyCategorias",
+			type: "GET",
+			success: function (response) {
+						let optionNull = document.createElement('option');
+						optionNull.setAttribute('value',-1);
+						optionNull.append(document.createTextNode('Seleccione una categoría'));
+						marcaFormAvanzado.append(optionNull);
+						let optionNulldos = document.createElement('option');
+						optionNulldos.setAttribute('value',-1);
+						optionNulldos.append(document.createTextNode('Seleccione una categoría'));
+						categoriaFormAvanzado.append(optionNulldos);		
+					for(brand in response[0]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[0][brand].id);
+						option.append(document.createTextNode(response[0][brand].name));
+						marcaFormAvanzado.append(option);
+					}
+					for(category in response[1]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[1][category].id);
+						option.append(document.createTextNode(response[1][category].name));
+						categoriaFormAvanzado.append(option);
+					}																
+				},
+			error: function (e) {
+				console.log(e);
+			}
+		});
+
+		divFormBusqueda.append(formAvanzado);
+
+		btnsubmit.addEventListener('click', function(e){
+			e.preventDefault();
+			console.log("buscando...");
+			let categoriaSeleccionada = parseInt(document.getElementById('categoriaFormAvanzado').value);
+			let marcaSeleccionada = parseInt(document.getElementById('marcaFormAvanzado').value);
+			console.log(marcaSeleccionada);
+			console.log(categoriaSeleccionada);
+			window.location = '/listado/'+marcaSeleccionada+'/'+categoriaSeleccionada;
+			/*$.ajaxSetup({
+				headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			$.ajax({
+				url: "/buscarAvanzadamente",
+				type: "GET",
+				data:{marcaSeleccionada,categoriaSeleccionada},
+				success: function (response) {	
+						console.log('response');															
+					},
+				error: function (e) {
+					console.log(e);
+				}
+			});*/
+		});
+
+		return divFormBusqueda;
+	}
+
+	var banderaBusquedaAvanzada = false;
+	document.querySelector('#busquedaAvanzada').addEventListener('click', function(){
+		if(banderaBusquedaAvanzada){
+			banderaBusquedaAvanzada = false;
+			if(document.querySelector('#busquedaAvanzadaDiv')){
+				document.querySelector('#busquedaAvanzadaDiv').parentNode.removeChild(document.querySelector('#busquedaAvanzadaDiv'));
+			}
+			document.querySelector('#busquedaAvanzada').setAttribute('class','fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2');
+			document.querySelector('#busquedaAvanzada').setAttribute('style','color:white;border-width:0px');
+		}else{
+			banderaBusquedaAvanzada = true;
+			if(document.querySelector('#busquedaAvanzadaDiv')){
+				document.querySelector('#busquedaAvanzadaDiv').parentNode.removeChild(document.querySelector('#busquedaAvanzadaDiv'));
+			}
+			document.querySelector('#busquedaAvanzada').setAttribute('class','fas fa-chevron-up btn btn-outline-success my-2 my-sm-0 mr-2');
+			document.querySelector('#busquedaAvanzada').setAttribute('style','color:white;border-width:0px');
+			var busquedaAvanzada = crearFormBusqueda();
+			document.querySelector('main').prepend(busquedaAvanzada);
+		}
+	});
+
 	document.querySelector("#search").addEventListener("focus", function () {
 		if (document.querySelector("#divbusqueda")) {
 			document.querySelector("#divbusqueda").style.display = "block";
@@ -143,6 +272,10 @@ $(document).ready(function () {
 		e.preventDefault();
 		var texto = document.querySelector("#search").value;
 		window.location = "/listado/" + texto;
+	});
+
+	document.querySelector("busquedaAvanzada").addEventListener('click', function(){
+
 	});
 
 

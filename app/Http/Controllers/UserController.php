@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Product;
 use App\Cart;
+use App\Brand;
+use App\Category;
 
 class UserController extends Controller
 {
@@ -122,20 +124,38 @@ class UserController extends Controller
                 $bandera = false;
             }
         }
-        $response = $bandera ? 'true' : 'false';
-        /*$muestra = [];
-        $bandera = false;
-        $user = User::find(auth()->user()->id);
-        $productosAgregados = $user->products;
-        foreach($productosAgregados as $producto){
-            $muestra[] += $producto->id;
-            if($producto->id == $id){
-                $muestra += $producto->id;
-                $bandera = true;
-            }
-        }
-        $response = $bandera ? 'true' : 'false';
-        $muestra[] += $id;*/
+        $response = $bandera ? 'true' : 'false';        
         return $response;
+    }
+
+    public function obtenerMarcasyCategorias(){
+        $response = [];
+        array_push($response,Brand::all());
+        array_push($response,Category::all());
+        return $response;
+    }
+
+    public function busquedaAvanzada(Request $req){
+        $marca = $req['marcaSeleccionada'];
+        $categoria = $req['categoriaSeleccionada'];
+        if($marca == -1 && $categoria == -1){
+            $productos = Product::paginate(8);
+        }elseif($marca == -1){
+            $productos = Product::where('category','=',$categoria)->paginate(8);
+        }elseif($categoria == -1){
+            $productos = Product::where('brand','=',$marca)->paginate(8);
+        }else{
+            $productos = Product::where('brand','=',$marca)->where('category','=',$categoria)->paginate(8);
+        }        
+        if(auth()->user()) {
+            $user = User::find(auth()->user()->id);
+            $productosAgregados = $user->products;
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }else{
+            $productosAgregados = [];
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }
     }
 }

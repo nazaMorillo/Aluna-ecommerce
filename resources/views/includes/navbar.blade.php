@@ -6,6 +6,7 @@
     <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
         <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
+        <i id="busquedaAvanzada" class="fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2" style="color:white;border-width:0px"></i>
         @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
         <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
