@@ -14,7 +14,6 @@ function agregarCarrito(productid){
                     cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) + 1);
                     cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));    
                     console.log("productoAgregado");
-                    document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
             },error: function (e) {
                 console.log(e);
             }
