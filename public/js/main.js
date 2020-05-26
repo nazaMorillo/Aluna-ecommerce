@@ -173,11 +173,11 @@ $(document).ready(function () {
 			success: function (response) {
 						let optionNull = document.createElement('option');
 						optionNull.setAttribute('value',-1);
-						optionNull.append(document.createTextNode('Seleccione una categoría'));
+						optionNull.append(document.createTextNode('Seleccione una opción'));
 						marcaFormAvanzado.append(optionNull);
 						let optionNulldos = document.createElement('option');
 						optionNulldos.setAttribute('value',-1);
-						optionNulldos.append(document.createTextNode('Seleccione una categoría'));
+						optionNulldos.append(document.createTextNode('Seleccione una opción'));
 						categoriaFormAvanzado.append(optionNulldos);		
 					for(brand in response[0]){
 						let option = document.createElement('option');
