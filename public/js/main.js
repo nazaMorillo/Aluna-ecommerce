@@ -53,13 +53,14 @@ $(document).ready(function () {
 					data: { texto },
 					success: function (response) {
 						console.log(response);
+						console.log(response[1]);
 						var resbusqueda = [];
 
-						for (elemento in response) {
-							var textoa = document.createTextNode(response[elemento]['name']);
+						for (elemento in response[0]) {
+							var textoa = document.createTextNode(response[0][elemento]['name']);
 
 							var link = document.createElement('a');
-							link.setAttribute('href', '/productos/' + response[elemento]['id']);
+							link.setAttribute('href', '/productos/' + response[0][elemento]['id']);
 							link.setAttribute('style', 'text-decoration:none;width:100%;padding-top: 0px;padding-bottom: 0px');
 							link.setAttribute('class', 'list-group-item list-group-item-action');
 							link.addEventListener("mouseover", function () {
@@ -74,7 +75,7 @@ $(document).ready(function () {
 							//link.append(textoa);
 
 							var img = document.createElement('img');
-							img.setAttribute('src', '/storage/product/' + response[elemento]['image']);
+							img.setAttribute('src', '/storage/product/' + response[0][elemento]['image']);
 							img.setAttribute('style', 'max-height: 50px');
 
 							//var divContainer = document.createElement('div');
@@ -108,6 +109,31 @@ $(document).ready(function () {
 						for (ele in resbusqueda) {
 							divmin.append(resbusqueda[ele]);
 
+						}
+						if(response[1] > 8){
+							var link = document.createElement('a');
+							var texto = document.querySelector("#search").value;
+							link.setAttribute('href', '/listado/' + texto);
+							link.setAttribute('style', 'text-decoration:none;width:100%;padding-top: 0px;padding-bottom: 0px');
+							link.setAttribute('class', 'list-group-item list-group-item-action');
+							link.addEventListener("mouseover", function () {
+								this.setAttribute("class", "list-group-item list-group-item-action active");
+							});
+							link.addEventListener("mouseout", function () {
+								this.setAttribute("class", "list-group-item list-group-item-action");
+							});
+
+							var divRow = document.createElement('div');
+							divRow.setAttribute("class", "row");
+							divRow.setAttribute("style", "padding-left: 10px;padding-right: 10px");
+
+							divRow.append(document.createTextNode('Ver más resultados'));
+
+
+							link.append(divRow);
+							
+							link.append(divRow);
+							divmin.append(link);
 						}
 						document.querySelector('section').prepend(divmin);
 					},
@@ -273,11 +299,6 @@ $(document).ready(function () {
 		var texto = document.querySelector("#search").value;
 		window.location = "/listado/" + texto;
 	});
-
-	document.querySelector("busquedaAvanzada").addEventListener('click', function(){
-
-	});
-
 
 	let selectState = document.getElementById('state');
 	// let password_confirm = document.getElementById('password-confirm');

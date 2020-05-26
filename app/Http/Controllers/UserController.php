@@ -60,7 +60,9 @@ class UserController extends Controller
     public function searchProduct(Request $req){
         $texto = $req['texto'];
         $busqueda = Product::where('name','LIKE','%'.$texto.'%')->skip(0)->take(8)->get();
-        return $busqueda;
+        $cantidad = Product::where('name','LIKE','%'.$texto.'%')->get();
+        $response = [$busqueda,count($cantidad)];
+        return $response;
     }
 
     public function searchProductPage($texto){
