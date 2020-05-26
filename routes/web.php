@@ -38,6 +38,7 @@ Route::get('/logout', function () {
 
 Route::get('/productos/{id}', 'ProductController@showProduct');
 
+
 // Route::get('/producto/{id}', function ($id) {
 //     $vac = compact('id');
 //     return view('pages.detalleProducto', $vac);

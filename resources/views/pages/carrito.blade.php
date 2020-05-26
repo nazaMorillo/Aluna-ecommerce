@@ -30,7 +30,7 @@
             @foreach($productos as $producto)
             <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
                     <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
-                    <div class="card-body col-md-8  text-center" style="display: flex; flex-wrap: wrap; justify-content: center">
+                <div class="card-body col-md-8  text-center" style="display: flex; flex-wrap: wrap; justify-content: center">
                     @if($producto->stock == 0)
                     <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>                        
                     @else
