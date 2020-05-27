@@ -1,28 +1,7 @@
 $(document).ready(function () {
-
-console.log("Hola ");
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-	});
-	$.ajax({
-		url: "/cantCarrito",
-		type: "GET",
-		success: function (response) {												
-			console.log(parseInt(response));
-			document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
-			document.getElementById('cantCarrito').innerHTML = parseInt(response);
-		},
-		error: function (e) {
-			console.log(e);
-		}
-	});			
-
-
 	var url = window.location;
-
-	if (url.href.split("/").length > 4) {
+	
+	if (url.href.split("/").length > 4 && url.href.split("/").length < 6) {
 		document.querySelector("#search").value = url.href.split("/")[4];
 	}
 
@@ -73,13 +52,15 @@ console.log("Hola ");
 					type: "GET",
 					data: { texto },
 					success: function (response) {
+						console.log(response);
+						console.log(response[1]);
 						var resbusqueda = [];
 
-						for (elemento in response) {
-							var textoa = document.createTextNode(response[elemento]['name']);
+						for (elemento in response[0]) {
+							var textoa = document.createTextNode(response[0][elemento]['name']);
 
 							var link = document.createElement('a');
-							link.setAttribute('href', '/productos/' + response[elemento]['id']);
+							link.setAttribute('href', '/productos/' + response[0][elemento]['id']);
 							link.setAttribute('style', 'text-decoration:none;width:100%;padding-top: 0px;padding-bottom: 0px');
 							link.setAttribute('class', 'list-group-item list-group-item-action');
 							link.addEventListener("mouseover", function () {
@@ -94,7 +75,7 @@ console.log("Hola ");
 							//link.append(textoa);
 
 							var img = document.createElement('img');
-							img.setAttribute('src', '/storage/product/' + response[elemento]['image']);
+							img.setAttribute('src', '/storage/product/' + response[0][elemento]['image']);
 							img.setAttribute('style', 'max-height: 50px');
 
 							//var divContainer = document.createElement('div');
@@ -129,6 +110,31 @@ console.log("Hola ");
 							divmin.append(resbusqueda[ele]);
 
 						}
+						if(response[1] > 8){
+							var link = document.createElement('a');
+							var texto = document.querySelector("#search").value;
+							link.setAttribute('href', '/listado/' + texto);
+							link.setAttribute('style', 'text-decoration:none;width:100%;padding-top: 0px;padding-bottom: 0px');
+							link.setAttribute('class', 'list-group-item list-group-item-action');
+							link.addEventListener("mouseover", function () {
+								this.setAttribute("class", "list-group-item list-group-item-action active");
+							});
+							link.addEventListener("mouseout", function () {
+								this.setAttribute("class", "list-group-item list-group-item-action");
+							});
+
+							var divRow = document.createElement('div');
+							divRow.setAttribute("class", "row");
+							divRow.setAttribute("style", "padding-left: 10px;padding-right: 10px");
+
+							divRow.append(document.createTextNode('Ver más resultados'));
+
+
+							link.append(divRow);
+							
+							link.append(divRow);
+							divmin.append(link);
+						}
 						document.querySelector('section').prepend(divmin);
 					},
 					error: function () {
@@ -139,6 +145,134 @@ console.log("Hola ");
 			clearTimeout(timeout);
 		}, 1000);
 
+	});
+
+	function crearFormBusqueda(){
+
+		var divFormBusqueda = document.createElement('div');
+		divFormBusqueda.setAttribute('id','busquedaAvanzadaDiv');
+		divFormBusqueda.setAttribute('style','height:0px;z-index:2;position:relative');
+
+		var formAvanzado = document.createElement('form');
+		formAvanzado.setAttribute('style','background-color:white');
+		formAvanzado.setAttribute('id','formBusquedaAvanzada');
+		//formAvanzado.setAttribute('type','POST');
+		//formAvanzado.setAttribute('action','/buscarAvanzadamente');
+
+		var labelMarcaForm = document.createElement('label');
+		labelMarcaForm.append("Marca: ");
+		var marcaFormAvanzado = document.createElement('select');
+		marcaFormAvanzado.setAttribute('id','marcaFormAvanzado');
+		marcaFormAvanzado.setAttribute('name','marcaFormAvanzado');
+		labelMarcaForm.append(marcaFormAvanzado);
+		labelMarcaForm.setAttribute('class','m-2');
+
+		var labelCategoriaForm = document.createElement('label');
+		labelCategoriaForm.append("Categoría: ");
+		var categoriaFormAvanzado = document.createElement('select');
+		categoriaFormAvanzado.setAttribute('id','categoriaFormAvanzado');
+		categoriaFormAvanzado.setAttribute('name','categoriaFormAvanzado');
+		labelCategoriaForm.append(categoriaFormAvanzado);
+		labelCategoriaForm.setAttribute('class','m-2');
+
+		var btnsubmit = document.createElement('button');
+		btnsubmit.append(document.createTextNode('Buscar'));
+		btnsubmit.setAttribute('type','submit');
+		btnsubmit.setAttribute('id','submitFormAvanzado');
+		btnsubmit.setAttribute('class','btn btn-primary m-2');
+
+		formAvanzado.append(labelCategoriaForm);
+		formAvanzado.append(labelMarcaForm);
+		formAvanzado.append(btnsubmit);
+
+		formAvanzado.style.borderStyle = "solid";
+		formAvanzado.style.borderColor = "rgb(33, 37, 41)";
+
+		$.ajaxSetup({
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		$.ajax({
+			url: "/obtenerMarcasyCategorias",
+			type: "GET",
+			success: function (response) {
+						let optionNull = document.createElement('option');
+						optionNull.setAttribute('value',-1);
+						optionNull.append(document.createTextNode('Seleccione una opción'));
+						marcaFormAvanzado.append(optionNull);
+						let optionNulldos = document.createElement('option');
+						optionNulldos.setAttribute('value',-1);
+						optionNulldos.append(document.createTextNode('Seleccione una opción'));
+						categoriaFormAvanzado.append(optionNulldos);		
+					for(brand in response[0]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[0][brand].id);
+						option.append(document.createTextNode(response[0][brand].name));
+						marcaFormAvanzado.append(option);
+					}
+					for(category in response[1]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[1][category].id);
+						option.append(document.createTextNode(response[1][category].name));
+						categoriaFormAvanzado.append(option);
+					}																
+				},
+			error: function (e) {
+				console.log(e);
+			}
+		});
+
+		divFormBusqueda.append(formAvanzado);
+
+		btnsubmit.addEventListener('click', function(e){
+			e.preventDefault();
+			console.log("buscando...");
+			let categoriaSeleccionada = parseInt(document.getElementById('categoriaFormAvanzado').value);
+			let marcaSeleccionada = parseInt(document.getElementById('marcaFormAvanzado').value);
+			console.log(marcaSeleccionada);
+			console.log(categoriaSeleccionada);
+			window.location = '/listado/'+marcaSeleccionada+'/'+categoriaSeleccionada;
+			/*$.ajaxSetup({
+				headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			$.ajax({
+				url: "/buscarAvanzadamente",
+				type: "GET",
+				data:{marcaSeleccionada,categoriaSeleccionada},
+				success: function (response) {	
+						console.log('response');															
+					},
+				error: function (e) {
+					console.log(e);
+				}
+			});*/
+		});
+
+		return divFormBusqueda;
+	}
+
+	var banderaBusquedaAvanzada = false;
+	document.querySelector('#busquedaAvanzada').addEventListener('click', function(){
+		if(banderaBusquedaAvanzada){
+			banderaBusquedaAvanzada = false;
+			if(document.querySelector('#busquedaAvanzadaDiv')){
+				document.querySelector('#busquedaAvanzadaDiv').parentNode.removeChild(document.querySelector('#busquedaAvanzadaDiv'));
+			}
+			document.querySelector('#busquedaAvanzada').setAttribute('class','fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2');
+			document.querySelector('#busquedaAvanzada').setAttribute('style','color:white;border-width:0px');
+		}else{
+			banderaBusquedaAvanzada = true;
+			if(document.querySelector('#busquedaAvanzadaDiv')){
+				document.querySelector('#busquedaAvanzadaDiv').parentNode.removeChild(document.querySelector('#busquedaAvanzadaDiv'));
+			}
+			document.querySelector('#busquedaAvanzada').setAttribute('class','fas fa-chevron-up btn btn-outline-success my-2 my-sm-0 mr-2');
+			document.querySelector('#busquedaAvanzada').setAttribute('style','color:white;border-width:0px');
+			var busquedaAvanzada = crearFormBusqueda();
+			document.querySelector('main').prepend(busquedaAvanzada);
+		}
 	});
 
 	document.querySelector("#search").addEventListener("focus", function () {
@@ -165,7 +299,6 @@ console.log("Hola ");
 		var texto = document.querySelector("#search").value;
 		window.location = "/listado/" + texto;
 	});
-
 
 	let selectState = document.getElementById('state');
 	// let password_confirm = document.getElementById('password-confirm');

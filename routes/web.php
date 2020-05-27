@@ -38,6 +38,7 @@ Route::get('/logout', function () {
 
 Route::get('/productos/{id}', 'ProductController@showProduct');
 
+
 // Route::get('/producto/{id}', function ($id) {
 //     $vac = compact('id');
 //     return view('pages.detalleProducto', $vac);
@@ -57,9 +58,12 @@ Route::post('/agregarProducto', 'UserController@addToCart');
 
 Route::post('/eliminarProducto', 'UserController@dropToCart');
 
+Route::get('/vaciarCarrito', 'UserController@dropAllCart');
+
 Route::get('/buscarProducto', 'UserController@searchProduct');
 
 Route::get('/carrito', 'UserController@viewCart');
+Route::get('/carrito2', 'UserController@viewCart');
 
 Route::get('/perfil', 'UserController@viewPerfil');
 
@@ -116,3 +120,7 @@ Route::get('/cantCarrito', function(){
 });
 
 Route::post('/agregarCarritoLoguin', 'UserController@agregarDeslogueado');
+Route::post('/agregarSiNoCart', 'UserController@agregarSiNoCart');
+
+Route::get('/obtenerMarcasyCategorias','UserController@obtenerMarcasyCategorias');
+Route::get('/listado/{marcaSeleccionada}/{categoriaSeleccionada}','UserController@busquedaAvanzada');

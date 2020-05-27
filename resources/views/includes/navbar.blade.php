@@ -6,10 +6,11 @@
     <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
         <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
+        <i id="busquedaAvanzada" class="fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2" style="color:white;border-width:0px"></i>
         @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
-        <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
-        <div class="rounded-circle" style="padding:0px; margin:0px; background-color:rgba(40, 167, 69, 1); border:solid 1px white ;width:20px;height:20px;text-align:center;position:relative;left:11px;top:-34px"><span class="text-white" style="font-weight: bold;position:relative;top:-5px;width:18px;height:18px text-align:center" id="cantCarrito"></span></div>
+            <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
+            <div id="cantCarrito"></div>    
         </a>
         @endauth
         @guest
