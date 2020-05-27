@@ -121,46 +121,172 @@
 
     <!-- <script src="/js/products_actions.js"></script> -->
     <!-- <script src="/js/products_more.js"></script> -->
-    @section("scripts")
-
+    @section("agregarCarritoGuess")
+    @auth
+    <?php session_start(); ?>
+    @if(isset($_SESSION['Producto']))
     <script>
-        
-        window.onload = function() {
-            document.querySelector("form").reset();
-            document.querySelector('.sumar').addEventListener("click", function() {
-                let boton = this.parentNode.parentNode.querySelector(".cantidad");
-                if(parseInt(boton.getAttribute("max")) > parseInt(boton.innerHTML)){
-                  let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
-                  boton.innerHTML = parseInt(boton.innerHTML) + 1;
-                  boton.setAttribute("value",parseInt(boton.innerHTML));
-                  precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
-                }	
-            });
-            
-            function agregarDesdeLoguin(id) {
-            console.log("El id es: " + id);
+        console.log("versiesta..");
+
+        function agregarCarritoGuess(productid) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $.ajax({
-                url: '/agregarCarritoLoguin',
+                url: '/agregarProducto',
                 type: 'POST',
                 data: {
-                    id
+                    productid
                 },
                 success: function(response) {
-                    console.log(response);
-                    location.href = "/login";
+                    console.log("productoAgregado");
                 },
                 error: function(e) {
                     console.log(e);
                 }
             });
-        }
+        };
+
+        function verSiEstaCart(productid) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '/agregarSiNoCart',
+                type: 'POST',
+                data: {
+                    productid
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response == 'true') {
+                        agregarCarritoGuess(productid);
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "/cantCarrito",
+                            type: "GET",
+                            success: function(response) {
+                                console.log(parseInt(response));
+                                document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+                                document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
+                    } else {
+                        console.log("Ya está en el carrito");
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "/cantCarrito",
+                            type: "GET",
+                            success: function(response) {
+                                console.log(parseInt(response));
+                                document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+                                document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
+                    }
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        };
+        verSiEstaCart(<?php echo $_SESSION['Producto'] ?>);
+    </script>
+    @else
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/cantCarrito",
+            type: "GET",
+            success: function(response) {
+                console.log(parseInt(response));
+                document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+                document.getElementById('cantCarrito').innerHTML = parseInt(response);
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    </script>
+    @endif
+    <?php session_destroy(); ?>
+
+    @endauth
+    @endsection
+
+    @section("scripts")
+
+    <script>
+        window.onload = function() {
+            document.querySelector("form").reset();
+            document.querySelector('.sumar').addEventListener("click", function() {
+                let boton = this.parentNode.parentNode.querySelector(".cantidad");
+                if (parseInt(boton.getAttribute("max")) > parseInt(boton.innerHTML)) {
+                    let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
+                    boton.innerHTML = parseInt(boton.innerHTML) + 1;
+                    boton.setAttribute("value", parseInt(boton.innerHTML));
+                    precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
+                }
+            });
+
+            document.querySelector('.restar').addEventListener("click", function() {
+                let boton = this.parentNode.parentNode.querySelector(".cantidad");
+                if (parseInt(boton.getAttribute("max")) > parseInt(boton.innerHTML)) {
+                    let precioFinal = this.parentNode.parentNode.querySelector("#totPrecCant");
+                    if (boton.value > 0) {
+                        boton.innerHTML = parseInt(boton.innerHTML) - 1;
+                        boton.setAttribute("value", parseInt(boton.innerHTML));
+                    }
+                    precioFinal.innerHTML = (boton.getAttribute("price") * boton.getAttribute("value")).toFixed(2);
+                }
+            });
+
+            function agregarDesdeLoguin(id) {
+                console.log("El id es: " + id);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '/agregarCarritoLoguin',
+                    type: 'POST',
+                    data: {
+                        id
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        location.href = "/login";
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            }
         }
     </script>
-    <script src="/js/products_actions.js"></script>
+    <!-- <script src="/js/products_actions.js"></script> -->
     <!-- <script src="/js/products_more.js"></script> -->
     @endsection

@@ -59,9 +59,9 @@
                     <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
                     <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
                 </div>
-                @if($producto->stock == 0)                
-                    <h4 type="button" class="btn btn-light disabled">
-                        <strike>Total: $<span id="totPrecCant">0.00</strike></span></h4>                
+                @if($producto->stock == 0)
+                <h4 type="button" class="btn btn-light disabled">
+                    <strike>Total: $<span id="totPrecCant">0.00</strike></span></h4>
                 @else
                 <h4 type="button" class="btn btn-light disabled">
                     Total: $<span id="totPrecCant">{{$producto->price}}</span></h4>
@@ -95,6 +95,123 @@
     </div>
 </div>
 @include("includes.modal")
+
+<?php session_start(); ?>
+@if(isset($_SESSION['Producto']))
+<script>
+    console.log("versiesta..");
+
+    function agregarCarritoGuess(productid) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/agregarProducto',
+            type: 'POST',
+            data: {
+                productid
+            },
+            success: function(response) {
+                console.log("productoAgregado");
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    };
+
+    function verSiEstaCart(productid) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/agregarSiNoCart',
+            type: 'POST',
+            data: {
+                productid
+            },
+            success: function(response) {
+                console.log(response);
+                if (response == 'true') {
+                    agregarCarritoGuess(productid);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function(response) {
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                        },
+                        error: function(e) {
+                            console.log(e);
+                        }
+                    });
+                } else {
+                    console.log("Ya está en el carrito");
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function(response) {
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                        },
+                        error: function(e) {
+                            console.log(e);
+                        }
+                    });
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    };
+    verSiEstaCart(<?php echo $_SESSION['Producto'] ?>);
+</script>
+@else
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/cantCarrito",
+        type: "GET",
+        success: function(response) {
+            console.log(parseInt(response));
+            document.getElementById('cantCarrito').setAttribute('value', parseInt(response));
+            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    });
+</script>
+@endif
+<?php session_destroy(); ?>
+
+
+
+
+
+
+
 @endauth
 @guest
 <h1>Debes loguearte para utilizar el carrito</h1>

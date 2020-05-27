@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Product;
 use App\Cart;
+use App\Brand;
+use App\Category;
 
 class UserController extends Controller
 {
@@ -74,8 +76,10 @@ class UserController extends Controller
     public function searchProduct(Request $req)
     {
         $texto = $req['texto'];
-        $busqueda = Product::where('name', 'LIKE', '%' . $texto . '%')->skip(0)->take(8)->get();
-        return $busqueda;
+        $busqueda = Product::where('name','LIKE','%'.$texto.'%')->skip(0)->take(8)->get();
+        $cantidad = Product::where('name','LIKE','%'.$texto.'%')->get();
+        $response = [$busqueda,count($cantidad)];
+        return $response;
     }
 
     public function searchProductPage($texto)
@@ -131,5 +135,50 @@ class UserController extends Controller
         session_start();
         $_SESSION['Producto'] = $id;
         return $_SESSION['Producto'];
+    }
+
+    public function agregarSiNoCart(Request $req){
+        $bandera = true;
+        $id = $req['productid'];
+        $user = User::find(auth()->user()->id);
+        $productosAgregados = $user->products;
+        foreach($productosAgregados as $producto){
+            if($producto->id == $id){
+                $bandera = false;
+            }
+        }
+        $response = $bandera ? 'true' : 'false';        
+        return $response;
+    }
+
+    public function obtenerMarcasyCategorias(){
+        $response = [];
+        array_push($response,Brand::all());
+        array_push($response,Category::all());
+        return $response;
+    }
+
+    public function busquedaAvanzada(Request $req){
+        $marca = $req['marcaSeleccionada'];
+        $categoria = $req['categoriaSeleccionada'];
+        if($marca == -1 && $categoria == -1){
+            $productos = Product::paginate(8);
+        }elseif($marca == -1){
+            $productos = Product::where('category','=',$categoria)->paginate(8);
+        }elseif($categoria == -1){
+            $productos = Product::where('brand','=',$marca)->paginate(8);
+        }else{
+            $productos = Product::where('brand','=',$marca)->where('category','=',$categoria)->paginate(8);
+        }        
+        if(auth()->user()) {
+            $user = User::find(auth()->user()->id);
+            $productosAgregados = $user->products;
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }else{
+            $productosAgregados = [];
+            $vac = compact('productos','productosAgregados');
+            return view('pages.listado',$vac);
+        }
     }
 }

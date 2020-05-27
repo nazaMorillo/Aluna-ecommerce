@@ -120,3 +120,7 @@ Route::get('/cantCarrito', function(){
 });
 
 Route::post('/agregarCarritoLoguin', 'UserController@agregarDeslogueado');
+Route::post('/agregarSiNoCart', 'UserController@agregarSiNoCart');
+
+Route::get('/obtenerMarcasyCategorias','UserController@obtenerMarcasyCategorias');
+Route::get('/listado/{marcaSeleccionada}/{categoriaSeleccionada}','UserController@busquedaAvanzada');
