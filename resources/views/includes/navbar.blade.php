@@ -7,7 +7,8 @@
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
         <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
         <i id="busquedaAvanzada" class="fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2" style="color:white;border-width:0px"></i>
-        @auth
+    </form>
+    @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
             <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
             <div id="cantCarrito"></div>    
@@ -15,8 +16,7 @@
         @endauth
         @guest
         <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="35px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
-        @endguest
-    </form>
+    @endguest
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
