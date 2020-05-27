@@ -27,7 +27,7 @@
             <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( Sin unidades disponibles )</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: tomato;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
             @else
             <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
             @endif
@@ -78,7 +78,7 @@
             <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( Sin unidades disponibles )</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: tomato;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
             @else
             <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
             @endif

@@ -9,7 +9,7 @@
     <div style="display: flex-inline; justify-content: space-between">
         <h3 class="col-12 col-md-6 mt-3" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
         <?php if (count($productos) > 0) {
-            echo "<a class='col-12 col-md-2 mt-2 btn btn-danger btn-lg text-white' style='display: flex; justify-content: space-evenly; align-items:center; align-self: flex-start; margin-left: auto; role='button' onclick='eliminarTodoCarrito()'>Vaciar Carrito <i class='far fa-trash-alt'></i></a>";
+            echo "<a class='col-12 col-md-4 col-lg-3 mt-2 btn btn-danger btn-lg text-white' style='display: flex; justify-content: space-evenly; align-items:center; align-self: flex-start; margin-left: auto; role='button' onclick='eliminarTodoCarrito()'>Vaciar Carrito <i class='far fa-trash-alt'></i></a>";
         }  ?>
 
     </div>
@@ -38,10 +38,10 @@
             @endif
 
             @if($producto->stock == 0)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( Sin unidades disponibles )</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
             @else
             <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
             @endif
@@ -49,23 +49,25 @@
             <p class="card-text col-12">{{$producto->description}}</p>
             <div class="col-12 col-md-8 text-center" style="display: flex; justify-content: flex-end; align-items: center;">
                 <div class="col-2">
+                    @if($producto->stock == 0)
+                    <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="0">0</button>
+                    @else
                     <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button>
+                    @endif
                 </div>
                 <div class="col-3 text-center">
                     <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
                     <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
                 </div>
-                @if($producto->stock == 0)
-                
+                @if($producto->stock == 0)                
                     <h4 type="button" class="btn btn-light disabled">
-                        <strike>Total: $<span id="totPrecCant">{{$producto->price}}</strike></span></h4>
-                
+                        <strike>Total: $<span id="totPrecCant">0.00</strike></span></h4>                
                 @else
                 <h4 type="button" class="btn btn-light disabled">
                     Total: $<span id="totPrecCant">{{$producto->price}}</span></h4>
                 @endif
             </div>
-            <a class='btn btn-danger col-1 text-white eliminar btn-lg' style="display: flex;  align-items:center; align-self: flex-end; margin-left:auto;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')"><i class="far fa-trash-alt"></i></a>
+            <a class='btn btn-danger col-1 text-white eliminar' style="display: flex;  align-items:center; align-self: flex-end; justify-content:center; margin-left:auto;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')"><i class="far fa-trash-alt"></i></a>
         </div>
     </div>
     <hr id="hr{{$producto->id}}">
