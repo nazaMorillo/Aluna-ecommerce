@@ -5,212 +5,123 @@
     <!-- START THE FEATURETTES -->
     <div class="card row">
 
-        <h4 class="card-header">Detalle producto {{$producto->id}}</h4>
+        <h4 class="card-header">Detalle de {{$producto->brand}} {{$producto->name}}</h4>
     </div>
-@auth
-<?php $enCarrito = false ?>
-                @foreach($productosAgregados as $productoAgregado)
-                    @if($producto->id == $productoAgregado->id)
-                    <?php $enCarrito = true ?>
-                    @endif
-                @endforeach
-    @if($producto->stock == 0)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}}</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a id="{{$producto->id}}" class="btn btn-lg bg-black col-12 col-md-3 text-white disabled" style="font-size: 0.8em;" href="#" role="button">Sin unidades</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    @elseif($producto->stock == 1 and $enCarrito == false)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}} (Último disponible!)</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
-
-
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    @elseif($producto->stock == 1 and $enCarrito == true)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}} (Último disponible!)</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-secondary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Agregado al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    @elseif($enCarrito == true)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}}</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprarCarrito()">Comprar</a>
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-secondary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button">Agregado al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    @else
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}}</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="comprarCarrito()">Comprar</a>
-
-
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="#" role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @auth
+    <?php $enCarrito = false ?>
+    @foreach($productosAgregados as $productoAgregado)
+    @if($producto->id == $productoAgregado->id)
+    <?php $enCarrito = true ?>
     @endif
-</div>
-@endauth
+    @endforeach
 
-@guest
-<?php $enCarrito = false ?>
-                
-    @if($enCarrito == true)
-    @elseif($producto->stock == 0)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
+    <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+        <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
+        <div class="card-body col-md-8  text-center" style="display: flex; flex-wrap: wrap; justify-content:space-around">
+            @if($producto->stock == 0)
+            <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
+            @else
+            <h3 class="col-12">$ {{$producto->price}}</h3>
+            @endif
+            @if($producto->stock == 0)
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+            @else
+            @if($producto->stock == 1)
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+            @else
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
+            @endif
+            @endif
+            <p class="card-text col-12">{{$producto->description}}</p>
+            <div class="col-12 col-md-10 text-center" style="display: flex; justify-content: flex-end; align-items: center;">
+                <div class="col-2">
+                    <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button>
                 </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}}</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
+                <div class="col-3 text-center">
+                    <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
+                    <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
                 </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a id="{{$producto->id}}" class="btn btn-lg bg-black col-12 col-md-3 text-white disabled" style="font-size: 0.8em;" href="#" role="button">Sin unidades</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
+                <h4 type="button" class="btn btn-light disabled">
+                    Total: $<span id="totPrecCant">{{$producto->price}}</span>
+                </h4>
+
             </div>
+
+            @if($producto->stock == 0)
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            @else
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            @endif
+            @if($enCarrito == true)
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">Agregado al carrito</a>
+            @else
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">Agregar al carrito</a>
+            @endif
+
+            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">Volver al Catálogo</a>
         </div>
+
     </div>
-    @elseif($producto->stock == 1)
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}} (Último disponible!)</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+    @endauth
 
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Agregar al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
+    @guest
+    <?php $enCarrito = false ?>
+    
+    <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+        <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
+        <div class="card-body col-md-8  text-center" style="display: flex; flex-wrap: wrap; justify-content:space-around">
+            @if($producto->stock == 0)
+            <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
+            @else
+            <h3 class="col-12">$ {{$producto->price}}</h3>
+            @endif
+            @if($producto->stock == 0)
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+            @else
+            @if($producto->stock == 1)
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+            @else
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
+            @endif
+            @endif
+            <p class="card-text col-12">{{$producto->description}}</p>
+            <div class="col-12 col-md-10 text-center" style="display: flex; justify-content: flex-end; align-items: center;">
+                <div class="col-2">
+                    <button price="{{$producto->price}}" max="{{$producto->stock}}" class="cantidad input-group-text precio text-center" style="text-align: center;margin:auto" type="text" name="" value="1">1</button>
                 </div>
-            </div>
-        </div>
-    </div>    
-    @else
-    <div class="row producto">
-        <div class="card mb-3 ml-auto  col-md-12">
-            <div class="row no-gutters">
-                <div class="col-md-7 col-lg-8">
-                    <img src="/storage/product/{{$producto->image}}" class="card-img-top" style="max-width:350px;" alt="Producto{{$producto->id}}">
+                <div class="col-3 text-center">
+                    <button style="height:38px;width:36px; margin:auto" class="text-center input-group-text sumar">+</button>
+                    <button style="height:38px;width:36px;margin:auto" class="text-center input-group-text restar">-</button>
                 </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$producto->name}}</h4>
-                        <h5 class="card-title col-md-6">$ {{$producto->price}}</h5>
-                        <p class="card-text col-md-6"><small class="text-muted">Stock: {{$producto->stock}}</small></p>
-                    </div>
-                </div>
-                <div class="col-md-12" style="padding:20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-                    <a class="btn btn-lg btn-primary col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
-                   
+                <h4 type="button" class="btn btn-light disabled">
+                    Total: $<span id="totPrecCant">{{$producto->price}}</span>
+                </h4>
 
-                    <a id="{{$producto->id}}" class="btn btn-lg btn-success col-12 col-md-3" style="font-size: 0.8em;" href="/login" role="button">Agregar al carrito</a>
-                    <a class="btn btn-lg btn-alert col-12 col-md-3" style="font-size: 0.8em; box-shadow: black 1px 1px 3px;" href="/listado" role="button">Ver Listado</a>
-                </div>
             </div>
+
+            @if($producto->stock == 0)
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            @else
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            @endif
+            @if($enCarrito == true)
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">Agregado al carrito</a>
+            @else
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">Agregar al carrito</a>
+            @endif
+
+            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">Volver al Catálogo</a>
         </div>
+
     </div>
-    @endif
-  
-@endguest
-@include("includes.modal") 
-@endsection
 
-@section("agregarCarritoGuess")
+    
+
+    @endguest
+    @include("includes.modal")
+    @endsection
+
+    @section("agregarCarritoGuess")
 @auth
 <?php session_start(); ?>
     @if(isset($_SESSION['Producto']))
@@ -317,13 +228,12 @@ function verSiEstaCart(productid){
 @endauth
 @endsection
 
-@section("scripts")
+    @section("scripts")
     <script src="/js/products_actions.js"></script>
+    <script src="/js/products_more.js"></script>
     <script type="text/javascript">
-
-        window.onload = function(){
+        window.onload = function() {
             document.querySelector("form").reset();
         }
-        
     </script>
-@endsection
+    @endsection

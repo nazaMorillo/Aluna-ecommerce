@@ -1,45 +1,44 @@
-function agregarCarrito(productid){
-    $(document).ready(function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url:'/agregarProducto',
-                type:'POST',
-                data:{productid},
-                success: function(response){
-                    let cantCarrito = document.getElementById('cantCarrito');
-                    cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) + 1);
-                    cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));    
-                    console.log("productoAgregado");
-            },error: function (e) {
+function agregarCarrito(productid) {
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/agregarProducto',
+            type: 'POST',
+            data: { productid },
+            success: function (response) {
+                let cantCarrito = document.getElementById('cantCarrito');
+                cantCarrito.setAttribute('value', parseInt(cantCarrito.getAttribute('value')) + 1);
+                cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));
+                console.log("productoAgregado");
+            }, error: function (e) {
                 console.log(e);
             }
         });
-            if(window.location.href.split("/")[3] == "productos"){
-                document.getElementById(productid).removeAttribute("class");
-                document.getElementById(productid).setAttribute("class","btn btn-lg btn-secondary col-12 col-md-3");
-                document.getElementById(productid).innerHTML = "Agregado al carrito";                
-            }else{
-                document.getElementById(productid).removeAttribute("class");
-                document.getElementById(productid).setAttribute("class","btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-                document.getElementById(productid).innerHTML = "Agregado al carrito";
-            }
-           
+        if (window.location.href.split("/")[3] == "productos") {
+            document.getElementById(productid).removeAttribute("class");
+            document.getElementById(productid).setAttribute("class", "btn btn-lg btn-secondary col-12 col-md-3");
+            document.getElementById(productid).innerHTML = "Agregado al carrito";
+        } else {
+            document.getElementById(productid).removeAttribute("class");
+            document.getElementById(productid).setAttribute("class", "btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
+            document.getElementById(productid).innerHTML = "Agregado al carrito";
+        }
     });
 }
 
-function eliminarCarrito(productid, divprodid,precioProd,hrprod){
-    $(document).ready(function(){
-        console.log("usuario "+productid);
+function eliminarCarrito(productid, divprodid, precioProd, hrprod) {
+    $(document).ready(function () {
+        console.log("usuario " + productid);
         console.log(divprodid);
         console.log(precioProd);
-        if(precioProd==0){
-            var cantidad =  0;
-        }else{
-            var cantidad = document.querySelector("#"+divprodid).querySelector(".cantidad").getAttribute("value");
+        if (precioProd == 0) {
+            var cantidad = 0;
+        } else {
+            var cantidad = document.querySelector("#" + divprodid).querySelector(".cantidad").getAttribute("value");
         }
         console.log(cantidad);
         $.ajaxSetup({
@@ -47,6 +46,7 @@ function eliminarCarrito(productid, divprodid,precioProd,hrprod){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $.ajax({
             url: '/eliminarProducto',
             type: 'POST',
@@ -58,22 +58,52 @@ function eliminarCarrito(productid, divprodid,precioProd,hrprod){
                 console.log("error!!!!");
             }
         });
-        $('#'+divprodid).hide();
-        $('#'+hrprod).hide();
+        $('#' + divprodid).hide();
+        $('#' + hrprod).hide();
         let cantCarrito = document.getElementById('cantCarrito');
-        cantCarrito.setAttribute('value',parseInt(cantCarrito.getAttribute('value')) - 1);
-        cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));  
-        var resultado = (parseFloat(document.getElementById("total").innerHTML) - parseFloat((precioProd*parseFloat(cantidad)))).toFixed(2);
+        cantCarrito.setAttribute('value', parseInt(cantCarrito.getAttribute('value')) - 1);
+        cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));
+
+        let resultado = (parseFloat(document.getElementById("total").innerHTML) - parseFloat((precioProd * parseFloat(cantidad)))).toFixed(2);
         console.log(resultado);
-        document.getElementById("total").innerHTML = resultado;
-        document.getElementById("total").setAttribute('value', resultado);
-        document.getElementById("cantprodtop").innerHTML = parseInt(document.getElementById("cantprodtop").innerHTML) - 1;
-        document.getElementById("cantprodtop").setAttribute("value",parseInt(document.getElementById("cantprodtop").innerHTML) - 1);
+
+        let total = document.getElementById("total");
+        total.innerHTML = resultado;
+        total.setAttribute('value', resultado);
+
+        let cantprodtop = document.getElementById("cantprodtop");
+        cantprodtop.innerHTML = parseInt(cantprodtop.innerHTML) - 1;
+        cantprodtop.setAttribute("value", parseInt(cantprodtop.innerHTML) - 1);
+
+        if (cantprodtop.getAttribute('value') <0) {
+            let finalizarCompra = document.getElementById("finalizarCompra");
+            let mensaje = document.getElementById("mensaje");
+            finalizarCompra.style.display = "none";
+            location.reload();          
+        }
     });
 }
 
-function comprarCarrito(){
-    $(document).ready(function(){
+function eliminarTodoCarrito() {
+    $(document).ready(function () {
+        fetch('/vaciarCarrito')
+        .then(response => {
+            return response;
+            
+        })
+        .then(data=>{
+            console.log("Todo está bien");
+            document.location.reload();
+        })
+        .catch(error =>{
+            console.log("No se vació el carrito. Se encontro el siguiente error: " + error);
+        });
+    });
+}
+
+
+function comprarCarrito() {
+    $(document).ready(function () {
         console.log("Comprando el carrito");
         activarVentanaEmergente("Carrito!!!");
     });
@@ -167,7 +197,7 @@ function validate() {
         });
     }
 
-       
+
 }
 
 function activarVentanaEmergente(productid) {

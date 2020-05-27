@@ -32,7 +32,9 @@
                 <div class="carousel-caption text-right">
                     <h2>Fácil para registrarse y para usar</h2>
                     <p>No querrás otro comercio electronico luego de porbar el nuestro.</p>
+                    @guest
                     <p><a class="btn btn-lg btn-primary" href="/register" role="button">Registrarme ahora</a></p>
+                    @endguest
                 </div>
             </div>
         </div>
