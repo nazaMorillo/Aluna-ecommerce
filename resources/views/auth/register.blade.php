@@ -85,16 +85,16 @@
 
                             <div class="col-6" style="display: flex; flex-wrap:wrap; justify-content: center;">
 
-                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/avatar.png')"></div>
+                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/genericAvatar.png')"></div>
 
                                 <!-- <img id="previewImage" src="/storage/pics/avatar.png" class="rounded-circle" alt="avatar"> -->
-                                <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" autofocus>
+                                <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" autocomplete="avatar" autofocus>
 
-                                @error('avatar')
+                                <!-- @error('avatar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror -->
                             </div>
                         </div>
 
