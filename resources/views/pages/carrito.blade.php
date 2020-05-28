@@ -4,6 +4,11 @@
 
 
     @auth
+
+        {{--  @if(auth()->user()->email == null)
+            {{ redirect() }}
+        @else  --}}
+    
     <?php $totalCarrito = 0;?>
         <div class="container marketing">
             <!-- START THE FEATURETTES -->        
@@ -91,7 +96,8 @@
                 <a class="btn bg-dark disabled text-white col-10 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
                 <a class='btn btn-success col-1 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >Comprar</a>
             </div>
-            @include("includes.modal")
+            @include("includes.modal"
+
     @endauth
     @guest
         <h1>Debes loguearte para utilizar el carrito</h1>

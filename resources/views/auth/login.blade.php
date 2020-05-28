@@ -1,9 +1,21 @@
 @extends('layouts.master')
 
 @section('content')
+@if(session('message'))
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="alert alert-{{ session('message')[0] }}">
+                            <h4 class="alert-heading">
+                                {{ __("Mensaje Informativo") }}</h4>
+                                <p>{{ session('message')[1] }}</p>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            @endif
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-between">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
@@ -72,7 +84,7 @@
                 </div>
             </div>
         </div>
-        @include("includes.logueoRedes")
+        @include("includes.auth.social_login")
     </div>
 </div>
 @endsection

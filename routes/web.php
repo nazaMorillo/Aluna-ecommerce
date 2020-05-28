@@ -114,3 +114,7 @@ Route::get('/cantCarrito', function(){
     $vac = compact('productos');
     return count($vac['productos']);
 });
+
+Route::get('login/{social}', 'Auth\SocialAuthController@redirectToProvider')->name('social_auth');
+
+Route::get('login/{social}/callback', 'Auth\SocialAuthController@handleProviderCallback');

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/fontawesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/style-Social.css">
     {{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  --}}
     {{--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -22,17 +23,25 @@
     </title>
 </head>
 <body>
-    <header>
-        @include("includes.navbar")
-    </header>
-    
-    <main class="py-4 mt-4">
-        <section>
-            @yield('content')
-        </section>        
-    </main>
 
-    @include("includes.footer") 
+    <div id="app" class="d-flex flex-column h-screen w-screen justify-content-between">
+
+        <header>
+            @include("includes.navbar")
+        </header>
+        
+        <main class="py-4 mt-4">
+            <section>
+                @yield('content')
+            </section>        
+        </main>
+
+        <footer>
+            @include("includes.footer") 
+        </footer>
+
+    </div>
+    
    
 
 

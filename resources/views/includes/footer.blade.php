@@ -1,4 +1,4 @@
-<footer class="bg-azul text-center">
+<div class="bg-azul text-center">
     <div class="col-sm-12">
         <div class="brands d-flex justify-content-center">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -12,4 +12,4 @@
     <div class="bg-azul-oscuro copy">
         Copyright &copy; 2020 - All Markert
     </div>
-</footer>
+</div>
