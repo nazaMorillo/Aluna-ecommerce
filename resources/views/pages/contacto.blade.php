@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header"><h2 id="contact" class="mt-2">{{ __('Información de contacto') }}</h2></div>
+                <div class="card-header"><h2 id="contact" class="mt-2">{{ __(trans('idioma.contactTitle')) }}</h2></div>
                 
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
                 <div align="center" class="star-navy">
@@ -16,26 +16,26 @@
                     <div class="col-md-8 mx-auto">
                         <form class="text-left mb-3" id="contacto">
                             <div class="form-group">
-                                <label for="exampleInputName">Nombre:</label>
+                                <label for="exampleInputName">{{trans('idioma.contactName')}}</label>
                                 <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputTelephone">Telefono:</label>
+                                <label for="exampleInputTelephone">{{trans('idioma.contactPhone')}}</label>
                                 <input type="number" class="form-control" id="exampleInputTelephone">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputAddress">Dirección:</label>
+                                <label for="exampleInputAddress">{{trans('idioma.contactAddress')}}</label>
                                 <input type="telephone" class="form-control" id="exampleInputAddress">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Correo electronico:</label>
+                                <label for="exampleInputEmail1">{{trans('idioma.contactEmail')}}</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Consulta:</label>
+                                <label for="exampleFormControlTextarea1">{{trans('idioma.contactMessage')}}</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-primary">{{trans('idioma.contactSend')}}</button>
                         </form>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107134.56934196998!2d-60.76667965536046!3d-32.95218976027299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b6539335d7d75b%3A0xec4086e90258a557!2sRosario%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1574038843464!5m2!1ses-419!2sar" width="100%" height="300px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>

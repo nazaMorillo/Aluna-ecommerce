@@ -11,5 +11,15 @@
     </div>
     <div class="bg-azul-oscuro copy">
         Copyright &copy; 2020 - All Markert
+          <div class="container">
+        <div class="row" style="padding:0px !important">
+            <div class="col">
+                <a href="{{ url('lang', ['es']) }}">Es</a>
+            </div>
+            <div class="col">
+                <a href="{{ url('lang', ['en']) }}">En</a>
+            </div>
+        </div>
+        </div>
     </div>
 </footer>

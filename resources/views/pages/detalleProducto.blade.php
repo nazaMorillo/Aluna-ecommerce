@@ -5,7 +5,7 @@
     <!-- START THE FEATURETTES -->
     <div class="card row">
 
-        <h4 class="card-header">Detalle de {{$producto->brand}} {{$producto->name}}</h4>
+        <h4 class="card-header">{{trans('idioma.detailTitle')}} {{$producto->brand}} {{$producto->name}}</h4>
     </div>
     @auth
     <?php $enCarrito = false ?>
@@ -24,12 +24,12 @@
             <h3 class="col-12">$ {{$producto->price}}</h3>
             @endif
             @if($producto->stock == 0)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>({{trans('idioma.listWithoutUnits')}})</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>({{trans('idioma.listLastAvailable')}}!)</b></span></h5>
             @else
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} {{trans('idioma.detailAvailable')}}</span></h5>
             @endif
             @endif
             <p class="card-text col-12">{{$producto->description}}</p>
@@ -48,17 +48,17 @@
             </div>
 
             @if($producto->stock == 0)
-            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">{{trans('idioma.detailBuy')}}</a>
             @else
-            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" onclick="comprar({{$producto->id}})">{{trans('idioma.detailBuy')}}</a>
             @endif
             @if($enCarrito == true)
-            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">Agregado al carrito</a>
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">{{trans('idioma.listAddedToCart')}}</a>
             @else
-            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">Agregar al carrito</a>
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="#" role="button" id="{{$producto->id}}">{{trans('idioma.listAddToCart')}}</a>
             @endif
 
-            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">Volver al Catálogo</a>
+            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">{{trans('idioma.detailBackCatalog')}}</a>
         </div>
 
     </div>
@@ -76,12 +76,12 @@
             <h3 class="col-12">$ {{$producto->price}}</h3>
             @endif
             @if($producto->stock == 0)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>(Sin unidades disponibles)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b>({{trans('idioma.listWithoutUnits')}})</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>(Último disponible!)</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: orange;"><b>({{trans('idioma.listLastAvailable')}}!)</b></span></h5>
             @else
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} {{trans('idioma.detailAvailable')}}</span></h5>
             @endif
             @endif
             <p class="card-text col-12">{{$producto->description}}</p>
@@ -100,17 +100,17 @@
             </div>
 
             @if($producto->stock == 0)
-            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">{{trans('idioma.detailBuy')}}</a>
             @else
-            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">Comprar</a>
+            <a class="btn btn-lg btn-primary col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" onclick="comprar({{$producto->id}})">{{trans('idioma.detailBuy')}}</a>
             @endif
             @if($enCarrito == true)
-            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">Agregado al carrito</a>
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1 disabled" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">{{trans('idioma.listAddedToCart')}}</a>
             @else
-            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">Agregar al carrito</a>
+            <a class="btn btn-lg btn-success col-12 col-md-5 col-lg-3 m-1" style="font-size: 0.8em;" href="/login" role="button" id="{{$producto->id}}">{{trans('idioma.listAddToCart')}}</a>
             @endif
 
-            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">Volver al Catálogo</a>
+            <a class="btn btn-lg btn-outline-primary col-12 col-md-12 col-lg-3 m-1" style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">{{trans('idioma.detailBackCatalog')}}</a>
         </div>
 
     </div>
