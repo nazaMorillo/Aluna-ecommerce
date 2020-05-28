@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="alert alert-info alert-dismissible show" style="visibility: hidden;" role="alert">
-                                    <strong>{{trans('idioma.contactThanks')}}!</strong><hr> {{trans('idioma.contactThanksText')}}
+                                    <strong>{{trans('idioma.contactThanks')}}!</strong><hr> {{trans('idioma.contactTanksText')}}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
