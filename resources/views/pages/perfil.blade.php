@@ -5,13 +5,6 @@
       <section>
     <div class="row container mt-3 mx-auto">
         <div class="col-12 col-md-3" style="margin-top: 15px; margin-bottom: 5px;">
-            <!--<div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Resumen</a>
-                <a href="#" class="list-group-item list-group-item-action">Perfil</a>
-                <a href="#" class="list-group-item list-group-item-action">Compras</a>
-                <a href="#" class="list-group-item list-group-item-action">Ventas</a>
-                <a href="#" class="list-group-item list-group-item-action">Configuración</a>
-            </div>-->
         </div>
         <div class="col-12 col-md-6" style="margin-top: 15px; margin-bottom: 5px;">
             <h2>Bienvenido {{Auth::user()->name}}!</h2>
@@ -35,13 +28,7 @@
                             <div class="form-group column">
                                 <input name="userpassword" type="password" class="form-control col-12" id="passwordToAuth" placeholder="Ingresa tu contraseña">
                                 <span class="messagerror"></span>                            </div>
-                            <!--<div class="row">
-                                <img src="pics/images.png" class="profile rounded-circle d-block col-sm-3 col-4">
-                                <div class="col-xs-6 col-md-9">
-                                    <input type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
-                                    <h6>Aun no elige una imagen</h6>
-                                </div>
-                            </div>-->
+                           
                             <div class="row">
                             <div id="preview"></div>
                             <!--<img id="imagen" src="/storage/{{Auth::user()->avatar}}" class="profile rounded-circle d-block col-sm-3 col-4">-->
@@ -65,13 +52,6 @@
         </div>
         <div class="col-12 col-md-3" style="margin-top: 15px; margin-bottom: 5px;">
         <div id="preview2" class="rounded-circle" style="height:102px;width:102px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;"></div>
-            <!--<div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Resumen</a>
-                <a href="#" class="list-group-item list-group-item-action">Perfil</a>
-                <a href="#" class="list-group-item list-group-item-action">Compras</a>
-                <a href="#" class="list-group-item list-group-item-action">Ventas</a>
-                <a href="#" class="list-group-item list-group-item-action">Configuración</a>
-            </div>-->
         </div>
     </div>
 </section>

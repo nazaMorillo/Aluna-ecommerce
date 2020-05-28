@@ -85,7 +85,11 @@
 
                             <div class="col-6" style="display: flex; flex-wrap:wrap; justify-content: center;">
 
+<<<<<<< HEAD
                                 <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/602266646.png')"></div>
+=======
+                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/genericAvatar.png')"></div>
+>>>>>>> d31036b481e7813b551dfeac0f4543800273c574
 
                                 <!-- <img id="previewImage" src="/storage/pics/avatar.png" class="rounded-circle" alt="avatar"> -->
                                 <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" autocomplete="avatar" autofocus>
