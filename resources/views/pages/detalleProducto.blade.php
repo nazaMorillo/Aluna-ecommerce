@@ -287,6 +287,6 @@
             }
         }
     </script>
-    <!-- <script src="/js/products_actions.js"></script> -->
+    <script src="/js/products_actions.js"></script>
     <!-- <script src="/js/products_more.js"></script> -->
     @endsection
