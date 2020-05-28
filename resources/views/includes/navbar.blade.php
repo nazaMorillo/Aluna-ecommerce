@@ -1,31 +1,35 @@
-
+<!-- <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light" style="
+    padding-bottom: 9px;
+    padding-top: 9px;
+"> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
     padding-bottom: 9px;
     padding-top: 9px;
 ">
     <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
-        <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
-        @auth
+        <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="{{ trans('idioma.nav0') }}" aria-label="Search">
+        <i id="busquedaAvanzada" class="fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2" style="color:white;border-width:0px"></i>
+    </form>
+    @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
-        <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
-        <div class="rounded-circle" style="padding:0px; margin:0px; background-color:rgba(40, 167, 69, 1); border:solid 1px white ;width:20px;height:20px;text-align:center;position:relative;left:11px;top:-34px"><span class="text-white" style="font-weight: bold;position:relative;top:-5px;width:18px;height:18px text-align:center" id="cantCarrito"></span></div>
+            <img width="35px" height="30px" style="box-shadow: #343a40 0px 0px 3px 3px;" class="rounded-circle bg-dark" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
+            <div id="cantCarrito"></div>    
         </a>
         @endauth
         @guest
-        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="35px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
-        @endguest
-    </form>
+        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="30px" class="rounded-circle bg-dark" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
+    @endguest
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
+                <a class="nav-link" href="/">{{ trans('idioma.nav1') }}</a><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/listado">Catalogo</a>
+                <a class="nav-link" href="/listado">{{ trans('idioma.nav2') }}</a>
             </li>
             
             
@@ -40,15 +44,19 @@
                             </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/gestion">Gestion</a>
-                            </li>                
+                            </li>
+                            <li class="nav-item">
+                                <a  class="nav-link" style="box-shadow: white 0px 0px 1px 1px; color: white; margin-right: 1em; opacity: 0.7; text-align: center;">Administrador<a>
+                            </li>
+
                 @else 
 
 
                              <li class="nav-item"> 
-                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                                <a class="nav-link" href="/ayuda">{{ trans('idioma.nav3') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contacto">Contacto</a>
+                                <a class="nav-link" href="/contacto">{{ trans('idioma.nav4') }}</a>
                             </li>
 
               @endif
@@ -58,10 +66,10 @@
             @guest
                 
                             <li class="nav-item">
-                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                                <a class="nav-link" href="/ayuda">{{ trans('idioma.nav3') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contacto">Contacto</a>
+                                <a class="nav-link" href="/contacto">{{ trans('idioma.nav4') }}</a>
                             </li> 
 
             @endguest
@@ -71,15 +79,20 @@
             <!-- <div class="top-right links"> -->
             @auth
             <!-- solo aparece si el usuario está logeado -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="/perfil" style="display: flex; padding:0px">
-                <div class="rounded-circle" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center"></div>
-                    <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
+                @if (auth()->user()->esadmin == 1)
+                <div class="rounded-circle border border-danger" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center; box-shadow: red 0px 0px 10px 5px"></div>
+                @else
+                <div class="rounded-circle border border-primary" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center"></div>
+                @endif
+                    <p class="nav-link" style="margin:0px;"><b> {{Auth::user()->name}}</b></p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Salir</a>
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">{{ trans('idioma.nav7') }}</a>
                 <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
@@ -89,12 +102,12 @@
             @else
             <li class="nav-item">
                 <!-- <a class="nav-link" href="#">Login </a> -->
-                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                <a class="nav-link" href="{{ route('login') }}">{{ trans('idioma.nav5') }}</a>
             </li>
             @if (Route::has('register'))
             <li class="nav-item">
                 <!-- <a class="nav-link" href="#">Registro</a> -->
-                <a class="nav-link" href="{{ route('register') }}">Registro</a>
+                <a class="nav-link" href="{{ route('register') }}">{{ trans('idioma.nav6') }}</a>
             </li>
             @endif
             @endauth

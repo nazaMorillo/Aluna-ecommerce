@@ -37,4 +37,5 @@ class ProductController extends Controller
         
         return view('pages.detalleProducto', $vac);
     }
+
 }

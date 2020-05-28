@@ -5,7 +5,7 @@
     <div class="container marketing">
         <!-- START THE FEATURETTES -->        
         <div class="card row">
-            <h4 class="card-header">Encuentra lo que estás buscando</h4>
+            <h4 class="card-header">{{trans('idioma.listTitle')}}</h4>
         </div>
         @auth
 
@@ -29,7 +29,7 @@
 
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Sin unidades</a>
+                        <a id="{{$producto->id}}" class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listWithoutUnits')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -42,7 +42,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -51,7 +51,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
 
                         <!--Fin Agregar al Carrito-->
@@ -65,7 +65,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -74,7 +74,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -96,7 +96,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button" onclick="agregarCarrito({{$producto->id}})">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -118,7 +118,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
 
                         <!--Fin Agregar al Carrito-->
@@ -158,7 +158,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -176,7 +176,7 @@
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
-                        <a class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button" href="/login">Sin unidades</a>
+                        <a class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button" href="/login">{{trans('idioma.listWithoutUnits')}}</a>
 
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
@@ -194,7 +194,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -206,7 +206,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" href="/login">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -231,7 +231,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" href="/login">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -248,6 +248,135 @@
 
 @endsection
 
+@section("agregarCarritoGuess")
+@auth
+<?php session_start(); ?>
+    @if(isset($_SESSION['Producto']))
+    <script>console.log("versiesta..");
+function agregarCarritoGuess(productid){
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarProducto',
+                type:'POST',
+                data:{productid},
+                success: function(response){  
+                    console.log("productoAgregado");
+            },error: function (e) {
+                console.log(e);
+            }
+        });
+    };
+function verSiEstaCart(productid){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+    $.ajax({
+        url:'/agregarSiNoCart',
+        type:'POST',
+        data:{productid},
+        success: function(response){  
+            console.log(response);
+            if(response == 'true'){
+                agregarCarritoGuess(productid);
+                    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }else{
+                console.log("Ya está en el carrito");
+                $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+};
+    verSiEstaCart(<?php echo $_SESSION['Producto'] ?>);
+        </script>
+    @else
+    <script>
+    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/cantCarrito",
+                        type: "GET",
+                        success: function (response) {												
+                            console.log(parseInt(response));
+                            document.getElementById('cantCarrito').setAttribute('value',parseInt(response));
+                            document.getElementById('cantCarrito').innerHTML = parseInt(response);
+                            },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+    </script>
+    @endif
+    <?php session_destroy(); ?>
+    
+@endauth
+@endsection
+
 @section("scripts")
+    <script>
+        function agregarDesdeLoguin(id){
+            console.log("El id es: "+id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarCarritoLoguin',
+                type:'POST',
+                data:{id},
+                success: function(response){
+                    console.log(response);
+                    location.href = "/login";
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+        }
+    </script>
     <script src="/js/products_actions.js"></script>
 @endsection

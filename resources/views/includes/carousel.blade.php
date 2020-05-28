@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="carousel-caption text-left">
                     <h2>All Market</h2>
-                    <p>Es el comercio electronico en donde todos quieren comprar.</p>
+                    <p>{{ trans('idioma.carousel1p') }}</p>
                     <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p> -->
                 </div>
             </div>
@@ -20,8 +20,8 @@
             
             <div class="container">
                 <div class="carousel-caption">
-                    <h2>Orden por categorías</h2>
-                    <p>All Market tiene una forma simple de ordenar tus productos por categorías.</p>
+                    <h2>{{ trans('idioma.carousel2t') }}</h2>
+                    <p>{{ trans('idioma.carousel2p') }}</p>
                     <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Conocer más</a></p> -->
                 </div>
             </div>
@@ -30,9 +30,11 @@
             <img class="bd-placeholder-img" width="100%" src="/storage/slider/phone.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" alt="shoping">
             <div class="container">
                 <div class="carousel-caption text-right">
-                    <h2>Fácil para registrarse y para usar</h2>
-                    <p>No querrás otro comercio electronico luego de porbar el nuestro.</p>
-                    <p><a class="btn btn-lg btn-primary" href="/register" role="button">Registrarme ahora</a></p>
+                    <h2>{{ trans('idioma.carousel3t') }}</h2>
+                    <p>{{ trans('idioma.carousel3p') }}</p>
+                    @guest
+                    <p><a class="btn btn-lg btn-primary" href="/register" role="button">{{ trans('idioma.carousel3p2') }}</a></p>
+                    @endguest
                 </div>
             </div>
         </div>
