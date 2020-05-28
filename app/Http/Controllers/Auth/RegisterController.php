@@ -54,11 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-<<<<<<< HEAD
             'avatar' => ['file','mimes:jpeg,jpg,png,gif','max:10000'] //,'mimes:jpeg,jpg,png,gif','max:10000'
-=======
-            'avatar' => ['file','mimes:jpeg,jpg,png,gif','max:10000' ] //,'mimes:jpeg,jpg,png,gif','max:10000'
->>>>>>> d31036b481e7813b551dfeac0f4543800273c574
         ]);
     }
 
@@ -71,11 +67,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if(empty(request()->file('avatar'))){
-<<<<<<< HEAD
             $fileName ="602266646.png";
-=======
-            $fileName = "user6_7714.png";
->>>>>>> d31036b481e7813b551dfeac0f4543800273c574
         }else{
             $ruta = request()->file('avatar')->store('public');
             $fileName = basename($ruta);

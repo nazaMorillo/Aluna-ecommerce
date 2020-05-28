@@ -22,7 +22,7 @@ class CategorySeeder extends Seeder
             'name' => 'Televisores'
         ]);
         DB::table('category')->insert([
-            'name' => 'Auriculares'
+            'name' => 'Sonido'
         ]);
     }
 }
