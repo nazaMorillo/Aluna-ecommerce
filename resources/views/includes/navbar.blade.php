@@ -1,4 +1,7 @@
-
+<!-- <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light" style="
+    padding-bottom: 9px;
+    padding-top: 9px;
+"> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="
     padding-bottom: 9px;
     padding-top: 9px;
@@ -10,12 +13,12 @@
     </form>
     @auth
         <a id="carrito" style="height: 42px;" class="btn btn-outline-success my-2 my-sm-0" href="http://localhost:8000/carrito">
-            <img width="35px" height="30px" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
+            <img width="35px" height="30px" style="box-shadow: #343a40 0px 0px 3px 3px;" class="rounded-circle bg-dark" src="/storage/pics/carrito.png" alt="Carrito" title="Carrito">
             <div id="cantCarrito"></div>    
         </a>
         @endauth
         @guest
-        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="35px" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
+        <a id="carrito" class="btn btn-outline-success my-2 my-sm-0" href="/login"><img width="30px" class="rounded-circle bg-dark" src="/storage/pics/carrito.png" alt="search" title="Carrito"></a>
     @endguest
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -41,7 +44,11 @@
                             </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="/gestion">Gestion</a>
-                            </li>                
+                            </li>
+                            <li class="nav-item">
+                                <a  class="nav-link" style="box-shadow: white 0px 0px 1px 1px; color: white; margin-right: 1em; opacity: 0.7; text-align: center;">Administrador<a>
+                            </li>
+
                 @else 
 
 
@@ -72,10 +79,15 @@
             <!-- <div class="top-right links"> -->
             @auth
             <!-- solo aparece si el usuario está logeado -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="/perfil" style="display: flex; padding:0px">
-                <div class="rounded-circle" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center"></div>
-                    <p class="nav-link" style="margin:0px;"><b>{{Auth::user()->name}}</b></p>
+                @if (auth()->user()->esadmin == 1)
+                <div class="rounded-circle border border-danger" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center; box-shadow: red 0px 0px 10px 5px"></div>
+                @else
+                <div class="rounded-circle border border-primary" style="background-image:url('/storage/{{Auth::user()->avatar}}');height:40px;width:40px;background-size:cover;background-position:center"></div>
+                @endif
+                    <p class="nav-link" style="margin:0px;"><b> {{Auth::user()->name}}</b></p>
                 </a>
             </li>
 

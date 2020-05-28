@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="padding: 0.5em 0px">
             <div class="card">
                 <!-- <div class="card-header">{{ __('Register') }}</div> -->
                 <div class="card-header">{{trans('idioma.register')}}</div>
@@ -85,16 +85,16 @@
 
                             <div class="col-6" style="display: flex; flex-wrap:wrap; justify-content: center;">
 
-                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/avatar.png')"></div>
+                                <div id="previewImage" class="rounded-circle" style="height:150px;width:150px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/pics/602266646.png')"></div>
 
                                 <!-- <img id="previewImage" src="/storage/pics/avatar.png" class="rounded-circle" alt="avatar"> -->
-                                <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" autofocus>
+                                <input id="file" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" autocomplete="avatar" autofocus>
 
-                                @error('avatar')
+                                <!-- @error('avatar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror -->
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@
                 </div>
             </div>
         </div>
-    @include("includes.logueoRedes")    
+    <!-- @include("includes.logueoRedes")     -->
     </div>
 </div>
 @endsection

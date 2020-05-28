@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
     {
         //
         DB::table('products')->insert([
-            'image'=> 'A10.jpg',
+            'image' => 'A10.jpg',
             'name' => 'Samsung A10',
             'description' => 'Pantalla Infinity-V IPS de 6,2 pulgadas, resolución HD+ y relación de aspecto 19,5:9
             Procesador Exynos 7884, octa core a 1,6 GHz
@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
             'category' => 1,
         ]);
         DB::table('products')->insert([
-            'image'=> 'S20.jpg',
+            'image' => 'S20.jpg',
             'name' => 'Samsung S20',
             'description' => 'Dynamic AMOLED
 6,2 pulgadas
@@ -41,7 +41,7 @@ Ram 8/12 GB LPDDR5',
             'category' => 1,
         ]);
         DB::table('products')->insert([
-            'image'=> 'Flat 4K UHD Serie 7.jpg',
+            'image' => 'Flat4KUHDSerie7.jpg',
             'name' => 'Samsung Flat 4K UHD Serie 7',
             'description' => '4K UHD PROCESSOR: Powerful 4K UHD processor optimizes your TV’s performance by upscaling every show, season, and scene with 4K picture quality',
             'price' => 90000.00,
@@ -50,7 +50,7 @@ Ram 8/12 GB LPDDR5',
             'category' => 3,
         ]);
         DB::table('products')->insert([
-            'image'=> 'G7.jpg',
+            'image' => 'G7.jpg',
             'name' => 'Motorola G7',
             'description' => 'Pantalla: 6.2 pulgadas (2,270x1,080 con 403ppp)
             Procesador: Snapdragon 632 (1.8GHz)
@@ -63,7 +63,7 @@ Ram 8/12 GB LPDDR5',
             'category' => 1,
         ]);
         DB::table('products')->insert([
-            'image'=> 'Pulse 200 Bass.jpg',
+            'image' => 'Pulse200Bass.jpg',
             'name' => 'Motorola Pulse 200 Bass',
             'description' => 'Los auricular Motorola Pulse 200 Bass Over Ear Negro con altavoces de 40mm con graves mejorados. Sonido de la alta calidad. Aislamiento del ruido ambiental. Ultra ligero. Orejas giratorias.',
             'price' => 2000.00,
@@ -72,7 +72,7 @@ Ram 8/12 GB LPDDR5',
             'category' => 4,
         ]);
         DB::table('products')->insert([
-            'image'=> 'RN8.jpg',
+            'image' => 'RN8.jpg',
             'name' => 'Xiaomi Redmi Note 8',
             'description' => 'Almacenamiento: Memoria interna 64GB
             RAM 4GB
@@ -85,7 +85,7 @@ Ram 8/12 GB LPDDR5',
             'category' => 1,
         ]);
         DB::table('products')->insert([
-            'image'=> 'Mi True Earbuds Airdots.jpg',
+            'image' => 'MiTrueEarbudsAirdots.jpg',
             'name' => 'Xiaomi Mi True Earbuds Airdots',
             'description' => 'Tipo: In-Ear
 Bluetooth: 5.0 HFP / A2DP / HSP / AVRCP
@@ -98,7 +98,7 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
             'category' => 4,
         ]);
         DB::table('products')->insert([
-            'image'=> 'P30.jpg',
+            'image' => 'P30.jpg',
             'name' => 'Huawei P30',
             'description' => 'Pantalla: 6.1 pulgadas (OLED plana), 2,340x1,080 pixeles
         Procesador: 2.6GHz Kirin 980 (ocho núcleos)
@@ -110,7 +110,7 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
             'category' => 1,
         ]);
         DB::table('products')->insert([
-            'image'=> 'Corolla.jpg',
+            'image' => 'Corolla.jpg',
             'name' => 'Toyota Corolla',
             'description' => 'Longitud: 3945 mm
             Ancho: 1506 mm
@@ -122,7 +122,7 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
             'category' => 2,
         ]);
         DB::table('products')->insert([
-            'image'=> '3008.jpg',
+            'image' => '3008.jpg',
             'name' => 'Peugeot 3008',
             'description' => 'CARROCERÍA: SUV
             PUERTAS: 5

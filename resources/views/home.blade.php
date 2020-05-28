@@ -1,50 +1,59 @@
 @extends("layouts.master")
 
 @section("title")
-    Home
+Home
 @endsection
 
 @section("content")
 
-    
-    @include("includes.carousel")
+
+@include("includes.carousel")
+
+<center>
+    <img src="{{{ asset('storage/pics/imagotipo-allmarket.png') }}}" alt="Allmarket">
+</center>
+<div class="container marketing" style="margin: 10px 0px;">
 
 
-    <div class="container marketing" style="margin: 10px 0px;">
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-12 col-md-10 offset-md-1">
-                <h3 class="col-12 col-md-8">{{ trans('idioma.home1t') }}</h3>
-                <p>{{ trans('idioma.home1p') }}</p>
-                <a class="btn btn-secondary col-12 col-md-4" href="/contacto" role="button">{{ trans('idioma.home1a') }} &raquo;</a>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-12 col-md-10 offset-md-1">
-                <h3 class="col-12 col-md-8">{{ trans('idioma.home2t') }}</h3>
-                <p>{{ trans('idioma.home2p') }}</p>
-                <a class="btn btn-secondary col-12 col-md-4" href="/listado" role="button">{{ trans('idioma.home2a') }} &raquo;</a>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-    </div>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-12 col-md-10 offset-md-1">
+            <h3 class="col-12 col-md-8">{{ trans('idioma.home1t') }}</h3>
+            <p>{{ trans('idioma.home1p') }}</p>
+            <a class="btn btn-secondary col-12 col-md-4" href="/contacto" role="button">{{ trans('idioma.home1a') }} &raquo;</a>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-12 col-md-10 offset-md-1">
+            <h3 class="col-12 col-md-8">{{ trans('idioma.home2t') }}</h3>
+            <p>{{ trans('idioma.home2p') }}</p>
+            <a class="btn btn-secondary col-12 col-md-4" href="/listado" role="button">{{ trans('idioma.home2a') }} &raquo;</a>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
 @endsection
 
 @section("agregarCarritoGuess")
 @auth
 <?php session_start(); ?>
-    @if(isset($_SESSION['Producto']))
-    <script>console.log("versiesta..");
-function agregarCarritoGuess(productid){
-                $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url:'/agregarProducto',
-                type:'POST',
-                data:{productid},
-                success: function(response){  
-                    console.log("productoAgregado");
-            },error: function (e) {
+@if(isset($_SESSION['Producto']))
+<script>
+    console.log("seee");
+
+    function agregarCarritoGuess(productid) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/agregarProducto',
+            type: 'POST',
+            data: {
+                productid
+            },
+            success: function(response) {
+                console.log("productoAgregado");
+            },
+            error: function(e) {
                 console.log(e);
             }
         });

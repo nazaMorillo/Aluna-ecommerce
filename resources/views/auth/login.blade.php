@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" style="padding: 5em 0px">
             <div class="card">
                 <div class="card-header">{{ __( trans('idioma.login') ) }}</div>
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        @include("includes.logueoRedes")
+        <!-- @include("includes.logueoRedes") -->
     </div>
 </div>
 @endsection
