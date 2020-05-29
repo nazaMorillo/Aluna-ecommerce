@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Product;
+use App\Brand;
+use App\Category;
 use Illuminate\Http\Request;
 
 class AjaxCrudController extends Controller
@@ -61,8 +63,8 @@ class AjaxCrudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request)    
+    {        
         $rules = array(
             'name'    =>  'required',
                 'description'     =>  'required',
@@ -85,6 +87,51 @@ class AjaxCrudController extends Controller
         $new_name = rand() . '.' . $image->getClientOriginalExtension();
 
         $image->move(storage_path('app/public/product'), $new_name);
+        if($request->brandsDB > -1){
+            $request->brand = (int)$request->brandsDB;
+        }else{
+            $flag = false;
+            $brandsDB = Brand::all();
+            foreach($brandsDB as $brand){
+                if($brand->name == $request->brand){
+                    $flag = true;
+                    $request->brand = $brand->id;
+                }
+            };
+            if(!$flag){
+                Brand::create([
+                    'id' => null,
+                    'name' => $request->brand,
+                    'created_at' => null,
+                    'updated_at' => null
+                ]);
+
+                $brandAct = Brand::find(\DB::table('brands')->max('id'));
+                $request->brand = $brandAct->id;
+            }            
+        }
+        if($request->categoryDB > -1){
+            $request->category = (int)$request->categoryDB;
+        }else{
+            $flag = false;
+            $categoryDB = Category::all();
+            foreach($categoryDB as $category){
+                if($category->name == $request->category){
+                    $flag = true;
+                    $request->category = $category->id;
+                }
+            };
+            if(!$flag){
+                Category::create([
+                    'id' => null,
+                    'name' => $request->category,
+                    'created_at' => null,
+                    'updated_at' => null
+                ]);
+                $categoryAct = Category::find(\DB::table('category')->max('id'));
+                $request->category = $categoryAct->id;
+            }            
+        }
 
         $form_data = array(
             'name'       =>   $request->name,

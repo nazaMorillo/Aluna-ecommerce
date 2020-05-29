@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     public $guarded = [];
-
-    protected $fillable = ['name'];
        
        public $timestamps = true;
 
@@ -18,4 +16,7 @@ class Brand extends Model
         return $this->hasMany(Product::class, "brand_id");
     }
     
+    protected $fillable = [
+        'id', 'name', 'created_at', 'updated_at'
+       ];
 }

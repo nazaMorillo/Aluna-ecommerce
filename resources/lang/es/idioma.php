@@ -2,7 +2,7 @@
 
 return[
     'language'=> 'es',
-    'home' => 'Bienvenido a Aluna',
+    'home' => 'Bienvenido a Allmarket',
     'carousel1p' => 'Es el comercio electrónico en donde todos quieren comprar',
     'carousel2t' => 'Orden por categorías',
     'carousel2p' => 'All Market tiene una forma simple de ordenar tus productos por categorías',
