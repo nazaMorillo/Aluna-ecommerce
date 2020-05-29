@@ -30,7 +30,7 @@ class AjaxCrudController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('ajax_index');
+        return view('pages.gestion');
     }
 
     public function getProducts()

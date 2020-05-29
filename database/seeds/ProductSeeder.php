@@ -20,8 +20,8 @@ class ProductSeeder extends Seeder
             2 GB de memoria RAM',
             'price' => 17999.00,
             'stock' => 200,
-            'brand' => 1,
-            'category' => 1,
+            'brand_id' => 1,
+            'category_id' => 1,
         ]);
         DB::table('products')->insert([
             'image' => 'S20.jpg',
@@ -37,8 +37,8 @@ Octa-core (2,73 + 2,6 + 2 GHz)
 Ram 8/12 GB LPDDR5',
             'price' => 142319.52,
             'stock' => 10,
-            'brand' => 1,
-            'category' => 1,
+            'brand_id' => 1,
+            'category_id' => 1,
         ]);
         DB::table('products')->insert([
             'image' => 'Flat4KUHDSerie7.jpg',
@@ -46,8 +46,8 @@ Ram 8/12 GB LPDDR5',
             'description' => '4K UHD PROCESSOR: Powerful 4K UHD processor optimizes your TV’s performance by upscaling every show, season, and scene with 4K picture quality',
             'price' => 90000.00,
             'stock' => 350,
-            'brand' => 1,
-            'category' => 3,
+            'brand_id' => 1,
+            'category_id' => 3,
         ]);
         DB::table('products')->insert([
             'image' => 'G7.jpg',
@@ -59,8 +59,8 @@ Ram 8/12 GB LPDDR5',
             Memoria RAM: 4GB',
             'price' => 34999.00,
             'stock' => 100,
-            'brand' => 2,
-            'category' => 1,
+            'brand_id' => 2,
+            'category_id' => 1,
         ]);
         DB::table('products')->insert([
             'image' => 'Pulse200Bass.jpg',
@@ -68,8 +68,8 @@ Ram 8/12 GB LPDDR5',
             'description' => 'Los auricular Motorola Pulse 200 Bass Over Ear Negro con altavoces de 40mm con graves mejorados. Sonido de la alta calidad. Aislamiento del ruido ambiental. Ultra ligero. Orejas giratorias.',
             'price' => 2000.00,
             'stock' => 3000,
-            'brand' => 2,
-            'category' => 4,
+            'brand_id' => 2,
+            'category_id' => 4,
         ]);
         DB::table('products')->insert([
             'image' => 'RN8.jpg',
@@ -81,8 +81,8 @@ Ram 8/12 GB LPDDR5',
             Cámara trasera: 48 MP',
             'price' => 42384.00,
             'stock' => 500,
-            'brand' => 4,
-            'category' => 1,
+            'brand_id' => 4,
+            'category_id' => 1,
         ]);
         DB::table('products')->insert([
             'image' => 'MiTrueEarbudsAirdots.jpg',
@@ -94,8 +94,8 @@ Control por voz: Sí
 Batería: Hasta 4 horas de conversación y 12 horas en standby',
             'price' => 5500.00,
             'stock' => 1500,
-            'brand' => 4,
-            'category' => 4,
+            'brand_id' => 4,
+            'category_id' => 4,
         ]);
         DB::table('products')->insert([
             'image' => 'P30.jpg',
@@ -106,8 +106,8 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
         RAM: 6GB',
             'price' => 75000.00,
             'stock' => 1,
-            'brand' => 5,
-            'category' => 1,
+            'brand_id' => 5,
+            'category_id' => 1,
         ]);
         DB::table('products')->insert([
             'image' => 'Corolla.jpg',
@@ -118,8 +118,8 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
             Distancia entre ejes: 2335 mm',
             'price' => 1474000.00,
             'stock' => 3,
-            'brand' => 3,
-            'category' => 2,
+            'brand_id' => 3,
+            'category_id' => 2,
         ]);
         DB::table('products')->insert([
             'image' => '3008.jpg',
@@ -132,8 +132,8 @@ Batería: Hasta 4 horas de conversación y 12 horas en standby',
             MALETERO: 520 litros',
             'price' => 3027000.00,
             'stock' => 5,
-            'brand' => 6,
-            'category' => 2,
+            'brand_id' => 6,
+            'category_id' => 2,
         ]);
     }
 }
