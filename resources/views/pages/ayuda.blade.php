@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <h4>Te sivió la información?</h4>
+            <!-- <h4>Te sivió la información?</h4>
             <form>
                 <fieldset class="form-group">
                     <div class="row">
@@ -141,7 +141,7 @@
                         <button type="submit" class="btn btn-primary bg-dark">ENVIAR</button>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
         </div>
     </div>
