@@ -52,7 +52,7 @@ $(document).ready(function() {
             {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
             {data: 'stock', name: 'stock'},
-            {data: 'brand_id', name: 'brand'},
+            {data: 'brand_id', name: 'brand.name'},
             {data: 'category_id', name: 'category'},
             {data: 'action', name: 'action',orderable: false},                
         ]

@@ -17,7 +17,13 @@ class AjaxCrudController extends Controller
     {
         if(request()->ajax())
         {
-            return datatables()->of(Product::latest()->get())
+            $productos = Product::latest()->get();
+
+            
+            return datatables()->of($productos)
+                ->editColumn('brand_id',function($productos) {
+                    return $productos->brand->name;
+                })  
                 ->addColumn('action', function($data){
                     $btnsAction = '
                     <div width="100%" class="d-flex flex-column justify-content-between">
