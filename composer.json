@@ -18,7 +18,7 @@
         "sensiolabs/security-checker": "^6.0",
         "yajra/laravel-datatables-oracle": "^9.10"
     },
-<<<<<<< HEAD
+
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
         "beyondcode/laravel-dump-server": "^1.0",
@@ -28,8 +28,7 @@
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
     },
-=======
->>>>>>> allmarket_alexis_definitiveBranch
+
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
