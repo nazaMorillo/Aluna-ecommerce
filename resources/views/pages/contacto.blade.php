@@ -17,26 +17,38 @@
 
                 <div class="card-body">
                     <div class="col-md-8 mx-auto">
-                        <form class="text-left mb-3" id="contacto">
+                        <form class="text-left mb-3" id="contacto" action="{{ route('contacto') }}" 
+                        method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="exampleInputName">{{trans('idioma.contactName')}}</label>
-                                <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
+                                <input type="text" name="name" class="form-control" id="exampleInputName" value="{{ old('name') }}">
+                                {!! $errors->first('name', '<small>:message</small><br>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputTelephone">{{trans('idioma.contactPhone')}}</label>
-                                <input type="number" class="form-control" id="exampleInputTelephone">
+                                <input type="number" name="phone" class="form-control" id="exampleInputTelephone" value="{{ old('phone') }}">
+                                {!! $errors->first('phone', '<small>:message</small><br>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputAddress">{{trans('idioma.contactAddress')}}</label>
-                                <input type="telephone" class="form-control" id="exampleInputAddress">
+                                <input type="text" name="address" class="form-control" id="exampleInputAddress" value="{{ old('address') }}">
+                                {!! $errors->first('address', '<small>:message</small><br>') !!}
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputSubject">{{trans('idioma.contactSubject')}}</label>
+                                <input type="text" name="subject" class="form-control" id="exampleInputSubject" value="{{ old('subject') }}">
+                                {!! $errors->first('subject', '<small>:message</small><br>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">{{trans('idioma.contactEmail')}}</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{ old('email') }}">
+                                {!! $errors->first('email', '<small>:message</small><br>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">{{trans('idioma.contactMessage')}}</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
+                                <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;">{{ old('message') }}</textarea>
+                                {!! $errors->first('message', '<small>:message</small><br>') !!}
                             </div>
                             <div class="form-group">
                                 <div class="alert alert-info alert-dismissible show" style="visibility: hidden;" role="alert">
@@ -171,143 +183,162 @@ function verSiEstaCart(productid){
 
 @section("scripts")
 <script>
-     $('.alert').hide();
-    function ValidateEmail(mail) {
-        var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (mail.value.match(mailFormat)) {
-            return (true);
-        }
-        return (false);
-    }
-    $(document).ready(function() {
-        console.log(document.forms);
-        elementos = document.getElementById("contacto").elements;
-        console.log(elementos);
-        console.log("Hola");
-        var errores = 0;
-        for (var i = 0; i < elementos.length - 1; i++) {
-            elementos[i].addEventListener("blur", function() {
-                if (this.id == "exampleInputName") {
-                    if (this.value.length < 4) {
-                        if (!this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "red";
-                            let spanError = document.createElement("span");
-                            spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 4"));
-                            this.parentNode.append(spanError);
-                            errores += 1;
-                        }
-                        console.log(errores);
-                    } else {
-                        if (this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "";
-                            this.parentNode.removeChild(this.parentNode.querySelector("span"));
-                            errores -= 1;
-                        }
-                        console.log(errores);
-                    }
-                } else if (this.id == "exampleInputAddress") {
-                    if (this.value.length < 6) {
-                        if (!this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "red";
-                            let spanError = document.createElement("span");
-                            spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 6"));
-                            this.parentNode.append(spanError);
-                            errores += 1;
-                        }
-                        console.log(errores);
-                    } else {
-                        if (this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "";
-                            this.parentNode.removeChild(this.parentNode.querySelector("span"));
-                            errores -= 1;
-                        }
-                        console.log(errores);
-                    }
-                } else if (this.id == "exampleInputTelephone") {
-                    if (this.value.length < 7) {
-                        if (!this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "red";
-                            let spanError = document.createElement("span");
-                            spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Teléfono no válido"));
-                            this.parentNode.append(spanError);
-                            errores += 1;
-                        }
-                        console.log(errores);
-                    } else {
-                        if (this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "";
-                            this.parentNode.removeChild(this.parentNode.querySelector("span"));
-                            errores -= 1;
-                        }
-                        console.log(errores);
-                    }
-                } else if (this.id == "exampleFormControlTextarea1") {
-                    if (this.value.length < 20) {
-                        if (!this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "red";
-                            let spanError = document.createElement("span");
-                            spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 20"));
-                            this.parentNode.append(spanError);
-                            errores += 1;
-                        }
-                        console.log(errores);
-                    } else {
-                        if (this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "";
-                            this.parentNode.removeChild(this.parentNode.querySelector("span"));
-                            errores -= 1;
-                        }
-                        console.log(errores);
-                    }
-                } else if (this.id == "exampleInputEmail1") {
-                    if (!ValidateEmail(this)) {
-                        if (!this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "red";
-                            let spanError = document.createElement("span");
-                            spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Email no válido"));
-                            this.parentNode.append(spanError);
-                            errores += 1;
-                        }
-                        console.log(errores);
-                    } else {
-                        if (this.parentNode.querySelector("span")) {
-                            this.style.borderColor = "";
-                            this.parentNode.removeChild(this.parentNode.querySelector("span"));
-                            errores -= 1;
-                        }
-                        console.log(errores);
-                    }
-                }
-            });
-        }
-        elementos[elementos.length - 1].addEventListener("click", function(e) {
-            if (errores > 0) {
-                e.preventDefault();
-                console.log("Hay errores en tus datos");
-            } else {
-                e.preventDefault();
-                console.log("Información correcta");
-                document.querySelector('.alert').style.visibility= "visible";
-                $('.alert').show();
-                let contacto = document.getElementById('contacto');
-                contacto.reset();
-            }
-        })
+    $('.alert').hide();
+   function ValidateEmail(mail) {
+       var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+       if (mail.value.match(mailFormat)) {
+           return (true);
+       }
+       return (false);
+   }
+   $(document).ready(function() {
+       console.log(document.forms);
+       elementos = document.getElementById("contacto").elements;
+       console.log(elementos);
+       console.log("Hola");
+       var errores = 0;
+       for (var i = 0; i < elementos.length - 1; i++) {
+           elementos[i].addEventListener("blur", function() {
+               if (this.id == "exampleInputName") {
+                   if (this.value.length < 4) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Al menos 4"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               } else if (this.id == "exampleInputAddress") {
+                   if (this.value.length < 6) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Al menos 6"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               } else if (this.id == "exampleInputTelephone") {
+                   if (this.value.length < 7) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Teléfono no válido"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               } else if (this.id == "exampleInputSubject") {
+                   if (this.value.length < 5) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Al menos 5"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               } else if (this.id == "exampleFormControlTextarea1") {
+                   if (this.value.length < 20) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Al menos 20"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               } else if (this.id == "exampleInputEmail1") {
+                   if (!ValidateEmail(this)) {
+                       if (!this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "red";
+                           let spanError = document.createElement("span");
+                           spanError.setAttribute("class", "text-danger");
+                           spanError.append(document.createTextNode("Email no válido"));
+                           this.parentNode.append(spanError);
+                           errores += 1;
+                       }
+                       console.log(errores);
+                   } else {
+                       if (this.parentNode.querySelector("span")) {
+                           this.style.borderColor = "";
+                           this.parentNode.removeChild(this.parentNode.querySelector("span"));
+                           errores -= 1;
+                       }
+                       console.log(errores);
+                   }
+               }
+           });
+       }
+       elementos[elementos.length - 1].addEventListener("click", function(e) {
+           if (errores > 0) {
+               e.preventDefault();
+               console.log("Hay errores en tus datos");
+           } else {
+               e.preventDefault();
+               console.log("Información correcta");
+               document.querySelector('.alert').style.visibility= "visible";
+               $('.alert').show();
+               let contacto = document.getElementById('contacto');
+               contacto.reset();
+           }
+       })
 
-        function beforeSend(e) {
-            e.preventDefault();
-            alert("prevengo que se envíe");
-            this.reset();
-        };
+       function beforeSend(e) {
+           e.preventDefault();
+           alert("prevengo que se envíe");
+           this.reset();
+       };
 
-        let contacto = document.getElementById('contacto');
-        document.querySelector('form').addEventListener('submit', beforeSend, true);
+       let contacto = document.getElementById('contacto');
+       document.querySelector('form').addEventListener('submit', beforeSend, true);
 
-    })
+   })
 </script>
 @endsection

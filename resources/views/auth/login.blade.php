@@ -14,13 +14,8 @@
                 </div>
             @endif
 <div class="container">
-<<<<<<< HEAD
     <div class="row justify-content-between">
         <div class="col-md-7">
-=======
-    <div class="row justify-content-center">
-        <div class="col-md-8" style="padding: 5em 0px">
->>>>>>> allmarket_alexis_definitiveBranch
             <div class="card">
                 <div class="card-header">{{ __( trans('idioma.login') ) }}</div>
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
@@ -89,11 +84,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
         @include("includes.auth.social_login")
-=======
-        <!-- @include("includes.logueoRedes") -->
->>>>>>> allmarket_alexis_definitiveBranch
     </div>
 </div>
 @endsection

@@ -12,34 +12,6 @@
             echo "<a class='col-12 col-md-4 col-lg-3 mt-2 btn btn-danger btn-lg text-white' style='display: flex; justify-content: space-evenly; align-items:center; align-self: flex-start; margin-left: auto; role='button' onclick='eliminarTodoCarrito()'>".trans('idioma.cartDropCart')." <i class='far fa-trash-alt'></i></a>";
         }  ?>
 
-<<<<<<< HEAD
-    @auth
-
-        {{--  @if(auth()->user()->email == null)
-            {{ redirect() }}
-        @else  --}}
-    
-    <?php $totalCarrito = 0;?>
-        <div class="container marketing">
-            <!-- START THE FEATURETTES -->        
-
-                <h3 class="mt-2" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
-<hr>
-
-           <div class="container marketing text-center">
-            <!-- START THE FEATURETTES -->      
-            @foreach($productos as $producto)
-            <?php
-            if($producto->stock > 0){
-                $totalCarrito +=  $producto->price;
-            } 
-            ?>
-            @endforeach
-            @if(count($productos) == 0)
-            <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
-            @else
-            @foreach($productos as $producto)
-=======
     </div>
     <hr>
     <!-- START THE FEATURETTES -->
@@ -59,7 +31,6 @@
     <div id="Producto{{$producto->id}}" class="col-12 producto p-1" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
         <a class="col" href="/productos/{{$producto->id}}"><img class="card-img-top imagen__ajustada" src="/storage/product/{{$producto->image}}" alt="{{$producto->name}}"></a>
         <div class="card-body col-md-8  text-center" style="display: flex; flex-wrap: wrap; justify-content: center;">
->>>>>>> allmarket_alexis_definitiveBranch
             @if($producto->stock == 0)
             <h3 class=" col-12">$ <strike>{{$producto->price}}</strike></h3>
             @else
@@ -98,19 +69,6 @@
             </div>
             <a class='btn btn-danger col-1 text-white eliminar' style="display: flex;  align-items:center; align-self: flex-end; justify-content:center; margin-left:auto;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarCarrito({{$producto->pivot->id}},'Producto{{$producto->id}}',{{$producto->price}},'hr{{$producto->id}}')"><i class="far fa-trash-alt"></i></a>
         </div>
-<<<<<<< HEAD
-        <div class="col-sm-12 mt-3 bg-light">
-                <a class="btn bg-dark disabled text-white col-10 mt-2"><h2>Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span></h2></a>
-                <a class='btn btn-success col-1 text-white mt-2 comprar' id="btnComprarCarrito" onclick="comprarCarrito()" >Comprar</a>
-            </div>
-            @include("includes.modal"
-
-    @endauth
-    @guest
-        <h1>Debes loguearte para utilizar el carrito</h1>
-    @endguest
-@endsection
-=======
     </div>
     <hr id="hr{{$producto->id}}">
     @endforeach
@@ -118,7 +76,6 @@
     <div class="col-12 col-md-12 bg-light btn-lg disabled d-flex" style="flex-wrap:wrap; justify-content: space-evenly" id="finalizarCompra">
         @if(count($productos) > 0)
         <a class='col-12 col-md-4 m-1 btn btn-danger btn-lg text-white' style="display: flex; justify-content: space-evenly; align-items:center;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarTodoCarrito()">{{trans('idioma.cartDropCart')}} <i class="far fa-trash-alt"></i></a>
->>>>>>> allmarket_alexis_definitiveBranch
 
         <a class="col-12 col-md-3 m-1 btn btn-outline-info btn-lg disabled">
             Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span>

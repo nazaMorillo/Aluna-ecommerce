@@ -78,7 +78,9 @@ Route::group(['middleware' => ['web']], function(){
     
     Route::get('/contacto', function () {
         return view('pages.contacto');
-    });
+    })->name('contacto');
+
+    Route::post('/contacto', 'MessageController@store');
     
     
     // Route::get('/registro', function () {
