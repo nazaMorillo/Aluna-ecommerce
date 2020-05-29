@@ -109,28 +109,6 @@ Route::group(['middleware' => ['web']], function(){
     else
         return redirect('/');
 });*/
-
-Route::resource('ajax-crud', 'AjaxCrudController')->middleware('auth', 'role:admin');
-
-Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.update');
-
-Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');
-Route::post('/actualizarPerfil', 'UserController@updateInfo');
-
-Route::get('/cantCarrito', function(){
-    //$vac = $user->products()-get();
-    $user = User::find(auth()->user()->id);
-    $productos = $user->products()->orderBy('pivot_id','desc')->get();
-    $vac = compact('productos');
-    return count($vac['productos']);
-});
-
-Route::get('login/{social}', 'Auth\SocialAuthController@redirectToProvider')->name('social_auth');
-
-Route::get('login/{social}/callback', 'Auth\SocialAuthController@handleProviderCallback');
-=======
->>>>>>> 0e0b65e5fb24487c9bb0d5aa14624dbbb22c340f
-    });*/
     
     Route::resource('ajax-crud', 'AjaxCrudController')->middleware('auth', 'role:admin');
     
@@ -159,13 +137,9 @@ Route::get('login/{social}/callback', 'Auth\SocialAuthController@handleProviderC
     })->where([
         "lang" => "en|es"
     ]);
-<<<<<<< HEAD
+
 
     Route::get('login/{social}', 'Auth\SocialAuthController@redirectToProvider')->name('social_auth');
 
     Route::get('login/{social}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 });
-=======
-});
->>>>>>> allmarket_alexis_definitiveBranch
->>>>>>> 0e0b65e5fb24487c9bb0d5aa14624dbbb22c340f
