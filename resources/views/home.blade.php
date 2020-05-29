@@ -34,28 +34,6 @@ Home
 @section("agregarCarritoGuess")
 @auth
 <?php session_start(); ?>
-<<<<<<< HEAD
-@if(isset($_SESSION['Producto']))
-<script>
-    console.log("seee");
-
-    function agregarCarritoGuess(productid) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/agregarProducto',
-            type: 'POST',
-            data: {
-                productid
-            },
-            success: function(response) {
-                console.log("productoAgregado");
-            },
-            error: function(e) {
-=======
     @if(isset($_SESSION['Producto']))
     <script>console.log("versiesta..");
 function agregarCarritoGuess(productid){
@@ -71,7 +49,6 @@ function agregarCarritoGuess(productid){
                 success: function(response){  
                     console.log("productoAgregado");
             },error: function (e) {
->>>>>>> allmarket_naza
                 console.log(e);
             }
         });
