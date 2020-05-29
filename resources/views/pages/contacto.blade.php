@@ -324,10 +324,14 @@ function verSiEstaCart(productid){
                 console.log("Tienes campos requeridos vacios");
                 if(!document.getElementById('spanVacio')){
                     var errorEmpty = document.createElement('span');
-                    errorEmpty.append(document.createTextNode('Hay campos vacios'));
                     errorEmpty.setAttribute('class','text-danger');
                     errorEmpty.setAttribute('id','spanVacio');
                     document.getElementById('contacto').parentNode.parentNode.prepend(errorEmpty);
+                    if(document.querySelector('html').lang == 'en'){
+                        errorEmpty.append(document.createTextNode('There are empty fields'));
+                    }else{
+                        errorEmpty.append(document.createTextNode('Hay campos vacios'));
+                    }
                 }
                 
             }else {
