@@ -322,8 +322,19 @@ function verSiEstaCart(productid){
             }else if(!banderaNoVacio){
                 e.preventDefault();
                 console.log("Tienes campos requeridos vacios");
+                if(!document.getElementById('spanVacio')){
+                    var errorEmpty = document.createElement('span');
+                    errorEmpty.append(document.createTextNode('Hay campos vacios'));
+                    errorEmpty.setAttribute('class','text-danger');
+                    errorEmpty.setAttribute('id','spanVacio');
+                    document.getElementById('contacto').parentNode.parentNode.prepend(errorEmpty);
+                }
+                
             }else {
                 e.preventDefault();
+                if(document.getElementById('spanVacio')){
+                    document.getElementById('contacto').parentNode.parentNode.removeChild(document.getElementById('spanVacio'));
+                }
                 console.log("Información correcta");
                 document.querySelector('.alert').style.visibility= "visible";
                 $('.alert').show();
