@@ -182,7 +182,7 @@ class AjaxCrudController extends Controller
         );
         Product::whereId($request->hidden_id)->update($form_data);
 
-        return response()->json(['success' => 'Los datos de actualizaron correctamente!']);
+        return response()->json(['success' => 'Los datos se actualizaron correctamente!']);
     }
 
     /**
