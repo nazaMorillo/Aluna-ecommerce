@@ -91,11 +91,7 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-            <!-- <h4>Te sivió la información?</h4>
-=======
-            <h4>{{trans('idioma.helpQuestion')}}</h4>
->>>>>>> allmarket_alexis_definitiveBranch
+            <!-- <h4>{{trans('idioma.helpQuestion')}}</h4>
             <form>
                 <fieldset class="form-group">
                     <div class="row">
