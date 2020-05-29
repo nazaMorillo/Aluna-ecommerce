@@ -53,7 +53,7 @@ $(document).ready(function() {
             {data: 'price', name: 'price'},
             {data: 'stock', name: 'stock'},
             {data: 'brand_id', name: 'brand_id'},
-            {data: 'category_id', name: 'category'},
+            {data: 'category_id', name: 'category_id'},
             {data: 'action', name: 'action',orderable: false},                
         ]
     });
