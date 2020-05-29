@@ -13,18 +13,26 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('products');
+
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("image", 100);
             $table->string("name", 100);
             $table->string("description", 200);
-            $table->decimal("price", 9,2);
+            $table->decimal("price", 9, 2);
             $table->integer('stock');
 
-            $table->string("brand", 200);
-            $table->string("category", 200);
-            // $table->foreign('brand_id')->references('id')->on('brands');
-            // $table->foreign('category_id')->references('id')->on('category'); 
+            $table->unsignedBigInteger("brand_id");
+            $table->unsignedBigInteger("category_id");
+
+            // $table->foreign('brand_id')
+            //         ->references('id')
+            //         ->on('brands');
+
+            // $table->foreign('category_id')
+            //         ->references('id')
+            //         ->on('category');
 
             $table->timestamps();
         });
@@ -37,11 +45,11 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        // Schema::table("products",function(Blueprint $table) {
+        // Schema::table("products", function (Blueprint $table) {
         //     $table->dropForeign('products_brand_id_foreign');
-        //     $table->dropForeign('products_category_id_foreign');             
-        //   });
+        //     $table->dropForeign('products_category_id_foreign');
+        // });
 
-        Schema::dropIfExists('products');        
+        Schema::dropIfExists('products');
     }
 }

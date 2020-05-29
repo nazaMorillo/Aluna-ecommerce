@@ -52,8 +52,8 @@ $(document).ready(function() {
             {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
             {data: 'stock', name: 'stock'},
-            {data: 'brand', name: 'brand'},
-            {data: 'category', name: 'category'},
+            {data: 'brand_id', name: 'brand_id'},
+            {data: 'category_id', name: 'category_id'},
             {data: 'action', name: 'action',orderable: false},                
         ]
     });

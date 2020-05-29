@@ -91,7 +91,11 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <h4>{{trans('idioma.helpQuestion')}}</h4>
+=======
+            <!-- <h4>Te sivió la información?</h4>
+>>>>>>> allmarket_naza
             <form>
                 <fieldset class="form-group">
                     <div class="row">
@@ -116,7 +120,7 @@
                         <button type="submit" class="btn btn-primary bg-dark">{{trans('idioma.helpSend')}}</button>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
         </div>
     </div>

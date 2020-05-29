@@ -21,10 +21,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->nullable();
+<<<<<<< HEAD
             //$table->string('avatar');
             $table->string('address')->nullable();
+=======
+            $table->string('address');
+>>>>>>> allmarket_naza
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('esadmin')->default(0);
         });
     }
 

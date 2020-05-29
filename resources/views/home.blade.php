@@ -9,8 +9,8 @@ Home
 
 @include("includes.carousel")
 
-<center>
-    <img src="{{{ asset('storage/pics/imagotipo-allmarket.png') }}}" alt="Allmarket">
+<center class="col">
+    <img style="max-width: 600px; width:100%; margin: 5% 0px;" src="{{{ asset('storage/pics/imagotipo-allmarket.png') }}}" alt="Allmarket">
 </center>
 <div class="container marketing" style="margin: 10px 0px;">
 
@@ -34,6 +34,7 @@ Home
 @section("agregarCarritoGuess")
 @auth
 <?php session_start(); ?>
+<<<<<<< HEAD
 @if(isset($_SESSION['Producto']))
 <script>
     console.log("seee");
@@ -54,6 +55,23 @@ Home
                 console.log("productoAgregado");
             },
             error: function(e) {
+=======
+    @if(isset($_SESSION['Producto']))
+    <script>console.log("versiesta..");
+function agregarCarritoGuess(productid){
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/agregarProducto',
+                type:'POST',
+                data:{productid},
+                success: function(response){  
+                    console.log("productoAgregado");
+            },error: function (e) {
+>>>>>>> allmarket_naza
                 console.log(e);
             }
         });
