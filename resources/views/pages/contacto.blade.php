@@ -7,7 +7,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h2 id="contact" class="mt-2">{{ __('Información de contacto') }}</h2>
+                    <h2 id="contact" class="mt-2">{{ __(trans('idioma.contactTitle')) }}</h2>
                 </div>
 
                 <!-- <h2 id="contact">INICIO SESIÓN</h2> -->
@@ -19,36 +19,36 @@
                     <div class="col-md-8 mx-auto">
                         <form class="text-left mb-3" id="contacto">
                             <div class="form-group">
-                                <label for="exampleInputName">Nombre:</label>
+                                <label for="exampleInputName">{{trans('idioma.contactName')}}</label>
                                 <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputTelephone">Telefono:</label>
+                                <label for="exampleInputTelephone">{{trans('idioma.contactPhone')}}</label>
                                 <input type="number" class="form-control" id="exampleInputTelephone">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputAddress">Dirección:</label>
+                                <label for="exampleInputAddress">{{trans('idioma.contactAddress')}}</label>
                                 <input type="telephone" class="form-control" id="exampleInputAddress">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Correo electronico:</label>
+                                <label for="exampleInputEmail1">{{trans('idioma.contactEmail')}}</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Consulta:</label>
+                                <label for="exampleFormControlTextarea1">{{trans('idioma.contactMessage')}}</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="alert alert-info alert-dismissible show" style="visibility: hidden;" role="alert">
-                                    <strong>Gracias por contactarnos!</strong><hr> Le estaremos respondiendo a la mayor brevedad posible.
+                                    <strong>{{trans('idioma.contactThanks')}}!</strong><hr> {{trans('idioma.contactTanksText')}}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-8 form-group" style="margin-left: auto; display: flex; justify-content:space-between">
-                                <button type="reset" class="col-5 col-md-5 col-lg-4 btn btn-outline-primary">Borrar</button>
-                                <button type="submit" class="col-5 col-md-5 btn col-lg-4 btn-primary">Enviar</button>
+                                <button type="reset" class="col-5 col-md-5 col-lg-4 btn btn-outline-primary">{{trans('idioma.contactDelete')}}</button>
+                                <button type="submit" class="col-5 col-md-5 btn col-lg-4 btn-primary">{{trans('idioma.contactSend')}}</button>
                             </div>
 
 
@@ -193,7 +193,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 4"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("4 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 4"));
+                            }                            
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -212,7 +216,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 6"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("6 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 6"));
+                            }                              
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -231,7 +239,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Teléfono no válido"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("Invalid phone"));
+                            }else{
+                                spanError.append(document.createTextNode("Teléfono no válido"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -250,7 +262,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 20"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("20 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 20"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -269,7 +285,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Email no válido"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("Invalid Email"));
+                            }else{
+                                spanError.append(document.createTextNode("Email no válido"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -285,11 +305,24 @@ function verSiEstaCart(productid){
                 }
             });
         }
+        var banderaNoVacio;
         elementos[elementos.length - 1].addEventListener("click", function(e) {
+            for (var i = 0; i < 5; i++) {
+                console.log(elementos[i].value.length);
+                if(elementos[i].value.length == 0){
+                    banderaNoVacio = false;
+                    break;
+                };
+                banderaNoVacio = true;
+            }
+            console.log(banderaNoVacio);
             if (errores > 0) {
                 e.preventDefault();
                 console.log("Hay errores en tus datos");
-            } else {
+            }else if(!banderaNoVacio){
+                e.preventDefault();
+                console.log("Tienes campos requeridos vacios");
+            }else {
                 e.preventDefault();
                 console.log("Información correcta");
                 document.querySelector('.alert').style.visibility= "visible";

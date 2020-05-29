@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang=<?php echo trans('idioma.language') ?>>
 <head>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">

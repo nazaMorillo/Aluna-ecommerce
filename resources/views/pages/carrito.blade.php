@@ -7,9 +7,9 @@
 <div class="container marketing">
     <!-- START THE FEATURETTES -->
     <div style="display: flex-inline; justify-content: space-between">
-        <h3 class="col-12 col-md-6 mt-3" style="text-align: left;">Carrito (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
+        <h3 class="col-12 col-md-6 mt-3" style="text-align: left;">{{trans('idioma.cartTitle')}} (<span id="cantprodtop" value="<?= count($productos) ?>"><?= count($productos) ?></span>)</h3>
         <?php if (count($productos) > 0) {
-            echo "<a class='col-12 col-md-4 col-lg-3 mt-2 btn btn-danger btn-lg text-white' style='display: flex; justify-content: space-evenly; align-items:center; align-self: flex-start; margin-left: auto; role='button' onclick='eliminarTodoCarrito()'>Vaciar Carrito <i class='far fa-trash-alt'></i></a>";
+            echo "<a class='col-12 col-md-4 col-lg-3 mt-2 btn btn-danger btn-lg text-white' style='display: flex; justify-content: space-evenly; align-items:center; align-self: flex-start; margin-left: auto; role='button' onclick='eliminarTodoCarrito()'>".trans('idioma.cartDropCart')." <i class='far fa-trash-alt'></i></a>";
         }  ?>
 
     </div>
@@ -24,7 +24,7 @@
     @endforeach
     @if(count($productos) == 0)
     <div id="mensaje">
-        <h3>No tienes productos en el carrito, puedes ir al catálogo o escribir en la barra de búsqueda lo que deseas encontrar</h3>
+        <h3>{{trans('idioma.cartMessageEmpty')}}</h3>
     </div>
     @else
     @foreach($productos as $producto)
@@ -38,12 +38,12 @@
             @endif
 
             @if($producto->stock == 0)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( Sin unidades disponibles )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( {{trans('idioma.listWithoutUnits')}} )</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( Último disponible! )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( {{trans('idioma.listLastAvailable')}}! )</b></span></h5>
             @else
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: green;">{{$producto->stock}} disponibles</span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: green;">{{$producto->stock}} {{trans('idioma.detailAvailable')}}</span></h5>
             @endif
             @endif
             <p class="card-text col-12">{{$producto->description}}</p>
@@ -75,7 +75,7 @@
     @endif
     <div class="col-12 col-md-12 bg-light btn-lg disabled d-flex" style="flex-wrap:wrap; justify-content: space-evenly" id="finalizarCompra">
         @if(count($productos) > 0)
-        <a class='col-12 col-md-4 m-1 btn btn-danger btn-lg text-white' style="display: flex; justify-content: space-evenly; align-items:center;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarTodoCarrito()">Vaciar Carrito <i class="far fa-trash-alt"></i></a>
+        <a class='col-12 col-md-4 m-1 btn btn-danger btn-lg text-white' style="display: flex; justify-content: space-evenly; align-items:center;" <?= "id=" . $producto['id'] ?> role="button" price="{{$producto->price}}" onclick="eliminarTodoCarrito()">{{trans('idioma.cartDropCart')}} <i class="far fa-trash-alt"></i></a>
 
         <a class="col-12 col-md-3 m-1 btn btn-outline-info btn-lg disabled">
             Total: $<span id="total" precini="{{$totalCarrito}}" value="{{$totalCarrito}}">{{$totalCarrito}}</span>
@@ -85,11 +85,11 @@
         <!-- <a class="col-12 col-md-4 m-1 btn btn-success btn-lg text-white comprar disabled" id="btnComprarCarrito" onclick="comprarCarrito()">
                 SIN PRODUCTOS
                 </a> -->
-        <a class="col-12 col-md-4 m-1 btn btn-lg btn-outline-primary " style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">Volver al Catálogo</a>
+        <a class="col-12 col-md-4 m-1 btn btn-lg btn-outline-primary " style="font-size: 0.8em; background-color:floralwhite;" href="/listado" role="button">{{trans('idioma.detailBackCatalog')}}</a>
 
         @else
         <a class="col-12 col-md-4 m-1 btn btn-success btn-lg text-white comprar" id="btnComprarCarrito" onclick="comprarCarrito()" role="button">
-            FINALIZAR COMPRA
+        {{trans('idioma.cartFinishBuy')}}
         </a>
         @endif
     </div>

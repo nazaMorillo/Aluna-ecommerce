@@ -36,12 +36,18 @@
                 </div>
                 <div class="form-group">
                 <label class="control-label col-md-4" >Marca : </label>
+                <div class="col-md-8 mb-2">
+                  <select id="brandsDB" name="brandsDB"></select>
+                </div>
                 <div class="col-md-8">
-                  <input type="text" name="brand" id="brand" class="brand" />
+                  <input type="text" name="brand" id="brand" class="form-control" />
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="control-label col-md-4">Categoria : </label>
+                <div class="col-md-8 mb-2">
+                  <select id="categoryDB" name="categoryDB"></select>
+                </div>
                 <div class="col-md-8">
                   <input type="text" name="category" id="category" class="form-control" />
                 </div>
@@ -64,5 +70,68 @@
       </div>
       </div>
   </div>
+<script>
+  $.ajaxSetup({
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+		$.ajax({
+			url: "/obtenerMarcasyCategorias",
+			type: "GET",
+			success: function (response) {
+            var brandAddProduct = document.getElementById('brandsDB');
+            var categoryAddProduct = document.getElementById('categoryDB');
+						let optionNull = document.createElement('option');
+						optionNull.setAttribute('value',-1);
+						if(document.querySelector('html').lang == 'en'){
+							optionNull.append(document.createTextNode('Select an option'));
+						}else{
+							optionNull.append(document.createTextNode('Seleccione una opción'));
+						}						
+						brandAddProduct.append(optionNull);
+						let optionNulldos = document.createElement('option');
+						optionNulldos.setAttribute('value',-1);
+						if(document.querySelector('html').lang == 'en'){
+							optionNulldos.append(document.createTextNode('Select an option'));
+						}else{
+							optionNulldos.append(document.createTextNode('Seleccione una opción'));
+						}						
+						categoryAddProduct.append(optionNulldos);		
+					for(brand in response[0]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[0][brand].id);
+						option.append(document.createTextNode(response[0][brand].name));
+						brandAddProduct.append(option);
+					}
+					for(category in response[1]){
+						let option = document.createElement('option');
+						option.setAttribute('value',response[1][category].id);
+						option.append(document.createTextNode(response[1][category].name));
+						categoryAddProduct.append(option);
+					}																
+				},
+			error: function (e) {
+				console.log(e);
+			}
+    });
 
+    document.getElementById('brandsDB').addEventListener('change',function(){
+      if(parseInt(this.value) > -1){
+        document.getElementById('brand').disabled = true;
+        document.getElementById('brand').value = "0";
+      }else{
+        document.getElementById('brand').disabled = false;
+      }
+    });
+    document.getElementById('categoryDB').addEventListener('change',function(){
+      if(parseInt(this.value) > -1){
+        document.getElementById('category').disabled = true;
+        document.getElementById('category').value = "0";
+      }else{
+        document.getElementById('category').disabled = false;
+      }
+    });
+    
+</script>
  

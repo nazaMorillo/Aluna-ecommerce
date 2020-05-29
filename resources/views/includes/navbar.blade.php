@@ -8,7 +8,7 @@
 ">
     <a class="navbar-brand" href="/"><img width="35px" src="{{{ asset('storage/pics/isotipo-Allmarket.png') }}}" alt="Allmarket"></a>
     <form class="form-inline mt-2 mt-md-0" style="width: 64%;">
-        <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="Estoy buscando..." aria-label="Search">
+        <input autocomplete="off" id="search" class="form-control mr-sm-2" type="text" placeholder="{{ trans('idioma.nav0') }}" aria-label="Search">
         <i id="busquedaAvanzada" class="fas fa-chevron-down btn btn-outline-success my-2 my-sm-0 mr-2" style="color:white;border-width:0px"></i>
     </form>
     @auth
@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="/">Inicio</a><span class="sr-only">(current)</span>
+                <a class="nav-link" href="/">{{ trans('idioma.nav1') }}</a><span class="sr-only">(current)</span>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/listado">Catalogo</a>
+                <a class="nav-link" href="/listado">{{ trans('idioma.nav2') }}</a>
             </li>
             
             
@@ -53,10 +53,10 @@
 
 
                              <li class="nav-item"> 
-                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                                <a class="nav-link" href="/ayuda">{{ trans('idioma.nav3') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contacto">Contacto</a>
+                                <a class="nav-link" href="/contacto">{{ trans('idioma.nav4') }}</a>
                             </li>
 
               @endif
@@ -66,10 +66,10 @@
             @guest
                 
                             <li class="nav-item">
-                                <a class="nav-link" href="/ayuda">Ayuda</a>
+                                <a class="nav-link" href="/ayuda">{{ trans('idioma.nav3') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contacto">Contacto</a>
+                                <a class="nav-link" href="/contacto">{{ trans('idioma.nav4') }}</a>
                             </li> 
 
             @endguest
@@ -92,7 +92,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Salir</a>
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">{{ trans('idioma.nav7') }}</a>
                 <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
@@ -102,12 +102,12 @@
             @else
             <li class="nav-item">
                 <!-- <a class="nav-link" href="#">Login </a> -->
-                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                <a class="nav-link" href="{{ route('login') }}">{{ trans('idioma.nav5') }}</a>
             </li>
             @if (Route::has('register'))
             <li class="nav-item">
                 <!-- <a class="nav-link" href="#">Registro</a> -->
-                <a class="nav-link" href="{{ route('register') }}">Registro</a>
+                <a class="nav-link" href="{{ route('register') }}">{{ trans('idioma.nav6') }}</a>
             </li>
             @endif
             @endauth

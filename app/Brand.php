@@ -9,7 +9,9 @@ class Brand extends Model
 {
     public $guarded = [];
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'id', 'name', 'created_at', 'updated_at'
+       ];
        
        public $timestamps = true;
 
