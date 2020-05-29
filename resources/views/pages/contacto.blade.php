@@ -193,7 +193,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 4"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("4 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 4"));
+                            }                            
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -212,7 +216,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 6"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("6 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 6"));
+                            }                              
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -231,7 +239,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Teléfono no válido"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("Invalid phone"));
+                            }else{
+                                spanError.append(document.createTextNode("Teléfono no válido"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -250,7 +262,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Al menos 20"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("20 at least"));
+                            }else{
+                                spanError.append(document.createTextNode("Al menos 20"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -269,7 +285,11 @@ function verSiEstaCart(productid){
                             this.style.borderColor = "red";
                             let spanError = document.createElement("span");
                             spanError.setAttribute("class", "text-danger");
-                            spanError.append(document.createTextNode("Email no válido"));
+                            if(document.querySelector('html').lang == 'en'){
+                                spanError.append(document.createTextNode("Invalid Email"));
+                            }else{
+                                spanError.append(document.createTextNode("Email no válido"));
+                            }
                             this.parentNode.append(spanError);
                             errores += 1;
                         }
@@ -285,11 +305,24 @@ function verSiEstaCart(productid){
                 }
             });
         }
+        var banderaNoVacio;
         elementos[elementos.length - 1].addEventListener("click", function(e) {
+            for (var i = 0; i < 5; i++) {
+                console.log(elementos[i].value.length);
+                if(elementos[i].value.length == 0){
+                    banderaNoVacio = false;
+                    break;
+                };
+                banderaNoVacio = true;
+            }
+            console.log(banderaNoVacio);
             if (errores > 0) {
                 e.preventDefault();
                 console.log("Hay errores en tus datos");
-            } else {
+            }else if(!banderaNoVacio){
+                e.preventDefault();
+                console.log("Tienes campos requeridos vacios");
+            }else {
                 e.preventDefault();
                 console.log("Información correcta");
                 document.querySelector('.alert').style.visibility= "visible";
