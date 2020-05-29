@@ -6,7 +6,6 @@ $(document).ready(function(){
     });
     document
     document.querySelector("#file").addEventListener("change",function(e){
-        alert("entraste por acá");
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = function(){

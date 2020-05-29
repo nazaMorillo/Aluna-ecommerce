@@ -160,7 +160,11 @@ $(document).ready(function () {
 		//formAvanzado.setAttribute('action','/buscarAvanzadamente');
 
 		var labelMarcaForm = document.createElement('label');
-		labelMarcaForm.append("Marca: ");
+		if(document.querySelector('html').lang == 'en'){
+			labelMarcaForm.append("Brand: ");
+		}else{
+			labelMarcaForm.append("Marca: ");
+		}
 		var marcaFormAvanzado = document.createElement('select');
 		marcaFormAvanzado.setAttribute('id','marcaFormAvanzado');
 		marcaFormAvanzado.setAttribute('name','marcaFormAvanzado');
@@ -168,7 +172,11 @@ $(document).ready(function () {
 		labelMarcaForm.setAttribute('class','m-2');
 
 		var labelCategoriaForm = document.createElement('label');
-		labelCategoriaForm.append("Categoría: ");
+		if(document.querySelector('html').lang == 'en'){
+			labelCategoriaForm.append("Category: ");
+		}else{
+			labelCategoriaForm.append("Categoría: ");
+		}
 		var categoriaFormAvanzado = document.createElement('select');
 		categoriaFormAvanzado.setAttribute('id','categoriaFormAvanzado');
 		categoriaFormAvanzado.setAttribute('name','categoriaFormAvanzado');
@@ -176,7 +184,12 @@ $(document).ready(function () {
 		labelCategoriaForm.setAttribute('class','m-2');
 
 		var btnsubmit = document.createElement('button');
-		btnsubmit.append(document.createTextNode('Buscar'));
+		
+		if(document.querySelector('html').lang == 'en'){
+			btnsubmit.append(document.createTextNode('Search'));
+		}else{
+			btnsubmit.append(document.createTextNode('Buscar'));
+		}
 		btnsubmit.setAttribute('type','submit');
 		btnsubmit.setAttribute('id','submitFormAvanzado');
 		btnsubmit.setAttribute('class','btn btn-primary m-2');
@@ -199,11 +212,19 @@ $(document).ready(function () {
 			success: function (response) {
 						let optionNull = document.createElement('option');
 						optionNull.setAttribute('value',-1);
-						optionNull.append(document.createTextNode('Seleccione una opción'));
+						if(document.querySelector('html').lang == 'en'){
+							optionNull.append(document.createTextNode('Select an option'));
+						}else{
+							optionNull.append(document.createTextNode('Seleccione una opción'));
+						}						
 						marcaFormAvanzado.append(optionNull);
 						let optionNulldos = document.createElement('option');
 						optionNulldos.setAttribute('value',-1);
-						optionNulldos.append(document.createTextNode('Seleccione una opción'));
+						if(document.querySelector('html').lang == 'en'){
+							optionNulldos.append(document.createTextNode('Select an option'));
+						}else{
+							optionNulldos.append(document.createTextNode('Seleccione una opción'));
+						}						
 						categoriaFormAvanzado.append(optionNulldos);		
 					for(brand in response[0]){
 						let option = document.createElement('option');

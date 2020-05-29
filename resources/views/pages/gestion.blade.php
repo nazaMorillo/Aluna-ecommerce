@@ -37,6 +37,7 @@ $.ajaxSetup({
 });
        
 $(document).ready(function() {
+
     $('#user_table').DataTable({
         "serverSide": true,
         responsive: true,
@@ -52,8 +53,8 @@ $(document).ready(function() {
             {data: 'description', name: 'description'},
             {data: 'price', name: 'price'},
             {data: 'stock', name: 'stock'},
-            {data: 'brand', name: 'brand'},
-            {data: 'category', name: 'category'},
+            {data: 'brand_id', name: 'brand_id'},
+            {data: 'category_id', name: 'category_id'},
             {data: 'action', name: 'action',orderable: false},                
         ]
     });
@@ -67,6 +68,8 @@ $(document).ready(function() {
 
     $('#sample_form').on('submit', function(event) {
         event.preventDefault();
+        document.getElementById('brand').disabled = false
+        document.getElementById('category').disabled = false;
         if ($('#action').val() == 'Add') {
             $.ajax({
                 url: "{{ route('ajax-crud.store') }}",
@@ -77,8 +80,13 @@ $(document).ready(function() {
                 processData: false,
                 dataType: "json",
                 success: function(data) {
+                    console.log(data);
                     var html = '';
                     if (data.errors) {
+                        if(parseInt(document.getElementById('brandsDB').value) > -1){
+                            document.getElementById('brand').disabled = true
+                            document.getElementById('category').disabled = true; 
+                        }
                         html = '<div class="alert alert-danger">';
                         for (var count = 0; count < data.errors.length; count++) {
                             html += '<p>' + data.errors[count] + '</p>';
@@ -91,6 +99,55 @@ $(document).ready(function() {
                         $('#user_table').DataTable().ajax.reload();
                     }
                     $('#form_result').html(html);
+                        $.ajaxSetup({
+                            headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "/obtenerMarcasyCategorias",
+                            type: "GET",
+                            success: function (response) {
+                            var brandAddProduct = document.getElementById('brandsDB');
+                            var categoryAddProduct = document.getElementById('categoryDB');
+                            brandAddProduct.innerHTML = "";
+                            categoryAddProduct.innerHTML = "";
+                                        let optionNull = document.createElement('option');
+                                        optionNull.setAttribute('value',-1);
+                                        if(document.querySelector('html').lang == 'en'){
+                                            optionNull.append(document.createTextNode('Select an option'));
+                                        }else{
+                                            optionNull.append(document.createTextNode('Seleccione una opción'));
+                                        }						
+                                        brandAddProduct.append(optionNull);
+                                        let optionNulldos = document.createElement('option');
+                                        optionNulldos.setAttribute('value',-1);
+                                        if(document.querySelector('html').lang == 'en'){
+                                            optionNulldos.append(document.createTextNode('Select an option'));
+                                        }else{
+                                            optionNulldos.append(document.createTextNode('Seleccione una opción'));
+                                        }						
+                                        categoryAddProduct.append(optionNulldos);		
+                                    for(brand in response[0]){
+                                        let option = document.createElement('option');
+                                        option.setAttribute('value',response[0][brand].id);
+                                        option.append(document.createTextNode(response[0][brand].name));
+                                        brandAddProduct.append(option);
+                                    }
+                                    for(category in response[1]){
+                                        let option = document.createElement('option');
+                                        option.setAttribute('value',response[1][category].id);
+                                        option.append(document.createTextNode(response[1][category].name));
+                                        categoryAddProduct.append(option);
+                                    }																
+                                },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                    });
+                },
+                error: function(error){
+                    console.log(error);
                 }
             })
         }

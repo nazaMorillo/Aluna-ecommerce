@@ -5,7 +5,7 @@
     <div class="container marketing">
         <!-- START THE FEATURETTES -->        
         <div class="card row">
-            <h4 class="card-header">Encuentra lo que estás buscando</h4>
+            <h4 class="card-header">{{trans('idioma.listTitle')}}</h4>
         </div>
         @auth
 
@@ -29,7 +29,7 @@
 
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Sin unidades</a>
+                        <a id="{{$producto->id}}" class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listWithoutUnits')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -42,7 +42,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -51,7 +51,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
 
                         <!--Fin Agregar al Carrito-->
@@ -65,7 +65,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -74,7 +74,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -96,7 +96,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button" onclick="agregarCarrito({{$producto->id}})">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -118,7 +118,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
 
                         <!--Fin Agregar al Carrito-->
@@ -158,7 +158,7 @@
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
 
-                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">Agregado al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-secondary col-12 col-md-12 text-white mt-2 carrito disabled' role="button">{{trans('idioma.listAddedToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -176,7 +176,7 @@
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
 
-                        <a class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button" href="/login">Sin unidades</a>
+                        <a class='btn bg-black col-12 col-md-12 text-white mt-2 carrito disabled' role="button" href="/login">{{trans('idioma.listWithoutUnits')}}</a>
 
                         <!--Fin Función Comprar-->
                         <!--Agregar al Carrito-->
@@ -194,7 +194,7 @@
 
                     <div class="card-body">
                         <h3>$ {{$producto->price}}</h3>
-                        <p class="card-text"> {{$producto->name}} (Último disponible!)</p>
+                        <p class="card-text"> {{$producto->name}} ({{trans('idioma.listLastAvailable')}}!)</p>
                         <!--Función Comprar-->                       
 
                         <!--<a class='btn btn-primary col-12 col-md-12 text-white mt-2 comprar' role="button" onclick="comprar({{$producto->id}})">Comprar</a>-->
@@ -206,7 +206,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>
@@ -231,7 +231,7 @@
 
                         <!--<a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarCarrito({{$producto->id}})">Agregar al carrito</a>-->
 
-                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">Agregar al carrito</a>
+                        <a id="{{$producto->id}}" class='btn btn-success col-12 col-md-12 text-white mt-2 carrito' role="button" onclick="agregarDesdeLoguin({{$producto->id}})">{{trans('idioma.listAddToCart')}}</a>
 
                         <!--Fin Agregar al Carrito-->
                     </div>

@@ -14,6 +14,7 @@ function agregarCarrito(productid) {
                 cantCarrito.setAttribute('value', parseInt(cantCarrito.getAttribute('value')) + 1);
                 cantCarrito.innerHTML = parseInt(cantCarrito.getAttribute('value'));
                 console.log("productoAgregado");
+                document.getElementById(productid).classList.add("disabled");
             }, error: function (e) {
                 console.log(e);
             }
@@ -21,11 +22,21 @@ function agregarCarrito(productid) {
         if (window.location.href.split("/")[3] == "productos") {
             document.getElementById(productid).removeAttribute("class");
             document.getElementById(productid).setAttribute("class", "btn btn-lg btn-secondary col-12 col-md-3");
-            document.getElementById(productid).innerHTML = "Agregado al carrito";
+            if(document.querySelector('html').lang == 'en'){
+                document.getElementById(productid).innerHTML = "Added to cart";
+                document.getElementById(productid).classList.remove("disabled");
+            }else{
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+                document.getElementById(productid).classList.remove("disabled");
+            }
         } else {
             document.getElementById(productid).removeAttribute("class");
             document.getElementById(productid).setAttribute("class", "btn btn-secondary mt-2 col-12 col-md-12 text-white disabled");
-            document.getElementById(productid).innerHTML = "Agregado al carrito";
+            if(document.querySelector('html').lang == 'en'){
+                document.getElementById(productid).innerHTML = "Added to cart";
+            }else{
+                document.getElementById(productid).innerHTML = "Agregado al carrito";
+            }
         }
     });
 }

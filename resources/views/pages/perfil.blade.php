@@ -5,18 +5,11 @@
       <section>
     <div class="row container mt-3 mx-auto">
         <div class="col-12 col-md-3" style="margin-top: 15px; margin-bottom: 5px;">
-            <!--<div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Resumen</a>
-                <a href="#" class="list-group-item list-group-item-action">Perfil</a>
-                <a href="#" class="list-group-item list-group-item-action">Compras</a>
-                <a href="#" class="list-group-item list-group-item-action">Ventas</a>
-                <a href="#" class="list-group-item list-group-item-action">Configuración</a>
-            </div>-->
         </div>
         <div class="col-12 col-md-6" style="margin-top: 15px; margin-bottom: 5px;">
-            <h2>Bienvenido {{Auth::user()->name}}!</h2>
+            <h2>{{trans('idioma.perfilTitle')}} {{Auth::user()->name}}!</h2>
             <section class="container mt-3">
-                <h4>Modificar datos</h4>
+                <h4>{{trans('idioma.perfilTitle2')}}</h4>
                 <div class="row">
                     <!-- <div class="col-md-12"> -->
                         <form class=" mb-3" action="/actualizarPerfil" enctype="multipart/form-data" method="post">
@@ -35,43 +28,30 @@
                             <div class="form-group column">
                                 <input name="userpassword" type="password" class="form-control col-12" id="passwordToAuth" placeholder="Ingresa tu contraseña">
                                 <span class="messagerror"></span>                            </div>
-                            <!--<div class="row">
-                                <img src="pics/images.png" class="profile rounded-circle d-block col-sm-3 col-4">
-                                <div class="col-xs-6 col-md-9">
-                                    <input type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
-                                    <h6>Aun no elige una imagen</h6>
-                                </div>
-                            </div>-->
+                           
                             <div class="row">
                             <div id="preview"></div>
                             <!--<img id="imagen" src="/storage/{{Auth::user()->avatar}}" class="profile rounded-circle d-block col-sm-3 col-4">-->
                             <div id="previewImage" class="rounded-circle" style="height:102px;width:102px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;background-image:url('/storage/{{Auth::user()->avatar}}')"></div>
                             <div class="col-xs-6 col-md-9">
-                                <h6>Seleccionar imagen</h6>
+                                <h6>{{trans('idioma.perfilSelectImage')}}</h6>
                                 <input id="file" type="file" name="userimage" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-1">
-                                                                <h6 id="unselectimage">Aun no elige una imagen</h6>
+                                                                <h6 id="unselectimage">{{trans('idioma.perfilDontChooseYet')}}</h6>
                             </div>
                             </div>
 
                             <br>
-                            <button id="resetear" type="reset" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">CANCELAR</button>
-                            <input type="submit" id="guardarPerfil" name="guardarPerfil" value="GUARDAR" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">
+                            <button id="resetear" type="reset" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">{{trans('idioma.perfilCancel')}}</button>
+                            <input type="submit" id="guardarPerfil" name="guardarPerfil" value="{{trans('idioma.perfilSave')}}" class="btn btn-outline-dark bg-dark col-md-12 text-white mb-2">
                         </form>
                     <!-- </div> -->
                 </div>
             </section>
-            <h3>Compras</h3>
-            <p>Esta sección está vacía! Cuando compres artículos en nuestra página podrás visualizar el historial aquí.</p>
+            <h3>{{trans('idioma.perfilBuy')}}</h3>
+            <p>{{trans('idioma.perfilBuyText')}}</p>
         </div>
         <div class="col-12 col-md-3" style="margin-top: 15px; margin-bottom: 5px;">
         <div id="preview2" class="rounded-circle" style="height:102px;width:102px;background-size:cover;background-position:center;margin-left: 15px;margin-right: 15px;"></div>
-            <!--<div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Resumen</a>
-                <a href="#" class="list-group-item list-group-item-action">Perfil</a>
-                <a href="#" class="list-group-item list-group-item-action">Compras</a>
-                <a href="#" class="list-group-item list-group-item-action">Ventas</a>
-                <a href="#" class="list-group-item list-group-item-action">Configuración</a>
-            </div>-->
         </div>
     </div>
 </section>
