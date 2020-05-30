@@ -70,8 +70,8 @@ class AjaxCrudController extends Controller
                 'description'     =>  'required',
                 'price'    =>  'required',
                 'stock'     =>  'required',
-                'brand'    =>  'required',
-                'category'     =>  'required',
+                'brand_id'    =>  'required',
+                'category_id'     =>  'required',
             'image'         =>  'required|image|max:2048'
         );
 
@@ -101,13 +101,13 @@ class AjaxCrudController extends Controller
             if(!$flag){
                 Brand::create([
                     'id' => null,
-                    'name' => $request->brand,
+                    'name' => $request->brand_id,
                     'created_at' => null,
                     'updated_at' => null
                 ]);
 
                 $brandAct = Brand::find(\DB::table('brands')->max('id'));
-                $request->brand = $brandAct->id;
+                $request->brand_id = $brandAct->id;
             }            
         }
         if($request->categoryDB > -1){
@@ -192,8 +192,8 @@ class AjaxCrudController extends Controller
                 'description'     =>  'required',
                 'price'    =>  'required',
                 'stock'     =>  'required',
-                'brand'    =>  'required',
-                'category'     =>  'required',
+                'brand_id'    =>  'required',
+                'category_id'     =>  'required',
                 'image'         =>  'image|max:2048'
             );
             $error = Validator::make($request->all(), $rules);
@@ -212,8 +212,8 @@ class AjaxCrudController extends Controller
                 'description'     =>  'required',
                 'price'    =>  'required',
                 'stock'     =>  'required',
-                'brand'    =>  'required',
-                'category'     =>  'required',
+                'brand_id'    =>  'required',
+                'category_id'     =>  'required',
             );
 
             $error = Validator::make($request->all(), $rules);

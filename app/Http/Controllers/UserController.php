@@ -164,11 +164,11 @@ class UserController extends Controller
         if($marca == -1 && $categoria == -1){
             $productos = Product::paginate(8);
         }elseif($marca == -1){
-            $productos = Product::where('category','=',$categoria)->paginate(8);
+            $productos = Product::where('category_id','=',$categoria)->paginate(8);
         }elseif($categoria == -1){
-            $productos = Product::where('brand','=',$marca)->paginate(8);
+            $productos = Product::where('brand_id','=',$marca)->paginate(8);
         }else{
-            $productos = Product::where('brand','=',$marca)->where('category','=',$categoria)->paginate(8);
+            $productos = Product::where('brand_id','=',$marca)->where('category_id','=',$categoria)->paginate(8);
         }        
         if(auth()->user()) {
             $user = User::find(auth()->user()->id);
