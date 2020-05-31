@@ -243,11 +243,11 @@ footer .row {
     opacity: 0;
 }
 
-.popup form .contenedor-inputs , .fa-credit-card{
+.popup form .contenedor-inputs-tarjetas , .fa-credit-card{
     opacity: 0;
 }
 
-.popup form .contenedor-inputs input {
+.popup form .contenedor-inputs-tarjetas input {
     width: 100%;
     margin-bottom: 20px;
     height: 52px;
@@ -278,7 +278,7 @@ footer .row {
 .popup.active {opacity: 1;transform: scale(1);}
 .popup.active h3{ animation: entradaTitulo .8s ease .5s forwards;}
 .popup.active h4{ animation: entradaSubtitulo .8s ease .5s forwards;}
-.popup.active .contenedor-inputs{ animation: entradaInputs 1s ease 1s forwards;}
+.popup.active .contenedor-inputs-tarjetas{ animation: entradaInputs 1s ease 1s forwards;}
 .popup.active .fa-credit-card{ animation: entradaTarjeta .5s ease .5s forwards;}
 
 @keyframes entradaTitulo {

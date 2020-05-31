@@ -5,7 +5,7 @@
 <div class="container marketing">
     <!-- START THE FEATURETTES -->
     <div class="card row">
-        <h4 class="card-header">{{trans('idioma.detailTitle')}} {{$producto->brand}} {{$producto->name}}</h4>
+        <h4 class="card-header">{{trans('idioma.detailTitle')}} {{$producto->brand->name}} {{$producto->name}}</h4>
     </div>
     @auth
     <?php $enCarrito = false ?>
@@ -24,12 +24,12 @@
             <h3 class="col-12">$ {{$producto->price}}</h3>
             @endif
             @if($producto->stock == 0)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( {{trans('idioma.listWithoutUnits')}} )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand->name}} {{$producto->name}} </strong><span style="color: red;"><b style="font-size: 0.9rem">( {{trans('idioma.listWithoutUnits')}} )</b></span></h5>
             @else
             @if($producto->stock == 1)
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( {{trans('idioma.listLastAvailable')}}! )</b></span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand->name}} {{$producto->name}} </strong><span style="color: darkorange;"><b style="font-size: 0.9rem">( {{trans('idioma.listLastAvailable')}}! )</b></span></h5>
             @else
-            <h5 class="card-text col-12"><strong>{{$producto->brand}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} {{trans('idioma.detailAvailable')}}</span></h5>
+            <h5 class="card-text col-12"><strong>{{$producto->brand->name}} {{$producto->name}}10 </strong><span style="color: green;">{{$producto->stock}} {{trans('idioma.detailAvailable')}}</span></h5>
             @endif
             @endif
             <p class="card-text col-12">Descripción : {{$producto->description}}</p>

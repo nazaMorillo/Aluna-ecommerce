@@ -5,8 +5,8 @@
         <h3>PAGO CON TARJETA</h3>
         <h4>Completa los datos a continuación</h4>
         <form action="#" class="form-group">
-            <div class="contenedor-inputs">
-                <!-- <input id="numCard" name="nro-tarjeta" type="text" class="form-control" placeholder="Ingrese número de tarjeta de crédito" minlength="16" maxlength="16" required> -->
+            <div class="contenedor-inputs-tarjetas">
+                <input id="numCard" name="nro-tarjeta" type="text" class="form-control" placeholder="Ingrese número de tarjeta de crédito" minlength="16" maxlength="16" required>
                 <label for="valid">Válida hasta</label>
                 <input id="valid" name="valida-hasta" type="month" class="form-control" required>
                 <input id="codeCard" name="codigo" type="text" class="form-control" placeholder="Ingrese código de tarjeta de crédito" minlength="3" maxlength="3" required>
