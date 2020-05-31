@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         //factory(Product::class)->times(20)->create();        
         $this->call(UserTableSeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(Category_productsSeeder::class);
     }
 }

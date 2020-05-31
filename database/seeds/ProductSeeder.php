@@ -49,6 +49,7 @@ Ram 8/12 GB LPDDR5',
             'brand_id' => 1,
             'category_id' => 3,
         ]);
+
         DB::table('products')->insert([
             'image' => 'G7.jpg',
             'name' => 'Motorola G7',

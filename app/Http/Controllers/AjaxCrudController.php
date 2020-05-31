@@ -7,6 +7,7 @@ use App\Product;
 use App\Brand;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AjaxCrudController extends Controller
 {
@@ -19,13 +20,19 @@ class AjaxCrudController extends Controller
     {
         if(request()->ajax())
         {
-            $productos = Product::latest()->get();
+            $products = Product::latest()->get();
 
             
-            return datatables()->of($productos)
-                ->editColumn('brand_id',function($productos) {
-                    return $productos->brand->name;
-                })  
+            return datatables()->of($products)
+                ->editColumn('brand_id',function($products) {
+                    return $products->brand->name;
+                })
+                ->editColumn('category_id',function($products) {
+                    // foreach($products->categories as $category){
+                    //     return $category;
+                    // }
+                    return DB::table('category')->where("id", $products->category_id)->value("name");                  
+                }) 
                 ->addColumn('action', function($data){
                     $btnsAction = '
                     <div width="100%" class="d-flex flex-column justify-content-between">
